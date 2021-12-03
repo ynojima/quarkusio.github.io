@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 
+
+
+
+
 <head>
   <title>Quarkus - Security Tips and Tricks</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src https://dpm.demdex.net; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self'; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io https://app.mailjet.com; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
-  <META HTTP-EQUIV='Content-Security-Policy' CONTENT="default-src 'none'; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self' ; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;">
-  <META HTTP-EQUIV='X-Frame-Options' CONTENT="DENY">
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
   <META HTTP-EQUIV='X-Content-Type-Options' CONTENT="nosniff">
   <meta charset="utf-8">
@@ -16,13 +21,14 @@
   <meta name="twitter:site" content="@QuarkusIO"> 
   <meta name="twitter:creator" content="@QuarkusIO">
   <meta property="og:url" content="https://quarkus.io/guides/security-customization" />
-  <meta property="og:title" content="Quarkus - Security Tips and Tricks" />
+  <meta property="og:title" content="Security Tips and Tricks" />
   <meta property="og:description" content="Quarkus: Supersonic Subatomic Java" />
-  <meta property="og:image" content="/assets/images/quarkus_card.png" />
+  <meta property="og:image" content="https://quarkus.io/assets/images/quarkus_card.png" />
+  
   <link rel="canonical" href="https://quarkus.io/guides/security-customization">
   <link rel="shortcut icon" type="image/png" href="/favicon.ico" >
   <link rel="stylesheet" href="/guides/stylesheet/config.css" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/main.css?2021-07-29" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <link rel="alternate" type="application/rss+xml"  href="/feed.xml" title="Quarkus">
   <script src="/assets/javascript/goan.js" type="text/javascript"></script>
@@ -42,33 +48,49 @@
       <nav id="main-nav" class="main-nav">
   <div class="container">
     <div class="logo-wrapper">
-      
         <a href="/"><img src="/assets/images/quarkus_logo_horizontal_rgb_600px_reverse.png" class="project-logo" title="Quarkus"></a>
-      
     </div>
     <label class="nav-toggle" for="checkbox">
       <i class="fa fa-bars"></i>
     </label>
-    <div id="menu" class="menu">
-      <span>
-        <a href="/get-started/" class="">Get Started</a>
-      </span>
-      <span>
-        <a href="/guides/" class="active">Guides</a>
-      </span>
-      <span>
-        <a href="/community/" class="">Community</a>
-      </span>
-      <span>
-        <a href="/support/" class="">Support</a>
-      </span>
-      <span>
-        <a href="/blog/" class="">Blog</a>
-      </span>
-      <span>
+    <ul id="menu" class="menu">
+      <li class="dropdown">
+        <span href="/about/">About <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Learn <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/get-started" class="">GET STARTED</a></li>
+          <li><a href="/guides" class="active">GUIDES</a></li>
+          <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
+          <li><a href="/books" class="">BOOKS</a></li>
+          </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Community <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/support/" class="">SUPPORT</a></li>
+          <li><a href="/blog" class="">BLOG</a></li>
+          <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/insights" class="">PODCAST</a></li>
+          <li><a href="/events" class="">EVENTS</a></li>
+          <li><a href="/newsletter" class="">NEWSLETTER</a></li>
+          <li><a href="/publications" class="">PUBLICATIONS</a></li>
+          <li><a href="/awards" class="">AWARDS</a></li>
+          </ul>
+      </li>
+      <li>
         <a href="https://code.quarkus.io" class="button-cta secondary white">Start Coding</a>
-      </span>
-    </div>
+      </li>
+    </ul>
   </div>
       </nav>
     </div>
@@ -76,18 +98,69 @@
 </div>
 
   <div class="content">
-    <div class="guide">
+    
+
+
+
+<div class="full-width-version-bg grey align-self">
+  <div class="grid-wrapper">
+    <div class="grid__item width-6-12">
+      <p class="returnlink"><i class="fas fa-angle-left"></i><a href="/guides"> Back to Guides</a></p>
+    </div>
+    <div class="grid__item width-6-12 align-self-center text-right hide-mobile">
+      <label id="guide-version-label">Select Guide Version</label>
+      <select id="guide-version-dropdown">
+        
+      
+        
+        
+        
+        
+          
+        <option value="main" >Main - SNAPSHOT</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="latest" selected>2.5 - Latest</option>
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="grid-wrapper guide">
+  <div class="grid__item width-12-12 width-12-12-mobile">
+    <h1 class="text-caps">Security Tips and Tricks </h1>
+  </div>
   <div class="width-12-12">
-    <h1 class="text-caps">Quarkus - Security Tips and Tricks</h1>
     <div class="hide-mobile toc"><ul class="sectlevel1">
+<li><a href="#quarkus-security-dependency">Quarkus Security Dependency</a></li>
 <li><a href="#httpauthenticationmechanism-customization">HttpAuthenticationMechanism Customization</a></li>
 <li><a href="#security-identity-customization">Security Identity Customization</a></li>
-<li><a href="#custom-jax-rs-securitycontext">Custom JAX-RS SecurityContext</a></li>
+<li><a href="#jaxrs-security-context">Custom JAX-RS SecurityContext</a></li>
 <li><a href="#disabling-authorization">Disabling Authorization</a></li>
 <li><a href="#registering-security-providers">Registering Security Providers</a>
 <ul class="sectlevel2">
 <li><a href="#default-providers">Default providers</a></li>
-<li><a href="#bouncycastle">BouncyCastle</a></li>
+<li><a href="#bouncy-castle">BouncyCastle</a></li>
 <li><a href="#bouncycastle-jsse">BouncyCastle JSSE</a></li>
 <li><a href="#bouncycastle-fips">BouncyCastle FIPS</a></li>
 <li><a href="#bouncycastle-jsse-fips">BouncyCastle JSSE FIPS</a></li>
@@ -98,6 +171,26 @@
 </ul></div>
     <div>
       <div class="sect1">
+<h2 id="quarkus-security-dependency"><a class="anchor" href="#quarkus-security-dependency"></a>Quarkus Security Dependency</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>io.quarkus:quarkus-security</code> module contains the core Quarkus security classes.</p>
+</div>
+<div class="paragraph">
+<p>In most cases it does not have to be added directly to your project&#8217;s <code>pom.xml</code> as it is already provided by all of the security extensions.
+However if you need to write your own custom security code (for example, register a <a href="#jaxrs-security-context">Custom JAX-RS SecurityContext</a>) or use <a href="#bouncy-castle">BouncyCastle</a> libraries, then please make sure it is included:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+  &lt;artifactId&gt;quarkus-security&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="httpauthenticationmechanism-customization"><a class="anchor" href="#httpauthenticationmechanism-customization"></a>HttpAuthenticationMechanism Customization</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -106,7 +199,7 @@ In the example below the custom authenticator delegates to <code>JWTAuthMechanis
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Alternative
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Alternative
 @Priority(1)
 @ApplicationScoped
 public class CustomAwareJWTAuthMechanism implements HttpAuthenticationMechanism {
@@ -150,7 +243,7 @@ public class CustomAwareJWTAuthMechanism implements HttpAuthenticationMechanism 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import io.quarkus.security.identity.AuthenticationRequestContext;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.quarkus.security.identity.AuthenticationRequestContext;
 import io.quarkus.security.identity.SecurityIdentity;
 import io.quarkus.security.identity.SecurityIdentityAugmentor;
 import io.quarkus.security.runtime.QuarkusSecurityIdentity;
@@ -190,7 +283,7 @@ public class RolesAugmentor implements SecurityIdentityAugmentor {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import java.security.cert.X509Certificate;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.security.cert.X509Certificate;
 import io.quarkus.security.credential.CertificateCredential;
 import io.quarkus.security.identity.AuthenticationRequestContext;
 import io.quarkus.security.identity.SecurityIdentity;
@@ -243,10 +336,10 @@ public class RolesAugmentor implements SecurityIdentityAugmentor {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-===
-If more than one custom <code>SecurityIdentityAugmentor</code> is registered then they will be considered equal candidates and invoked in random order.
-You can enforce the order by implementing a default <code>SecurityIdentityAugmentor#priority</code> method. Augmentors with higher priorities will be invoked first.
-===
+<div class="paragraph">
+<p>If more than one custom <code>SecurityIdentityAugmentor</code> is registered then they will be considered equal candidates and invoked in random order.
+You can enforce the order by implementing a default <code>SecurityIdentityAugmentor#priority</code> method. Augmentors with higher priorities will be invoked first.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -254,14 +347,14 @@ You can enforce the order by implementing a default <code>SecurityIdentityAugmen
 </div>
 </div>
 <div class="sect1">
-<h2 id="custom-jax-rs-securitycontext"><a class="anchor" href="#custom-jax-rs-securitycontext"></a>Custom JAX-RS SecurityContext</h2>
+<h2 id="jaxrs-security-context"><a class="anchor" href="#jaxrs-security-context"></a>Custom JAX-RS SecurityContext</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If you use JAX-RS <code>ContainerRequestFilter</code> to set a custom JAX-RS <code>SecurityContext</code> then make sure <code>ContainerRequestFilter</code> runs in the JAX-RS pre-match phase by adding a <code>@PreMatching</code> annotation to it for this custom security context to be linked with Quarkus <code>SecurityIdentity</code>, for example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import java.security.Principal;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import java.security.Principal;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
@@ -319,7 +412,7 @@ public class SecurityOverrideFilter implements ContainerRequestFilter {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Alternative
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Alternative
 @Priority(Interceptor.Priority.LIBRARY_AFTER)
 @ApplicationScoped
 public class DisabledAuthController extends AuthorizationController {
@@ -332,6 +425,9 @@ public class DisabledAuthController extends AuthorizationController {
     }
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Please also see <a href="security-testing#testing-security">TestingSecurity Annotation</a> section on how to disable the security checks using <code>TestSecurity</code> annotation.</p>
 </div>
 </div>
 </div>
@@ -349,19 +445,19 @@ configuration to register the "SunRsaSign" and "SunJCE" security providers:</p>
 <div class="listingblock">
 <div class="title">Example Security Providers Configuration</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.security.security-providers=SunRsaSign,SunJCE</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.security.security-providers=SunRsaSign,SunJCE</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="bouncycastle"><a class="anchor" href="#bouncycastle"></a>BouncyCastle</h3>
+<h3 id="bouncy-castle"><a class="anchor" href="#bouncy-castle"></a>BouncyCastle</h3>
 <div class="paragraph">
 <p>If you need to register an <code>org.bouncycastle.jce.provider.BouncyCastleProvider</code> JCE provider then please set a <code>BC</code> provider name:</p>
 </div>
 <div class="listingblock">
 <div class="title">Example Security Providers BouncyCastle Configuration</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.security.security-providers=BC</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.security.security-providers=BC</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -369,7 +465,7 @@ configuration to register the "SunRsaSign" and "SunJCE" security providers:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.bouncycastle&lt;/groupId&gt;
   &lt;artifactId&gt;bcprov-jdk15on&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
@@ -384,7 +480,7 @@ configuration to register the "SunRsaSign" and "SunJCE" security providers:</p>
 <div class="listingblock">
 <div class="title">Example Security Providers BouncyCastle JSSE Configuration</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.security.security-providers=BCJSSE
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.security.security-providers=BCJSSE
 
 quarkus.http.ssl.client-auth=REQUIRED
 
@@ -399,7 +495,7 @@ quarkus.http.ssl.certificate.trust-store-password=password</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.bouncycastle&lt;/groupId&gt;
   &lt;artifactId&gt;bctls-jdk15on&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
@@ -414,7 +510,7 @@ quarkus.http.ssl.certificate.trust-store-password=password</code></pre>
 <div class="listingblock">
 <div class="title">Example Security Providers BouncyCastle FIPS Configuration</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.security.security-providers=BCFIPS</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.security.security-providers=BCFIPS</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -422,11 +518,32 @@ quarkus.http.ssl.certificate.trust-store-password=password</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.bouncycastle&lt;/groupId&gt;
   &lt;artifactId&gt;bc-fips&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>BCFIPS</code> provider option is supported in native image but the algorithm self-tests which rely on <code>java.security.SecureRandom</code> to verify the generated keys have been removed for these tests to pass. The following classes have been affected:
+- <code>org.bouncycastle.crypto.general.DSA</code>
+- <code>org.bouncycastle.crypto.general.DSTU4145</code>
+- <code>org.bouncycastle.crypto.general.ECGOST3410</code>
+- <code>org.bouncycastle.crypto.general.GOST3410</code>
+- <code>org.bouncycastle.crypto.fips.FipsDSA</code>
+- <code>org.bouncycastle.crypto.fips.FipsEC</code>
+- <code>org.bouncycastle.crypto.fips.FipsRSA</code></p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -437,7 +554,7 @@ quarkus.http.ssl.certificate.trust-store-password=password</code></pre>
 <div class="listingblock">
 <div class="title">Example Security Providers BouncyCastle FIPS JSSE Configuration</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.security.security-providers=BCFIPSJSSE
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.security.security-providers=BCFIPSJSSE
 
 quarkus.http.ssl.client-auth=REQUIRED
 
@@ -456,7 +573,7 @@ quarkus.http.ssl.certificate.trust-store-provider=BCFIPS</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.bouncycastle&lt;/groupId&gt;
   &lt;artifactId&gt;bctls-fips&lt;/artifactId&gt;
 &lt;/dependency&gt;
@@ -473,8 +590,22 @@ One can generate a keystore with this type and provider like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="shell" class="language-shell hljs">keytool -genkey -alias server -keyalg RSA -keystore server-keystore.jks -keysize 2048 -keypass password -provider org.bouncycastle.jcajce.provider.BouncyCastleFipsProvider -providerpath $PATH_TO_BC_FIPS_JAR -storetype BCFKS</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">keytool -genkey -alias server -keyalg RSA -keystore server-keystore.jks -keysize 2048 -keypass password -provider org.bouncycastle.jcajce.provider.BouncyCastleFipsProvider -providerpath $PATH_TO_BC_FIPS_JAR -storetype BCFKS</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>BCFIPSJSSE</code> provider option is currently not supported in native image.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -487,7 +618,7 @@ One can generate a keystore with this type and provider like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
   &lt;artifactId&gt;quarkus-smallrye-context-propagation&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
@@ -526,33 +657,28 @@ to make sure that Quarkus can propagate it. For more information see the
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>Github Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
         <span>Navigation</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
             <li><a href="/">Home</a></li>
           
-            <li><a href="/guides">Guides</a></li>
+            <li><a href="/about">About</a></li>
           
-            <li><a href="/community/#contributing">Contribute</a></li>
+            <li><a href="/blog">Blog</a></li>
           
-            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/Insights">Podcast</a></li>
           
-            <li><a href="/get-started">Get Started</a></li>
+            <li><a href="/events">Events</a></li>
           
-        </ul>
-      </div>
-    
-      <div class="width-1-12 project-links">
-        <span>Contribute</span>
-        <ul class="footer-links width-1-12">
+            <li><a href="/newsletter">Newsletter</a></li>
           
-            <li><a href="https://twitter.com/quarkusio">Follow us</a></li>
+            <li><a href="/publications">Publications</a></li>
           
-            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+            <li><a href="/Awards">Awards</a></li>
           
             <li><a href="/security">Security&nbsp;policy</a></li>
           
@@ -560,25 +686,52 @@ to make sure that Quarkus can propagate it. For more information see the
       </div>
     
       <div class="width-1-12 project-links">
+        <span>Follow Us</span>
+        <ul class="footer-links">
+          
+            <li><a href="https://twitter.com/quarkusio">Twitter</a></li>
+          
+            <li><a href="https://www.facebook.com/quarkusio">Facebook</a></li>
+          
+            <li><a href="https://www.linkedin.com/company/quarkusio/">Linkedin</a></li>
+          
+            <li><a href="https://www.youtube.com/channel/UCaW8QG_QoIk_FnjLgr5eOqg">Youtube</a></li>
+          
+            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+          
+        </ul>
+      </div>
+    
+      <div class="width-2-12 project-links">
         <span>Get Help</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
-            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Forums</a></li>
+            <li><a href="/support">Support</a></li>
           
-            <li><a href="https://quarkusio.zulipchat.com">Chatroom</a></li>
+            <li><a href="/guides">Guides</a></li>
+          
+            <li><a href="/faq">FAQ</a></li>
+          
+            <li><a href="/get-started">Get Started</a></li>
+          
+            <li><a href="https://stackoverflow.com/questions/tagged/quarkus">Stack Overflow</a></li>
+          
+            <li><a href="https://github.com/quarkusio/quarkus/discussions">Discussions</a></li>
+          
+            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Development mailing list</a></li>
           
         </ul>
       </div>
     
 
     
-      <div class="width-3-12 more-links">
+      <div class="width-4-12 more-links">
         <span>Quarkus is made of community projects</span>
         <ul class="footer-links">
           
             <li><a href="https://vertx.io/" target="_blank">Eclipse Vert.x</a></li>
           
-            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+            <li><a href="https://smallrye.io" target="_blank">SmallRye</a></li>
           
             <li><a href="https://hibernate.org" target="_blank">Hibernate</a></li>
           
@@ -588,6 +741,8 @@ to make sure that Quarkus can propagate it. For more information see the
           
             <li><a href="https://camel.apache.org" target="_blank">Apache Camel</a></li>
           
+            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+          
             <li><a href="https://code.quarkus.io/" target="_blank">And many more...</a></li>
           
         </ul>
@@ -595,6 +750,7 @@ to make sure that Quarkus can propagate it. For more information see the
     
   </div>
 </div>
+
   <div class="content redhat-footer">
   <div class="grid-wrapper">
     <span class="licence">
@@ -616,7 +772,10 @@ to make sure that Quarkus can propagate it. For more information see the
   <script src="/assets/javascript/satellite.js" type="text/javascript"></script>
   <script src="/guides/javascript/config.js" type="text/javascript"></script>
   <script src="/assets/javascript/search-filter.js" type="text/javascript"></script>
+  <script src="/assets/javascript/guides-version-dropdown.js" type="text/javascript"></script>
   <script src="/assets/javascript/back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/javascript/clipboard.min.js" type="text/javascript"></script>
+  <script src="/assets/javascript/copy.js" type="text/javascript"></script>
 </body>
 
 </html>

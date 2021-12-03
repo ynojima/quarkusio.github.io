@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 
+
+
+
+
 <head>
   <title>Quarkus - Using Hibernate ORM and JPA</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src https://dpm.demdex.net; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self'; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io https://app.mailjet.com; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
-  <META HTTP-EQUIV='Content-Security-Policy' CONTENT="default-src 'none'; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self' ; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;">
-  <META HTTP-EQUIV='X-Frame-Options' CONTENT="DENY">
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
   <META HTTP-EQUIV='X-Content-Type-Options' CONTENT="nosniff">
   <meta charset="utf-8">
@@ -16,13 +21,14 @@
   <meta name="twitter:site" content="@QuarkusIO"> 
   <meta name="twitter:creator" content="@QuarkusIO">
   <meta property="og:url" content="https://quarkus.io/guides/hibernate-orm" />
-  <meta property="og:title" content="Quarkus - Using Hibernate ORM and JPA" />
+  <meta property="og:title" content="Using Hibernate ORM and JPA" />
   <meta property="og:description" content="Quarkus: Supersonic Subatomic Java" />
-  <meta property="og:image" content="/assets/images/quarkus_card.png" />
+  <meta property="og:image" content="https://quarkus.io/assets/images/quarkus_card.png" />
+  
   <link rel="canonical" href="https://quarkus.io/guides/hibernate-orm">
   <link rel="shortcut icon" type="image/png" href="/favicon.ico" >
   <link rel="stylesheet" href="/guides/stylesheet/config.css" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/main.css?2021-07-29" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <link rel="alternate" type="application/rss+xml"  href="/feed.xml" title="Quarkus">
   <script src="/assets/javascript/goan.js" type="text/javascript"></script>
@@ -42,33 +48,49 @@
       <nav id="main-nav" class="main-nav">
   <div class="container">
     <div class="logo-wrapper">
-      
         <a href="/"><img src="/assets/images/quarkus_logo_horizontal_rgb_600px_reverse.png" class="project-logo" title="Quarkus"></a>
-      
     </div>
     <label class="nav-toggle" for="checkbox">
       <i class="fa fa-bars"></i>
     </label>
-    <div id="menu" class="menu">
-      <span>
-        <a href="/get-started/" class="">Get Started</a>
-      </span>
-      <span>
-        <a href="/guides/" class="active">Guides</a>
-      </span>
-      <span>
-        <a href="/community/" class="">Community</a>
-      </span>
-      <span>
-        <a href="/support/" class="">Support</a>
-      </span>
-      <span>
-        <a href="/blog/" class="">Blog</a>
-      </span>
-      <span>
+    <ul id="menu" class="menu">
+      <li class="dropdown">
+        <span href="/about/">About <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Learn <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/get-started" class="">GET STARTED</a></li>
+          <li><a href="/guides" class="active">GUIDES</a></li>
+          <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
+          <li><a href="/books" class="">BOOKS</a></li>
+          </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Community <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/support/" class="">SUPPORT</a></li>
+          <li><a href="/blog" class="">BLOG</a></li>
+          <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/insights" class="">PODCAST</a></li>
+          <li><a href="/events" class="">EVENTS</a></li>
+          <li><a href="/newsletter" class="">NEWSLETTER</a></li>
+          <li><a href="/publications" class="">PUBLICATIONS</a></li>
+          <li><a href="/awards" class="">AWARDS</a></li>
+          </ul>
+      </li>
+      <li>
         <a href="https://code.quarkus.io" class="button-cta secondary white">Start Coding</a>
-      </span>
-    </div>
+      </li>
+    </ul>
   </div>
       </nav>
     </div>
@@ -76,20 +98,81 @@
 </div>
 
   <div class="content">
-    <div class="guide">
+    
+
+
+
+<div class="full-width-version-bg grey align-self">
+  <div class="grid-wrapper">
+    <div class="grid__item width-6-12">
+      <p class="returnlink"><i class="fas fa-angle-left"></i><a href="/guides"> Back to Guides</a></p>
+    </div>
+    <div class="grid__item width-6-12 align-self-center text-right hide-mobile">
+      <label id="guide-version-label">Select Guide Version</label>
+      <select id="guide-version-dropdown">
+        
+      
+        
+        
+        
+        
+          
+        <option value="main" >Main - SNAPSHOT</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="latest" selected>2.5 - Latest</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="2.2" >2.2</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="1.11" >1.11</option>
+        
+        
+      
+    
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="grid-wrapper guide">
+  <div class="grid__item width-12-12 width-12-12-mobile">
+    <h1 class="text-caps">Using Hibernate ORM and JPA </h1>
+  </div>
   <div class="width-12-12">
-    <h1 class="text-caps">Quarkus - Using Hibernate ORM and JPA</h1>
     <div class="hide-mobile toc"><ul class="sectlevel1">
+<li><a href="#solution">Solution</a></li>
 <li><a href="#setting-up-and-configuring-hibernate-orm">Setting up and configuring Hibernate ORM</a>
 <ul class="sectlevel2">
 <li><a href="#hibernate-configuration-properties">Hibernate ORM configuration properties</a></li>
 <li><a href="#multiple-persistence-units">Multiple persistence units</a></li>
 </ul>
 </li>
-<li><a href="#setting-up-and-configuring-hibernate-orm-with-a-persistence-xml">Setting up and configuring Hibernate ORM with a <code>persistence.xml</code></a></li>
+<li><a href="#persistence-xml">Setting up and configuring Hibernate ORM with a <code>persistence.xml</code></a></li>
+<li><a href="#xml-mapping">XML mapping</a></li>
 <li><a href="#defining-entities-in-external-projects-or-jars">Defining entities in external projects or jars</a></li>
-<li><a href="#hibernate-orm-in-development-mode">Hibernate ORM in development mode</a></li>
+<li><a href="#dev-mode">Hibernate ORM in development mode</a></li>
 <li><a href="#hibernate-orm-in-production-mode">Hibernate ORM in production mode</a></li>
+<li><a href="#flyway">Automatically transitioning to Flyway to Manage Schemas</a></li>
 <li><a href="#caching">Caching</a>
 <ul class="sectlevel2">
 <li><a href="#caching-of-entities">Caching of entities</a></li>
@@ -118,6 +201,7 @@
 <li><a href="#programmatically-resolving-tenants-connections">Programmatically Resolving Tenants Connections</a></li>
 </ul>
 </li>
+<li><a href="#interceptors">Interceptors</a></li>
 </ul></div>
     <div>
       <div id="preamble">
@@ -125,6 +209,21 @@
 <div class="paragraph">
 <p>Hibernate ORM is the de facto standard JPA implementation and offers you the full breadth of an Object Relational Mapper.
 It works beautifully in Quarkus.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="solution"><a class="anchor" href="#solution"></a>Solution</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We recommend that you follow the instructions in the next sections and create the application step by step.
+However, you can go right to the completed example.</p>
+</div>
+<div class="paragraph">
+<p>Clone the Git repository: <code>git clone <a href="https://github.com/quarkusio/quarkus-quickstarts.git" class="bare">https://github.com/quarkusio/quarkus-quickstarts.git</a></code>, or download an <a href="https://github.com/quarkusio/quarkus-quickstarts/archive/main.zip">archive</a>.</p>
+</div>
+<div class="paragraph">
+<p>The solution is located in the <code>hibernate-orm-quickstart</code> <a href="https://github.com/quarkusio/quarkus-quickstarts/tree/main/hibernate-orm-quickstart">directory</a>.</p>
 </div>
 </div>
 </div>
@@ -185,6 +284,9 @@ so we&#8217;ll see first how Hibernate ORM can be configured without a <code>per
 <p><code>quarkus-jdbc-mysql</code> for <a href="https://www.mysql.com/">MySQL</a></p>
 </li>
 <li>
+<p><code>quarkus-jdbc-oracle</code> for <a href="https://www.oracle.com/database/">Oracle Database</a></p>
+</li>
+<li>
 <p><code>quarkus-jdbc-postgresql</code> for <a href="https://www.postgresql.org/">PostgreSQL</a></p>
 </li>
 </ul>
@@ -195,7 +297,7 @@ so we&#8217;ll see first how Hibernate ORM can be configured without a <code>per
 <div class="listingblock">
 <div class="title">Example dependencies using Maven</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependencies&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependencies&gt;
     &lt;!-- Hibernate ORM specific dependencies --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
@@ -217,7 +319,7 @@ then add the relevant configuration properties in <code>application.properties</
 <div class="listingblock">
 <div class="title">Example <code>application.properties</code></div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs"># datasource configuration
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># datasource configuration
 quarkus.datasource.db-kind = postgresql
 quarkus.datasource.username = hibernate
 quarkus.datasource.password = hibernate
@@ -249,7 +351,7 @@ They will often map to Hibernate ORM configuration properties but could have dif
 <div class="listingblock">
 <div class="title">Example application bean using Hibernate</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@ApplicationScoped
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ApplicationScoped
 public class SantaClausService {
     @Inject
     EntityManager em; <i class="conum" data-value="1"></i><b>(1)</b>
@@ -278,7 +380,7 @@ public class SantaClausService {
 <div class="listingblock">
 <div class="title">Example Entity</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Entity
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Entity
 public class Gift {
     private Long id;
     private String name;
@@ -412,7 +514,7 @@ Pass an explicit value to force Hibernate ORM to execute the SQL import file.</p
 <div class="listingblock">
 <div class="title">application.properties</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="property" class="language-property hljs">%dev.quarkus.hibernate-orm.sql-load-script = import-dev.sql
+<pre class="highlightjs highlight"><code class="language-property hljs" data-lang="property">%dev.quarkus.hibernate-orm.sql-load-script = import-dev.sql
 %test.quarkus.hibernate-orm.sql-load-script = import-test.sql
 %prod.quarkus.hibernate-orm.sql-load-script = no-file</code></pre>
 </div>
@@ -434,7 +536,7 @@ Each SQL statement must be terminated by a semicolon.</p>
 </div>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>import.sql in DEV, TEST ; no-file otherwise</code></p></td>
 </tr>
 <tr>
@@ -464,6 +566,56 @@ Each SQL statement must be terminated by a semicolon.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus.hibernate-orm.metadata-builder-contributor"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.metadata-builder-contributor">quarkus.hibernate-orm.metadata-builder-contributor</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Class name of a custom
+<a href="https://docs.jboss.org/hibernate/stable/orm/javadocs/org/hibernate/boot/spi/MetadataBuilderContributor.html"><code>org.hibernate.boot.spi.MetadataBuilderContributor</code></a>
+implementation.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Not all customization options exposed by
+<a href="https://docs.jboss.org/hibernate/stable/orm/javadocs/org/hibernate/boot/MetadataBuilder.html"><code>org.hibernate.boot.MetadataBuilder</code></a>
+will work correctly. Stay clear of options related to classpath scanning in particular.</p>
+</div>
+<div class="paragraph">
+<p>This setting is exposed mainly to allow registration of types, converters and SQL functions.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus.hibernate-orm.mapping-files"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.mapping-files">quarkus.hibernate-orm.mapping-files</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>XML files to configure the entity mapping, e.g. <code>META-INF/my-orm.xml</code>.
+ Defaults to <code>META-INF/orm.xml</code> if it exists. Pass <code>no-file</code> to force Hibernate ORM to ignore <code>META-INF/orm.xml</code>.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>META-INF/orm.xml if it exists; no-file otherwise</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -513,12 +665,40 @@ The type DISCRIMINATOR is currently not supported. The default value is NONE (no
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus.hibernate-orm.validate-in-dev-mode"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.validate-in-dev-mode">quarkus.hibernate-orm.validate-in-dev-mode</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>If hibernate is not auto generating the schema, and Quarkus is running in development mode then Quarkus will attempt to validate the database after startup and print a log message if there are any problems.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus.hibernate-orm.statistics"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.statistics">quarkus.hibernate-orm.statistics</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
 <p>Whether statistics collection is enabled. If 'metrics.enabled' is true, then the default here is considered true, otherwise the default is false.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus.hibernate-orm.log-session-metrics"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.log-session-metrics">quarkus.hibernate-orm.log-session-metrics</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Whether session metrics should be appended into the server log for each Hibernate session. This only has effect if statistics are enabled (<code>quarkus.hibernate-orm.statistics</code>). The default is false (which means both <code>statistics</code> and <code>log-session-metrics</code> need to be enabled for the session metrics to appear in the log).</p>
 </div>
 </div>
 </div></div></td>
@@ -698,7 +878,7 @@ MariaDB, Microsoft SQL Server and H2.</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Select whether the database schema is generated or not. <code>drop-and-create</code> is awesome in development mode. Accepted values: <code>none</code>, <code>create</code>, <code>drop-and-create</code>, <code>drop</code>, <code>update</code>.</p>
+<p>Select whether the database schema is generated or not. <code>drop-and-create</code> is awesome in development mode. This defaults to 'none', however if Dev Services is in use and no other extensions that manage the schema are present this will default to 'drop-and-create'. Accepted values: <code>none</code>, <code>create</code>, <code>drop-and-create</code>, <code>drop</code>, <code>update</code>, <code>validate</code>.</p>
 </div>
 </div>
 </div></div></td>
@@ -795,12 +975,12 @@ MariaDB, Microsoft SQL Server and H2.</p>
 <p>The size of the batches used when loading entities and collections.</p>
 </div>
 <div class="paragraph">
-<p><code>-1</code> means batch loading is disabled. This is the default.</p>
+<p><code>-1</code> means batch loading is disabled.</p>
 </div>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>-1</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>16</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -852,6 +1032,25 @@ MariaDB, Microsoft SQL Server and H2.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">long</p></td>
 <td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.discriminator-discriminator-related-configuration"></a><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.discriminator-discriminator-related-configuration">Discriminator related configuration</a></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus.hibernate-orm.discriminator.ignore-explicit-for-joined"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.discriminator.ignore-explicit-for-joined">quarkus.hibernate-orm.discriminator.ignore-explicit-for-joined</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Existing applications rely (implicitly or explicitly) on Hibernate ignoring any DiscriminatorColumn declarations on joined inheritance hierarchies. This setting allows these applications to maintain the legacy behavior of DiscriminatorColumn annotations being ignored when paired with joined inheritance.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.persistence-units-additional-named-persistence-units"></a><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.persistence-units-additional-named-persistence-units">Additional named persistence units</a></p></th>
@@ -914,7 +1113,7 @@ Pass an explicit value to force Hibernate ORM to execute the SQL import file.</p
 <div class="listingblock">
 <div class="title">application.properties</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="property" class="language-property hljs">%dev.quarkus.hibernate-orm.sql-load-script = import-dev.sql
+<pre class="highlightjs highlight"><code class="language-property hljs" data-lang="property">%dev.quarkus.hibernate-orm.sql-load-script = import-dev.sql
 %test.quarkus.hibernate-orm.sql-load-script = import-test.sql
 %prod.quarkus.hibernate-orm.sql-load-script = no-file</code></pre>
 </div>
@@ -936,7 +1135,7 @@ Each SQL statement must be terminated by a semicolon.</p>
 </div>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>import.sql in DEV, TEST ; no-file otherwise</code></p></td>
 </tr>
 <tr>
@@ -966,6 +1165,56 @@ Each SQL statement must be terminated by a semicolon.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.metadata-builder-contributor"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.metadata-builder-contributor">quarkus.hibernate-orm."persistence-unit-name".metadata-builder-contributor</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Class name of a custom
+<a href="https://docs.jboss.org/hibernate/stable/orm/javadocs/org/hibernate/boot/spi/MetadataBuilderContributor.html"><code>org.hibernate.boot.spi.MetadataBuilderContributor</code></a>
+implementation.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Not all customization options exposed by
+<a href="https://docs.jboss.org/hibernate/stable/orm/javadocs/org/hibernate/boot/MetadataBuilder.html"><code>org.hibernate.boot.MetadataBuilder</code></a>
+will work correctly. Stay clear of options related to classpath scanning in particular.</p>
+</div>
+<div class="paragraph">
+<p>This setting is exposed mainly to allow registration of types, converters and SQL functions.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.mapping-files"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.mapping-files">quarkus.hibernate-orm."persistence-unit-name".mapping-files</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>XML files to configure the entity mapping, e.g. <code>META-INF/my-orm.xml</code>.
+ Defaults to <code>META-INF/orm.xml</code> if it exists. Pass <code>no-file</code> to force Hibernate ORM to ignore <code>META-INF/orm.xml</code>.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>META-INF/orm.xml if it exists; no-file otherwise</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -1012,6 +1261,20 @@ The type DISCRIMINATOR is currently not supported. The default value is NONE (no
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.validate-in-dev-mode"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.validate-in-dev-mode">quarkus.hibernate-orm."persistence-unit-name".validate-in-dev-mode</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>If hibernate is not auto generating the schema, and Quarkus is running in development mode then Quarkus will attempt to validate the database after startup and print a log message if there are any problems.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.dialect-dialect-related-configuration"></a><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.dialect-dialect-related-configuration">Dialect related configuration</a></p></th>
@@ -1172,7 +1435,7 @@ MariaDB, Microsoft SQL Server and H2.</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Select whether the database schema is generated or not. <code>drop-and-create</code> is awesome in development mode. Accepted values: <code>none</code>, <code>create</code>, <code>drop-and-create</code>, <code>drop</code>, <code>update</code>.</p>
+<p>Select whether the database schema is generated or not. <code>drop-and-create</code> is awesome in development mode. This defaults to 'none', however if Dev Services is in use and no other extensions that manage the schema are present this will default to 'drop-and-create'. Accepted values: <code>none</code>, <code>create</code>, <code>drop-and-create</code>, <code>drop</code>, <code>update</code>, <code>validate</code>.</p>
 </div>
 </div>
 </div></div></td>
@@ -1269,12 +1532,12 @@ MariaDB, Microsoft SQL Server and H2.</p>
 <p>The size of the batches used when loading entities and collections.</p>
 </div>
 <div class="paragraph">
-<p><code>-1</code> means batch loading is disabled. This is the default.</p>
+<p><code>-1</code> means batch loading is disabled.</p>
 </div>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>-1</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>16</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -1328,6 +1591,72 @@ MariaDB, Microsoft SQL Server and H2.</p>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.discriminator-discriminator-related-configuration"></a><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.discriminator-discriminator-related-configuration">Discriminator related configuration</a></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.discriminator.ignore-explicit-for-joined"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.discriminator.ignore-explicit-for-joined">quarkus.hibernate-orm."persistence-unit-name".discriminator.ignore-explicit-for-joined</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Existing applications rely (implicitly or explicitly) on Hibernate ignoring any DiscriminatorColumn declarations on joined inheritance hierarchies. This setting allows these applications to maintain the legacy behavior of DiscriminatorColumn annotations being ignored when paired with joined inheritance.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.scripts-database-scripts-related-configuration"></a><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.scripts-database-scripts-related-configuration">Database scripts related configuration</a></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.scripts.generation"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.scripts.generation">quarkus.hibernate-orm."persistence-unit-name".scripts.generation</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Select whether the database schema DDL files are generated or not. Accepted values: <code>none</code>, <code>create</code>, <code>drop-and-create</code>, <code>drop</code>, <code>update</code>, <code>validate</code>.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>none</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.scripts.generation.create-target"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.scripts.generation.create-target">quarkus.hibernate-orm."persistence-unit-name".scripts.generation.create-target</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Filename or URL where the database create DDL file should be generated.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.scripts.generation.drop-target"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.scripts.generation.drop-target">quarkus.hibernate-orm."persistence-unit-name".scripts.generation.drop-target</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Filename or URL where the database drop DDL file should be generated.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.log-logging-configuration"></a><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.log-logging-configuration">Logging configuration</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
@@ -1374,6 +1703,20 @@ MariaDB, Microsoft SQL Server and H2.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>depends on dialect</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.log.queries-slower-than-ms"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.-persistence-unit-name-.log.queries-slower-than-ms">quarkus.hibernate-orm."persistence-unit-name".log.queries-slower-than-ms</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>If set, Hibernate will log queries that took more than specified number of milliseconds to execute.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.log-logging-configuration"></a><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.log-logging-configuration">Logging configuration</a></p></th>
@@ -1438,6 +1781,67 @@ MariaDB, Microsoft SQL Server and H2.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>depends on dialect</code></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.log.queries-slower-than-ms"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.log.queries-slower-than-ms">quarkus.hibernate-orm.log.queries-slower-than-ms</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>If set, Hibernate will log queries that took more than specified number of milliseconds to execute.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.scripts-database-scripts-related-configuration"></a><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.scripts-database-scripts-related-configuration">Database scripts related configuration</a></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.scripts.generation"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.scripts.generation">quarkus.hibernate-orm.scripts.generation</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Select whether the database schema DDL files are generated or not. Accepted values: <code>none</code>, <code>create</code>, <code>drop-and-create</code>, <code>drop</code>, <code>update</code>, <code>validate</code>.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>none</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.scripts.generation.create-target"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.scripts.generation.create-target">quarkus.hibernate-orm.scripts.generation.create-target</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Filename or URL where the database create DDL file should be generated.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-hibernate-orm_quarkus.hibernate-orm.scripts.generation.drop-target"></a><code><a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.scripts.generation.drop-target">quarkus.hibernate-orm.scripts.generation.drop-target</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Filename or URL where the database drop DDL file should be generated.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
 </tbody>
 </table>
 <div id="duration-note-anchor" class="admonitionblock note">
@@ -1489,7 +1893,7 @@ Make up your mind on which approach you want to use.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker run --rm=true --name postgres-quarkus-hibernate -e POSTGRES_USER=hibernate \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run --rm=true --name postgres-quarkus-hibernate -e POSTGRES_USER=hibernate \
            -e POSTGRES_PASSWORD=hibernate -e POSTGRES_DB=hibernate_db \
            -p 5432:5432 postgres:13.1</code></pre>
 </div>
@@ -1515,7 +1919,7 @@ For instance, the following snippet defines a default datasource and a default p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.datasource.db-kind=h2
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.datasource.db-kind=h2
 quarkus.datasource.jdbc.url=jdbc:h2:mem:default;DB_CLOSE_DELAY=-1
 
 quarkus.hibernate-orm.dialect=org.hibernate.dialect.H2Dialect
@@ -1527,7 +1931,7 @@ quarkus.hibernate-orm.database.generation=drop-and-create</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.datasource."users".db-kind=h2 <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.datasource."users".db-kind=h2 <i class="conum" data-value="1"></i><b>(1)</b>
 quarkus.datasource."users".jdbc.url=jdbc:h2:mem:users;DB_CLOSE_DELAY=-1
 
 quarkus.datasource."inventory".db-kind=h2 <i class="conum" data-value="2"></i><b>(2)</b>
@@ -1628,7 +2032,7 @@ You can point your persistence unit to the default datasource by setting it to <
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.hibernate-orm.database.generation=drop-and-create
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.hibernate-orm.database.generation=drop-and-create
 quarkus.hibernate-orm.packages=org.acme.model.defaultpu
 
 quarkus.hibernate-orm."users".database.generation=drop-and-create
@@ -1654,7 +2058,7 @@ quarkus.hibernate-orm."users".packages=org.acme.model.user</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.hibernate-orm."users".packages=org.acme.model.shared,org.acme.model.user</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.hibernate-orm."users".packages=org.acme.model.shared,org.acme.model.user</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1710,7 +2114,7 @@ Again, the two approaches cannot be mixed.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@PersistenceUnit("users") <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PersistenceUnit("users") <i class="conum" data-value="1"></i><b>(1)</b>
 package org.acme.model.user;
 
 import io.quarkus.hibernate.orm.PersistenceUnit;</code></pre>
@@ -1750,7 +2154,7 @@ using the <code>@PersistenceUnit</code> annotation at the class level is not sup
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Inject
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Inject
 EntityManager entityManager;</code></pre>
 </div>
 </div>
@@ -1762,7 +2166,7 @@ EntityManager entityManager;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Inject
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Inject
 @PersistenceUnit("users") <i class="conum" data-value="1"></i><b>(1)</b>
 EntityManager entityManager;</code></pre>
 </div>
@@ -1780,7 +2184,7 @@ EntityManager entityManager;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Inject
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Inject
 @PersistenceUnit("users")
 EntityManagerFactory entityManagerFactory;</code></pre>
 </div>
@@ -1790,7 +2194,7 @@ EntityManagerFactory entityManagerFactory;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="setting-up-and-configuring-hibernate-orm-with-a-persistence-xml"><a class="anchor" href="#setting-up-and-configuring-hibernate-orm-with-a-persistence-xml"></a>Setting up and configuring Hibernate ORM with a <code>persistence.xml</code></h2>
+<h2 id="persistence-xml"><a class="anchor" href="#persistence-xml"></a>Setting up and configuring Hibernate ORM with a <code>persistence.xml</code></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Alternatively, you can use a <code>META-INF/persistence.xml</code> to set up Hibernate ORM.
@@ -1831,7 +2235,7 @@ difference is that you would specify your Hibernate ORM configuration in <code>M
 <div class="listingblock">
 <div class="title">Example persistence.xml resource</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
@@ -1863,11 +2267,52 @@ difference is that you would specify your Hibernate ORM configuration in <code>M
 </div>
 <div class="paragraph">
 <p>When using the <code>persistence.xml</code> configuration you are configuring Hibernate ORM directly,
-so in this case the appropriate reference is the <a href="https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#configurations">documentation on hibernate.org</a>.</p>
+so in this case the appropriate reference is the <a href="https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/Hibernate_User_Guide.html#configurations">documentation on hibernate.org</a>.</p>
 </div>
 <div class="paragraph">
 <p>Please remember these are not the same property names as the ones used in the Quarkus <code>application.properties</code>, nor will
 the same defaults be applied.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="xml-mapping"><a class="anchor" href="#xml-mapping"></a>XML mapping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Hibernate ORM in Quarkus supports XML mapping.
+You can add mapping files following
+the <a href="https://jakarta.ee/specifications/persistence/3.0/jakarta-persistence-spec-3.0.html#a16944"><code>orm.xml</code> format (JPA)</a>
+or the <a href="http://hibernate.org/dtd/hibernate-mapping-3.0.dtd"><code>hbm.xml</code> format (specific to Hibernate ORM, deprecated)</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>in <code>application.properties</code> through the (build-time) <a href="#quarkus-hibernate-orm_quarkus.hibernate-orm.mapping-files"><code>quarkus.hibernate-orm.mapping-files</code></a> property.</p>
+</li>
+<li>
+<p>in <a href="#persistence-xml"><code>persistence.xml</code></a> through the <code>&lt;mapping-file&gt;</code> element.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>XML mapping files are parsed at build time.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The file <code>META-INF/orm.xml</code> will always be included by default, if it exists in the classpath.</p>
+</div>
+<div class="paragraph">
+<p>If that is not what you want, use <code>quarkus.hibernate-orm.mapping-files = no-file</code> or <code>&lt;mapping-file&gt;no-file&lt;/mapping-file&gt;</code>.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1888,7 +2333,7 @@ or jars, you can make sure that your jar is treated like a Quarkus application l
 </div>
 </div>
 <div class="sect1">
-<h2 id="hibernate-orm-in-development-mode"><a class="anchor" href="#hibernate-orm-in-development-mode"></a>Hibernate ORM in development mode</h2>
+<h2 id="dev-mode"><a class="anchor" href="#dev-mode"></a>Hibernate ORM in development mode</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Quarkus development mode is really useful for applications that mix front end or services and database access.</p>
@@ -1933,7 +2378,7 @@ But for development, these limitations are acceptable.</p>
 <div class="paragraph">
 <p>The third approach is to use <code>quarkus.hibernate-orm.database.generation=none</code>.
 This approach is best when you are working on a copy of the production data but want to fully control the schema evolution.
-Or if you use a database schema migration tool like <a href="https://quarkus.io/guides/flyway">Flyway</a>.</p>
+Or if you use a database schema migration tool like <a href="flyway">Flyway</a>.</p>
 </div>
 <div class="paragraph">
 <p>With this approach when making changes to an entity, make sure to adapt the database schema accordingly;
@@ -1953,14 +2398,14 @@ Do not use <code>quarkus.hibernate-orm.database.generation</code> <code>drop-and
 </div>
 <div class="paragraph">
 <p>These approaches become really powerful when combined with Quarkus configuration profiles.
-You can define different <a href="https://quarkus.io/guides/config#configuration-profiles">configuration profiles</a>
+You can define different <a href="config#configuration-profiles">configuration profiles</a>
 to select different behaviors depending on your environment.
 This is great because you can define different combinations of Hibernate ORM properties matching the development style you currently need.</p>
 </div>
 <div class="listingblock">
 <div class="title">application.properties</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">%dev.quarkus.hibernate-orm.database.generation = drop-and-create
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">%dev.quarkus.hibernate-orm.database.generation = drop-and-create
 %dev.quarkus.hibernate-orm.sql-load-script = import-dev.sql
 
 %dev-with-data.quarkus.hibernate-orm.database.generation = update
@@ -1973,7 +2418,7 @@ This is great because you can define different combinations of Hibernate ORM pro
 <div class="listingblock">
 <div class="title">Start "dev mode" using a custom profile via Maven</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">./mvnw compile quarkus:dev -Dquarkus.profile=dev-with-data</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw compile quarkus:dev -Dquarkus.profile=dev-with-data</code></pre>
 </div>
 </div>
 </div>
@@ -2007,9 +2452,53 @@ Add the following in your properties file.</p>
 <div class="listingblock">
 <div class="title">application.properties</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">%prod.quarkus.hibernate-orm.database.generation = none
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">%prod.quarkus.hibernate-orm.database.generation = none
 %prod.quarkus.hibernate-orm.sql-load-script = no-file</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="flyway"><a class="anchor" href="#flyway"></a>Automatically transitioning to Flyway to Manage Schemas</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you have the <a href="flyway">Flyway extension</a> installed when running in development mode, Quarkus provides a simple way to turn
+your Hibernate ORM auto generated schema into a Flyway migration file. This is intended to make is easy to move from
+the early development phase, where Hibernate can be used to quickly setup the schema, to the production phase, where
+Flyway is used to manage schema changes.</p>
+</div>
+<div class="paragraph">
+<p>To use this feature simply open the Dev UI when the <code>quarkus-flyway</code> extension is installed and click in the <code>Datasources</code>
+link in the Flyway pane. Hit the <code>Create Initial Migration</code> button and the following will happen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <code>db/migration/V1.0.0__{appname}.sql</code> file will be created, containing the SQL Hibernate is running to generate the schema</p>
+</li>
+<li>
+<p><code>quarkus.flyway.baseline-on-migrate</code> will be set, telling Flyway to automatically create its baseline tables</p>
+</li>
+<li>
+<p><code>quarkus.flyway.migrate-at-start</code> will be set, telling Flyway to automatically apply migrations on application startup</p>
+</li>
+<li>
+<p><code>%dev.quarkus.flyway.clean-at-start</code> and <code>`%test.quarkus.flyway.clean-at-start</code> will be set, to clean the DB after reload in dev/test mode</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This button is simply a convenience to quickly get you started with Flyway, it is up to you to determine how you want to
+manage your database schemas in production. In particular the <code>migrate-at-start</code> setting may not be right for all environments.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -2026,7 +2515,7 @@ Add the following in your properties file.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Entity
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Entity
 @Cacheable
 public class Country {
     int dialInCode;
@@ -2048,7 +2537,7 @@ public class Country {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package org.acme;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme;
 
 @Entity
 @Cacheable
@@ -2077,7 +2566,7 @@ public class Country {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Query query = ...
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Query query = ...
 query.setHint("org.hibernate.cacheable", Boolean.TRUE);</code></pre>
 </div>
 </div>
@@ -2086,7 +2575,7 @@ query.setHint("org.hibernate.cacheable", Boolean.TRUE);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Entity
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Entity
 @NamedQuery(name = "Fruits.findAll",
       query = "SELECT f FROM Fruit f ORDER BY f.name",
       hints = @QueryHint(name = "org.hibernate.cacheable", value = "true") )
@@ -2133,7 +2622,7 @@ public class Fruit {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.hibernate-orm.cache."org.acme.MyEntity".memory.object-count=1000</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.hibernate-orm.cache."org.acme.MyEntity".memory.object-count=1000</code></pre>
 </div>
 </div>
 </td>
@@ -2222,7 +2711,7 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
 <div class="listingblock">
 <div class="title">Additional dependency to enable Hibernate Envers</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">    &lt;!-- Add the Hibernate Envers extension --&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">    &lt;!-- Add the Hibernate Envers extension --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
         &lt;artifactId&gt;quarkus-hibernate-envers&lt;/artifactId&gt;
@@ -2317,11 +2806,15 @@ A suitable implementation based on technologies from <a href="https://infinispan
 <h3 id="limitations"><a class="anchor" href="#limitations"></a>Limitations</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">XML mapping</dt>
+<dt class="hdlist1">XML mapping with duplicate files in the classpath</dt>
 <dd>
-<p>Hibernate ORM allows to map entities using XML files; this capability isn&#8217;t enabled in Quarkus: use annotations instead
-as Quarkus can handle them very efficiently.
-This limitation could be lifted in the future, if there&#8217;s a compelling need for it and if someone contributes it.</p>
+<p><a href="#xml-mapping">XML mapping</a> files are expected to have a unique path.</p>
+<div class="paragraph">
+<p>In practice, it&#8217;s only possible to have duplicate XML mapping files in the classpath in very specific scenarios.
+For example, if two JARs include a <code>META-INF/orm.xml</code> file (with the exact same path, but in different JARs),
+then the mapping file path <code>META-INF/orm.xml</code> can only be referenced from a <code>persistence.xml</code>
+<strong>in the same JAR as the <code>META-INF/orm.xml</code> file</strong>.</p>
+</div>
 </dd>
 <dt class="hdlist1">JMX</dt>
 <dd>
@@ -2341,11 +2834,6 @@ as JACC is not available - nor useful - in native mode.</p>
 The team believes this isn&#8217;t a big deal as it&#8217;s trivial to inject the Session via CDI instead, or
 handling the binding into a ThreadLocal yourself, making this a legacy feature.
 This limitation might be resolved in the future, if someone opens a ticket for it and provides a reasonable use case to justify the need.</p>
-</dd>
-<dt class="hdlist1">JPA Callbacks</dt>
-<dd>
-<p>Annotations allowing for application callbacks on entity lifecycle events defined by JPA such as <code>@javax.persistence.PostUpdate</code>, <code>@javax.persistence.PostLoad</code>, <code>@javax.persistence.PostPersist</code>, etc&#8230;&#8203; are currently not processed.
-This limitation could be resolved in a future version, depending on user demand.</p>
 </dd>
 </dl>
 </div>
@@ -2389,10 +2877,13 @@ it&#8217;s implemented by the Agroal connection pool extension for Quarkus.</p>
 <h2 id="multitenancy"><a class="anchor" href="#multitenancy"></a>Multitenancy</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>"The term multitenancy, in general, is applied to software development to indicate an architecture in which a single running instance of an application simultaneously serves multiple clients (tenants). This is highly common in SaaS solutions. Isolating information (data, customizations, etc.) pertaining to the various tenants is a particular challenge in these systems. This includes the data owned by each tenant stored in the database" (<a href="https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#multitenacy">Hibernate User Guide</a>).</p>
+<p>"The term multitenancy, in general, is applied to software development to indicate an architecture in which a single running instance of an application simultaneously serves multiple clients (tenants). This is highly common in SaaS solutions. Isolating information (data, customizations, etc.) pertaining to the various tenants is a particular challenge in these systems. This includes the data owned by each tenant stored in the database" (<a href="https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/Hibernate_User_Guide.html#multitenacy">Hibernate User Guide</a>).</p>
 </div>
 <div class="paragraph">
-<p>Quarkus currently supports the <a href="https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#multitenacy-separate-database">separate database</a> and the <a href="https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#multitenacy-separate-schema">separate schema</a> approach.</p>
+<p>Quarkus currently supports the <a href="https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/Hibernate_User_Guide.html#multitenacy-separate-database">separate database</a> and the <a href="https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/Hibernate_User_Guide.html#multitenacy-separate-schema">separate schema</a> approach.</p>
+</div>
+<div class="paragraph">
+<p>To see multitenancy in action, you can check out the <a href="https://github.com/quarkusio/quarkus-quickstarts/tree/main/hibernate-orm-multi-tenancy-quickstart">hibernate-orm-multi-tenancy-quickstart</a> quickstart.</p>
 </div>
 <div class="sect2">
 <h3 id="writing-the-application"><a class="anchor" href="#writing-the-application"></a>Writing the application</h3>
@@ -2401,7 +2892,7 @@ it&#8217;s implemented by the Agroal connection pool extension for Quarkus.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import javax.enterprise.context.ApplicationScoped;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.ws.rs.GET;
@@ -2429,12 +2920,13 @@ public class FruitResource {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import javax.enterprise.context.ApplicationScoped;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import javax.enterprise.context.ApplicationScoped;
 
 import io.quarkus.hibernate.orm.runtime.tenant.TenantResolver;
 import io.vertx.ext.web.RoutingContext;
 
-@RequestScoped <i class="conum" data-value="1"></i><b>(1)</b>
+@PersistenceUnitExtension <i class="conum" data-value="1"></i><b>(1)</b>
+@RequestScoped <i class="conum" data-value="2"></i><b>(2)</b>
 public class CustomTenantResolver implements TenantResolver {
 
     @Inject
@@ -2465,6 +2957,14 @@ public class CustomTenantResolver implements TenantResolver {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Annotate the TenantResolver implementation with the <code>@PersistenceUnitExtension</code> qualifier
+to tell Quarkus it should be used in the default persistence unit.
+<div class="paragraph">
+<p>For <a href="#multiple-persistence-units">named persistence units</a>, use <code>@PersistenceUnitExtension("nameOfYourPU")</code>.</p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>The bean is made <code>@RequestScoped</code> as the tenant resolution depends on the incoming request.</td>
 </tr>
 </table>
@@ -2480,52 +2980,14 @@ public class CustomTenantResolver implements TenantResolver {
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If <a href="#multiple-persistence-units">named persistence units</a> are used, you need to qualify the <code>TenantResolver</code> with the persistence unit name:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import javax.enterprise.context.ApplicationScoped;
-
-import io.quarkus.hibernate.orm.PersistenceUnit;
-import io.quarkus.hibernate.orm.runtime.tenant.TenantResolver;
-import io.vertx.ext.web.RoutingContext;
-
-@PersistenceUnit("name-of-persistence-unit") <i class="conum" data-value="1"></i><b>(1)</b>
-@RequestScoped
-public class CustomTenantResolver implements TenantResolver {
-
-   // ...
-
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Make sure to use the <code>@io.quarkus.hibernate.orm.PersistenceUnit</code> annotation, not the JPA one.</td>
-</tr>
-</table>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
 <p>If you also use <a href="security-openid-connect-multitenancy">OIDC multitenancy</a> and both OIDC and Hibernate ORM tenant IDs are the same and must be extracted from the Vert.x <code>RoutingContext</code> then you can pass the tenant id from the OIDC Tenant Resolver to the Hibernate ORM Tenant Resolver as a <code>RoutingContext</code> attribute, for example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import io.quarkus.hibernate.orm.runtime.tenant.TenantResolver;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.quarkus.hibernate.orm.runtime.tenant.TenantResolver;
 import io.vertx.ext.web.RoutingContext;
 
+@PersistenceUnitExtension
 @RequestScoped
 public class CustomTenantResolver implements TenantResolver {
 
@@ -2550,7 +3012,7 @@ public class CustomTenantResolver implements TenantResolver {
 <div class="paragraph">
 <p>In general it is not possible to use the Hibernate ORM database generation feature in conjunction with a multitenancy setup.
 Therefore you have to disable it and you need to make sure that the tables are created per schema.
-The following setup will use the <a href="https://quarkus.io/guides/flyway">Flyway</a> extension to achieve this goal.</p>
+The following setup will use the <a href="flyway">Flyway</a> extension to achieve this goal.</p>
 </div>
 <div class="sect3">
 <h4 id="schema-approach"><a class="anchor" href="#schema-approach"></a>SCHEMA approach</h4>
@@ -2560,7 +3022,7 @@ CAUTION: Some databases like MariaDB/MySQL do not support database schemas. In t
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs"># Disable generation
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Disable generation
 quarkus.hibernate-orm.database.generation=none
 
 # Enable SCHEMA approach and use default datasource
@@ -2585,7 +3047,7 @@ quarkus.flyway.migrate-at-start=true</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">CREATE SEQUENCE base.known_fruits_id_seq;
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE SEQUENCE base.known_fruits_id_seq;
 SELECT setval('base."known_fruits_id_seq"', 3);
 CREATE TABLE base.known_fruits
 (
@@ -2616,7 +3078,7 @@ INSERT INTO mycompany.known_fruits(id, name) VALUES (3, 'Blackberries');</code><
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs"># Disable generation
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Disable generation
 quarkus.hibernate-orm.database.generation=none
 
 # Enable DATABASE approach
@@ -2651,7 +3113,7 @@ quarkus.flyway.mycompany.migrate-at-start=true</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">CREATE SEQUENCE known_fruits_id_seq;
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE SEQUENCE known_fruits_id_seq;
 SELECT setval('known_fruits_id_seq', 3);
 CREATE TABLE known_fruits
 (
@@ -2668,7 +3130,7 @@ INSERT INTO known_fruits(id, name) VALUES (3, 'Banana');</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="sql" class="language-sql hljs">CREATE SEQUENCE known_fruits_id_seq;
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE SEQUENCE known_fruits_id_seq;
 SELECT setval('known_fruits_id_seq', 3);
 CREATE TABLE known_fruits
 (
@@ -2685,8 +3147,92 @@ INSERT INTO known_fruits(id, name) VALUES (3, 'Blackberries');</code></pre>
 <div class="sect2">
 <h3 id="programmatically-resolving-tenants-connections"><a class="anchor" href="#programmatically-resolving-tenants-connections"></a>Programmatically Resolving Tenants Connections</h3>
 <div class="paragraph">
-<p>If you need a more dynamic configuration for the different tenants you want to support and don&#8217;t want to end up with multiple entries in your configuration file, you can use the <code>io.quarkus.hibernate.orm.runtime.tenant.TenantConnectionResolver</code> interface to implement your own logic for retrieving a connection. Creating an application scoped bean that implements this interface will replace the current Quarkus default implementation <code>io.quarkus.hibernate.orm.runtime.tenant.DataSourceTenantConnectionResolver</code>. Your custom connection resolver would allow for example to read tenant information from a database and create a connection per tenant at runtime based on it.</p>
+<p>If you need a more dynamic configuration for the different tenants you want to support and don&#8217;t want to end up with multiple entries in your configuration file,
+you can use the <code>io.quarkus.hibernate.orm.runtime.tenant.TenantConnectionResolver</code> interface to implement your own logic for retrieving a connection.
+Creating an application-scoped bean that implements this interface
+and annotating it with <code>@PersistenceUnitExtension</code> (or <code>@PersistenceUnitExtension("nameOfYourPU")</code> for a <a href="#multiple-persistence-units">named persistence unit</a>)
+will replace the current Quarkus default implementation <code>io.quarkus.hibernate.orm.runtime.tenant.DataSourceTenantConnectionResolver</code>.
+Your custom connection resolver would allow for example to read tenant information from a database and create a connection per tenant at runtime based on it.</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="interceptors"><a class="anchor" href="#interceptors"></a>Interceptors</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can assign an <a href="https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/Hibernate_User_Guide.html#events-interceptors"><code>org.hibernate.Interceptor</code></a>
+to your <code>SessionFactory</code> by simply defining a CDI bean with the appropriate qualifier:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PersistenceUnitExtension <i class="conum" data-value="1"></i><b>(1)</b>
+public static class MyInterceptor extends EmptyInterceptor { <i class="conum" data-value="2"></i><b>(2)</b>
+    @Override
+    public boolean onLoad(Object entity, Serializable id, Object[] state, <i class="conum" data-value="3"></i><b>(3)</b>
+            String[] propertyNames, Type[] types) {
+        // ...
+        return false;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Annotate the interceptor implementation with the <code>@PersistenceUnitExtension</code> qualifier
+to tell Quarkus it should be used in the default persistence unit.
+<div class="paragraph">
+<p>For <a href="#multiple-persistence-units">named persistence units</a>, use <code>@PersistenceUnitExtension("nameOfYourPU")</code></p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Either extend <code>org.hibernate.EmptyInterceptor</code> or implement <code>org.hibernate.Interceptor</code> directly.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Implement methods as necessary.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>By default, interceptor beans annotated with <code>@PersistenceUnitExtension</code> are application-scoped,
+which means only one interceptor instance will be created per application
+and reused across all entity managers.
+For this reason, the interceptor implementation must be thread-safe.</p>
+</div>
+<div class="paragraph">
+<p>In order to create one interceptor instance per entity manager instead,
+annotate your bean with <code>@Dependent</code>.
+In that case, the interceptor implementation doesn&#8217;t need to be thread-safe.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Due to a limitation in Hibernate ORM itself,
+<code>@PreDestroy</code> methods on <code>@Dependent</code>-scoped interceptors will never get called.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -2703,33 +3249,28 @@ INSERT INTO known_fruits(id, name) VALUES (3, 'Blackberries');</code></pre>
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>Github Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
         <span>Navigation</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
             <li><a href="/">Home</a></li>
           
-            <li><a href="/guides">Guides</a></li>
+            <li><a href="/about">About</a></li>
           
-            <li><a href="/community/#contributing">Contribute</a></li>
+            <li><a href="/blog">Blog</a></li>
           
-            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/Insights">Podcast</a></li>
           
-            <li><a href="/get-started">Get Started</a></li>
+            <li><a href="/events">Events</a></li>
           
-        </ul>
-      </div>
-    
-      <div class="width-1-12 project-links">
-        <span>Contribute</span>
-        <ul class="footer-links width-1-12">
+            <li><a href="/newsletter">Newsletter</a></li>
           
-            <li><a href="https://twitter.com/quarkusio">Follow us</a></li>
+            <li><a href="/publications">Publications</a></li>
           
-            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+            <li><a href="/Awards">Awards</a></li>
           
             <li><a href="/security">Security&nbsp;policy</a></li>
           
@@ -2737,25 +3278,52 @@ INSERT INTO known_fruits(id, name) VALUES (3, 'Blackberries');</code></pre>
       </div>
     
       <div class="width-1-12 project-links">
+        <span>Follow Us</span>
+        <ul class="footer-links">
+          
+            <li><a href="https://twitter.com/quarkusio">Twitter</a></li>
+          
+            <li><a href="https://www.facebook.com/quarkusio">Facebook</a></li>
+          
+            <li><a href="https://www.linkedin.com/company/quarkusio/">Linkedin</a></li>
+          
+            <li><a href="https://www.youtube.com/channel/UCaW8QG_QoIk_FnjLgr5eOqg">Youtube</a></li>
+          
+            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+          
+        </ul>
+      </div>
+    
+      <div class="width-2-12 project-links">
         <span>Get Help</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
-            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Forums</a></li>
+            <li><a href="/support">Support</a></li>
           
-            <li><a href="https://quarkusio.zulipchat.com">Chatroom</a></li>
+            <li><a href="/guides">Guides</a></li>
+          
+            <li><a href="/faq">FAQ</a></li>
+          
+            <li><a href="/get-started">Get Started</a></li>
+          
+            <li><a href="https://stackoverflow.com/questions/tagged/quarkus">Stack Overflow</a></li>
+          
+            <li><a href="https://github.com/quarkusio/quarkus/discussions">Discussions</a></li>
+          
+            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Development mailing list</a></li>
           
         </ul>
       </div>
     
 
     
-      <div class="width-3-12 more-links">
+      <div class="width-4-12 more-links">
         <span>Quarkus is made of community projects</span>
         <ul class="footer-links">
           
             <li><a href="https://vertx.io/" target="_blank">Eclipse Vert.x</a></li>
           
-            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+            <li><a href="https://smallrye.io" target="_blank">SmallRye</a></li>
           
             <li><a href="https://hibernate.org" target="_blank">Hibernate</a></li>
           
@@ -2765,6 +3333,8 @@ INSERT INTO known_fruits(id, name) VALUES (3, 'Blackberries');</code></pre>
           
             <li><a href="https://camel.apache.org" target="_blank">Apache Camel</a></li>
           
+            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+          
             <li><a href="https://code.quarkus.io/" target="_blank">And many more...</a></li>
           
         </ul>
@@ -2772,6 +3342,7 @@ INSERT INTO known_fruits(id, name) VALUES (3, 'Blackberries');</code></pre>
     
   </div>
 </div>
+
   <div class="content redhat-footer">
   <div class="grid-wrapper">
     <span class="licence">
@@ -2793,7 +3364,10 @@ INSERT INTO known_fruits(id, name) VALUES (3, 'Blackberries');</code></pre>
   <script src="/assets/javascript/satellite.js" type="text/javascript"></script>
   <script src="/guides/javascript/config.js" type="text/javascript"></script>
   <script src="/assets/javascript/search-filter.js" type="text/javascript"></script>
+  <script src="/assets/javascript/guides-version-dropdown.js" type="text/javascript"></script>
   <script src="/assets/javascript/back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/javascript/clipboard.min.js" type="text/javascript"></script>
+  <script src="/assets/javascript/copy.js" type="text/javascript"></script>
 </body>
 
 </html>

@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 
+
+
+
+
 <head>
   <title>Quarkus - Using OpenTracing</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src https://dpm.demdex.net; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self'; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io https://app.mailjet.com; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
-  <META HTTP-EQUIV='Content-Security-Policy' CONTENT="default-src 'none'; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self' ; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;">
-  <META HTTP-EQUIV='X-Frame-Options' CONTENT="DENY">
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
   <META HTTP-EQUIV='X-Content-Type-Options' CONTENT="nosniff">
   <meta charset="utf-8">
@@ -16,13 +21,14 @@
   <meta name="twitter:site" content="@QuarkusIO"> 
   <meta name="twitter:creator" content="@QuarkusIO">
   <meta property="og:url" content="https://quarkus.io/guides/opentracing" />
-  <meta property="og:title" content="Quarkus - Using OpenTracing" />
+  <meta property="og:title" content="Using OpenTracing" />
   <meta property="og:description" content="Quarkus: Supersonic Subatomic Java" />
-  <meta property="og:image" content="/assets/images/quarkus_card.png" />
+  <meta property="og:image" content="https://quarkus.io/assets/images/quarkus_card.png" />
+  
   <link rel="canonical" href="https://quarkus.io/guides/opentracing">
   <link rel="shortcut icon" type="image/png" href="/favicon.ico" >
   <link rel="stylesheet" href="/guides/stylesheet/config.css" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/main.css?2021-07-29" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <link rel="alternate" type="application/rss+xml"  href="/feed.xml" title="Quarkus">
   <script src="/assets/javascript/goan.js" type="text/javascript"></script>
@@ -42,33 +48,49 @@
       <nav id="main-nav" class="main-nav">
   <div class="container">
     <div class="logo-wrapper">
-      
         <a href="/"><img src="/assets/images/quarkus_logo_horizontal_rgb_600px_reverse.png" class="project-logo" title="Quarkus"></a>
-      
     </div>
     <label class="nav-toggle" for="checkbox">
       <i class="fa fa-bars"></i>
     </label>
-    <div id="menu" class="menu">
-      <span>
-        <a href="/get-started/" class="">Get Started</a>
-      </span>
-      <span>
-        <a href="/guides/" class="active">Guides</a>
-      </span>
-      <span>
-        <a href="/community/" class="">Community</a>
-      </span>
-      <span>
-        <a href="/support/" class="">Support</a>
-      </span>
-      <span>
-        <a href="/blog/" class="">Blog</a>
-      </span>
-      <span>
+    <ul id="menu" class="menu">
+      <li class="dropdown">
+        <span href="/about/">About <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Learn <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/get-started" class="">GET STARTED</a></li>
+          <li><a href="/guides" class="active">GUIDES</a></li>
+          <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
+          <li><a href="/books" class="">BOOKS</a></li>
+          </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Community <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/support/" class="">SUPPORT</a></li>
+          <li><a href="/blog" class="">BLOG</a></li>
+          <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/insights" class="">PODCAST</a></li>
+          <li><a href="/events" class="">EVENTS</a></li>
+          <li><a href="/newsletter" class="">NEWSLETTER</a></li>
+          <li><a href="/publications" class="">PUBLICATIONS</a></li>
+          <li><a href="/awards" class="">AWARDS</a></li>
+          </ul>
+      </li>
+      <li>
         <a href="https://code.quarkus.io" class="button-cta secondary white">Start Coding</a>
-      </span>
-    </div>
+      </li>
+    </ul>
   </div>
       </nav>
     </div>
@@ -76,9 +98,67 @@
 </div>
 
   <div class="content">
-    <div class="guide">
+    
+
+
+
+<div class="full-width-version-bg grey align-self">
+  <div class="grid-wrapper">
+    <div class="grid__item width-6-12">
+      <p class="returnlink"><i class="fas fa-angle-left"></i><a href="/guides"> Back to Guides</a></p>
+    </div>
+    <div class="grid__item width-6-12 align-self-center text-right hide-mobile">
+      <label id="guide-version-label">Select Guide Version</label>
+      <select id="guide-version-dropdown">
+        
+      
+        
+        
+        
+        
+          
+        <option value="main" >Main - SNAPSHOT</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="latest" selected>2.5 - Latest</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="2.2" >2.2</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="1.11" >1.11</option>
+        
+        
+      
+    
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="grid-wrapper guide">
+  <div class="grid__item width-12-12 width-12-12-mobile">
+    <h1 class="text-caps">Using OpenTracing </h1>
+  </div>
   <div class="width-12-12">
-    <h1 class="text-caps">Quarkus - Using OpenTracing</h1>
     <div class="hide-mobile toc"><ul class="sectlevel1">
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#architecture">Architecture</a></li>
@@ -95,6 +175,8 @@
 <ul class="sectlevel2">
 <li><a href="#jdbc">JDBC</a></li>
 <li><a href="#kafka">Kafka</a></li>
+<li><a href="#mongodb-client">MongoDB client</a></li>
+<li><a href="#zipkin-compatibility-mode">Zipkin compatibility mode</a></li>
 </ul>
 </li>
 <li><a href="#configuration-reference">Jaeger Configuration Reference</a></li>
@@ -123,10 +205,10 @@ interactive web applications.</p>
 <p>an IDE</p>
 </li>
 <li>
-<p>JDK 1.8+ installed with <code>JAVA_HOME</code> configured appropriately</p>
+<p>JDK 11+ installed with <code>JAVA_HOME</code> configured appropriately</p>
 </li>
 <li>
-<p>Apache Maven 3.6.2+</p>
+<p>Apache Maven 3.8.1+</p>
 </li>
 <li>
 <p>Docker</p>
@@ -151,10 +233,10 @@ interactive web applications.</p>
 However, you can skip right to the completed example.</p>
 </div>
 <div class="paragraph">
-<p>Clone the Git repository: <code>git clone <a href="https://github.com/quarkusio/quarkus-quickstarts.git" class="bare">https://github.com/quarkusio/quarkus-quickstarts.git</a></code>, or download an <a href="https://github.com/quarkusio/quarkus-quickstarts/archive/master.zip">archive</a>.</p>
+<p>Clone the Git repository: <code>git clone <a href="https://github.com/quarkusio/quarkus-quickstarts.git" class="bare">https://github.com/quarkusio/quarkus-quickstarts.git</a></code>, or download an <a href="https://github.com/quarkusio/quarkus-quickstarts/archive/main.zip">archive</a>.</p>
 </div>
 <div class="paragraph">
-<p>The solution is located in the <code>opentracing-quickstart</code> <a href="https://github.com/quarkusio/quarkus-quickstarts/tree/master/opentracing-quickstart">directory</a>.</p>
+<p>The solution is located in the <code>opentracing-quickstart</code> <a href="https://github.com/quarkusio/quarkus-quickstarts/tree/main/opentracing-quickstart">directory</a>.</p>
 </div>
 </div>
 </div>
@@ -166,7 +248,7 @@ However, you can skip right to the completed example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mvn io.quarkus:quarkus-maven-plugin:1.11.1.Final:create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:2.5.1.Final:create \
     -DprojectGroupId=org.acme \
     -DprojectArtifactId=opentracing-quickstart \
     -DclassName="org.acme.opentracing.TracedResource" \
@@ -185,7 +267,7 @@ to your project by running the following command in your project base directory:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">./mvnw quarkus:add-extension -Dextensions="smallrye-opentracing"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -Dextensions="smallrye-opentracing"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -193,7 +275,7 @@ to your project by running the following command in your project base directory:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
     &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
     &lt;artifactId&gt;quarkus-smallrye-opentracing&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
@@ -206,7 +288,7 @@ to your project by running the following command in your project base directory:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package org.acme.opentracing;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.opentracing;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -222,15 +304,25 @@ public class TracedResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
-        LOG.info("hello");
+        LOG.info("hello"); <i class="conum" data-value="1"></i><b>(1)</b>
         return "hello";
     }
 }</code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The log event carries OpenTracing information as well. In order to print OpenTracing information to the console output, the console log handler with the required OpenTracing event&#8217;s keys needs to be defined in the <code>application.properties</code> file.</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Notice that there is no tracing specific code included in the application. By default, requests sent to this
-endpoint will be traced without any code changes being required. It is also possible to enhance the tracing information. For more information on this, please see the <a href="https://github.com/eclipse/microprofile-opentracing/blob/master/spec/src/main/asciidoc/microprofile-opentracing.asciidoc">MicroProfile OpenTracing specification</a>.</p>
+endpoint will be traced without any code changes being required. It is also possible to enhance the tracing information.
+This can be achieved by <a href="https://github.com/smallrye/smallrye-opentracing/">SmallRye OpenTracing</a> an implementation of
+<a href="https://github.com/eclipse/microprofile-opentracing/">MicroProfile OpenTracing</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -243,7 +335,7 @@ endpoint will be traced without any code changes being required. It is also poss
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.jaeger.service-name=myservice <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.jaeger.service-name=myservice <i class="conum" data-value="1"></i><b>(1)</b>
 quarkus.jaeger.sampler-type=const <i class="conum" data-value="2"></i><b>(2)</b>
 quarkus.jaeger.sampler-param=1 <i class="conum" data-value="3"></i><b>(3)</b>
 quarkus.log.console.format=%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
@@ -283,7 +375,7 @@ quarkus.log.console.format=%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{pa
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker run -p 5775:5775/udp -p 6831:6831/udp -p 6832:6832/udp -p 5778:5778 -p 16686:16686 -p 14268:14268 jaegertracing/all-in-one:latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -p 5775:5775/udp -p 6831:6831/udp -p 6832:6832/udp -p 5778:5778 -p 16686:16686 -p 14268:14268 jaegertracing/all-in-one:latest</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -291,7 +383,7 @@ quarkus.log.console.format=%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{pa
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">./mvnw compile quarkus:dev</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw compile quarkus:dev</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -299,7 +391,7 @@ quarkus.log.console.format=%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{pa
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">./mvnw compile quarkus:dev -Djvm.args="-DJAEGER_SERVICE_NAME=myservice -DJAEGER_SAMPLER_TYPE=const -DJAEGER_SAMPLER_PARAM=1"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw compile quarkus:dev -Djvm.args="-DJAEGER_SERVICE_NAME=myservice -DJAEGER_SAMPLER_TYPE=const -DJAEGER_SAMPLER_PARAM=1"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -307,7 +399,7 @@ quarkus.log.console.format=%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{pa
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="shell" class="language-shell hljs">$ curl http://localhost:8080/hello
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ curl http://localhost:8080/hello
 hello</code></pre>
 </div>
 </div>
@@ -333,7 +425,7 @@ hello</code></pre>
 <div class="sectionbody">
 <div class="paragraph">
 <p>REST endpoints are automatically traced.
-If you need to trace additional methods, you can use the <code>org.eclipse.microprofile.opentracing.Traced</code> annotation at class or method level.</p>
+If you need to trace additional methods, you can add the <code>org.eclipse.microprofile.opentracing.Traced</code> annotation to CDI bean classes or their non-private methods.</p>
 </div>
 <div class="paragraph">
 <p>This can be useful to trace incoming requests from non-REST calls (like request coming from a message) or to create spans inside a trace.</p>
@@ -343,7 +435,7 @@ If you need to trace additional methods, you can use the <code>org.eclipse.micro
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import javax.enterprise.context.ApplicationScoped;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.microprofile.opentracing.Traced;
 
@@ -364,7 +456,7 @@ public class FrancophoneService {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-the best way to add OpenTracing capability to reactive messaging based applications is by adding the <code>Traced</code> annotation to all incoming methods.
+The best way to add OpenTracing capability to reactive messaging based applications is by adding the <code>Traced</code> annotation to all incoming methods.
 </td>
 </tr>
 </table>
@@ -387,7 +479,7 @@ the best way to add OpenTracing capability to reactive messaging based applicati
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
     &lt;groupId&gt;io.opentracing.contrib&lt;/groupId&gt;
     &lt;artifactId&gt;opentracing-jdbc&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
@@ -398,7 +490,7 @@ the best way to add OpenTracing capability to reactive messaging based applicati
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.datasource.db-kind=postgresql
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.datasource.db-kind=postgresql
 # add ':tracing' to your database URL
 quarkus.datasource.jdbc.url=jdbc:tracing:postgresql://localhost:5432/mydatabase
 # use the 'TracingDriver' instead of the one for your database
@@ -415,10 +507,9 @@ quarkus.hibernate-orm.dialect=org.hibernate.dialect.PostgreSQLDialect</code></pr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
     &lt;groupId&gt;io.opentracing.contrib&lt;/groupId&gt;
     &lt;artifactId&gt;opentracing-kafka-client&lt;/artifactId&gt;
-    &lt;version&gt;${opentracing-kafka.version}&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -430,7 +521,7 @@ quarkus.hibernate-orm.dialect=org.hibernate.dialect.PostgreSQLDialect</code></pr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs"># Configure the Kafka sink (we write to it)
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Configure the Kafka sink (we write to it)
 mp.messaging.outgoing.generated-price.connector=smallrye-kafka
 mp.messaging.outgoing.generated-price.topic=prices
 mp.messaging.outgoing.generated-price.value.serializer=org.apache.kafka.common.serialization.IntegerSerializer
@@ -453,6 +544,54 @@ mp.messaging.incoming.prices.interceptor.classes=io.opentracing.contrib.kafka.Tr
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mongodb-client"><a class="anchor" href="#mongodb-client"></a>MongoDB client</h3>
+<div class="paragraph">
+<p>The <a href="https://github.com/opentracing-contrib/java-mongo-driver">Mongo Driver instrumentation</a> will add a span for each command executed by your application. To enable it, add the following dependency to your pom.xml:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;io.opentracing.contrib&lt;/groupId&gt;
+    &lt;artifactId&gt;opentracing-mongo-common&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It contains the OpenTracing CommandListener that will be registered on the configuration of the mongo client.
+Following the <a href="mongodb">MongoDB guide</a>, the command listener will be registered defining the config property as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Enable tracing commands in mongodb client
+quarkus.mongodb.tracing.enabled=true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="zipkin-compatibility-mode"><a class="anchor" href="#zipkin-compatibility-mode"></a>Zipkin compatibility mode</h3>
+<div class="paragraph">
+<p>To enable it, add the following dependency to your pom.xml:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;io.jaegertracing&lt;/groupId&gt;
+    &lt;artifactId&gt;jaeger-zipkin&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It contains the dependencies to convert the request to zipkin format.
+The zipkin compatibility mode will be activated after defining the config property as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Enable zipkin compatibility mode
+quarkus.jaeger.zipkin.compatibility-mode=true</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -728,6 +867,34 @@ mp.messaging.incoming.prices.interceptor.classes=io.opentracing.contrib.kafka.Tr
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-jaeger_quarkus.jaeger.disable-tracer-registration"></a><code><a href="#quarkus-jaeger_quarkus.jaeger.disable-tracer-registration">quarkus.jaeger.disable-tracer-registration</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Whether or not the registration of tracer as the global tracer should be disabled. This setting should only be turned on in tests that need to install a mock tracer.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-jaeger_quarkus.jaeger.zipkin.compatibility-mode"></a><code><a href="#quarkus-jaeger_quarkus.jaeger.zipkin.compatibility-mode">quarkus.jaeger.zipkin.compatibility-mode</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Whether jaeger should run in zipkin compatibility mode</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
 </tbody>
 </table>
 <div id="duration-note-anchor" class="admonitionblock note">
@@ -766,33 +933,28 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>Github Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
         <span>Navigation</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
             <li><a href="/">Home</a></li>
           
-            <li><a href="/guides">Guides</a></li>
+            <li><a href="/about">About</a></li>
           
-            <li><a href="/community/#contributing">Contribute</a></li>
+            <li><a href="/blog">Blog</a></li>
           
-            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/Insights">Podcast</a></li>
           
-            <li><a href="/get-started">Get Started</a></li>
+            <li><a href="/events">Events</a></li>
           
-        </ul>
-      </div>
-    
-      <div class="width-1-12 project-links">
-        <span>Contribute</span>
-        <ul class="footer-links width-1-12">
+            <li><a href="/newsletter">Newsletter</a></li>
           
-            <li><a href="https://twitter.com/quarkusio">Follow us</a></li>
+            <li><a href="/publications">Publications</a></li>
           
-            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+            <li><a href="/Awards">Awards</a></li>
           
             <li><a href="/security">Security&nbsp;policy</a></li>
           
@@ -800,25 +962,52 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
       </div>
     
       <div class="width-1-12 project-links">
+        <span>Follow Us</span>
+        <ul class="footer-links">
+          
+            <li><a href="https://twitter.com/quarkusio">Twitter</a></li>
+          
+            <li><a href="https://www.facebook.com/quarkusio">Facebook</a></li>
+          
+            <li><a href="https://www.linkedin.com/company/quarkusio/">Linkedin</a></li>
+          
+            <li><a href="https://www.youtube.com/channel/UCaW8QG_QoIk_FnjLgr5eOqg">Youtube</a></li>
+          
+            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+          
+        </ul>
+      </div>
+    
+      <div class="width-2-12 project-links">
         <span>Get Help</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
-            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Forums</a></li>
+            <li><a href="/support">Support</a></li>
           
-            <li><a href="https://quarkusio.zulipchat.com">Chatroom</a></li>
+            <li><a href="/guides">Guides</a></li>
+          
+            <li><a href="/faq">FAQ</a></li>
+          
+            <li><a href="/get-started">Get Started</a></li>
+          
+            <li><a href="https://stackoverflow.com/questions/tagged/quarkus">Stack Overflow</a></li>
+          
+            <li><a href="https://github.com/quarkusio/quarkus/discussions">Discussions</a></li>
+          
+            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Development mailing list</a></li>
           
         </ul>
       </div>
     
 
     
-      <div class="width-3-12 more-links">
+      <div class="width-4-12 more-links">
         <span>Quarkus is made of community projects</span>
         <ul class="footer-links">
           
             <li><a href="https://vertx.io/" target="_blank">Eclipse Vert.x</a></li>
           
-            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+            <li><a href="https://smallrye.io" target="_blank">SmallRye</a></li>
           
             <li><a href="https://hibernate.org" target="_blank">Hibernate</a></li>
           
@@ -828,6 +1017,8 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
           
             <li><a href="https://camel.apache.org" target="_blank">Apache Camel</a></li>
           
+            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+          
             <li><a href="https://code.quarkus.io/" target="_blank">And many more...</a></li>
           
         </ul>
@@ -835,6 +1026,7 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
     
   </div>
 </div>
+
   <div class="content redhat-footer">
   <div class="grid-wrapper">
     <span class="licence">
@@ -856,7 +1048,10 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
   <script src="/assets/javascript/satellite.js" type="text/javascript"></script>
   <script src="/guides/javascript/config.js" type="text/javascript"></script>
   <script src="/assets/javascript/search-filter.js" type="text/javascript"></script>
+  <script src="/assets/javascript/guides-version-dropdown.js" type="text/javascript"></script>
   <script src="/assets/javascript/back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/javascript/clipboard.min.js" type="text/javascript"></script>
+  <script src="/assets/javascript/copy.js" type="text/javascript"></script>
 </body>
 
 </html>

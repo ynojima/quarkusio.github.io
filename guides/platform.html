@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 
+
+
+
+
 <head>
   <title>Quarkus - Platform</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src https://dpm.demdex.net; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self'; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io https://app.mailjet.com; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
-  <META HTTP-EQUIV='Content-Security-Policy' CONTENT="default-src 'none'; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self' ; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;">
-  <META HTTP-EQUIV='X-Frame-Options' CONTENT="DENY">
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
   <META HTTP-EQUIV='X-Content-Type-Options' CONTENT="nosniff">
   <meta charset="utf-8">
@@ -16,13 +21,14 @@
   <meta name="twitter:site" content="@QuarkusIO"> 
   <meta name="twitter:creator" content="@QuarkusIO">
   <meta property="og:url" content="https://quarkus.io/guides/platform" />
-  <meta property="og:title" content="Quarkus - Platform" />
+  <meta property="og:title" content="Platform" />
   <meta property="og:description" content="Quarkus: Supersonic Subatomic Java" />
-  <meta property="og:image" content="/assets/images/quarkus_card.png" />
+  <meta property="og:image" content="https://quarkus.io/assets/images/quarkus_card.png" />
+  
   <link rel="canonical" href="https://quarkus.io/guides/platform">
   <link rel="shortcut icon" type="image/png" href="/favicon.ico" >
   <link rel="stylesheet" href="/guides/stylesheet/config.css" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/main.css?2021-07-29" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <link rel="alternate" type="application/rss+xml"  href="/feed.xml" title="Quarkus">
   <script src="/assets/javascript/goan.js" type="text/javascript"></script>
@@ -42,33 +48,49 @@
       <nav id="main-nav" class="main-nav">
   <div class="container">
     <div class="logo-wrapper">
-      
         <a href="/"><img src="/assets/images/quarkus_logo_horizontal_rgb_600px_reverse.png" class="project-logo" title="Quarkus"></a>
-      
     </div>
     <label class="nav-toggle" for="checkbox">
       <i class="fa fa-bars"></i>
     </label>
-    <div id="menu" class="menu">
-      <span>
-        <a href="/get-started/" class="">Get Started</a>
-      </span>
-      <span>
-        <a href="/guides/" class="active">Guides</a>
-      </span>
-      <span>
-        <a href="/community/" class="">Community</a>
-      </span>
-      <span>
-        <a href="/support/" class="">Support</a>
-      </span>
-      <span>
-        <a href="/blog/" class="">Blog</a>
-      </span>
-      <span>
+    <ul id="menu" class="menu">
+      <li class="dropdown">
+        <span href="/about/">About <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Learn <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/get-started" class="">GET STARTED</a></li>
+          <li><a href="/guides" class="active">GUIDES</a></li>
+          <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
+          <li><a href="/books" class="">BOOKS</a></li>
+          </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Community <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/support/" class="">SUPPORT</a></li>
+          <li><a href="/blog" class="">BLOG</a></li>
+          <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/insights" class="">PODCAST</a></li>
+          <li><a href="/events" class="">EVENTS</a></li>
+          <li><a href="/newsletter" class="">NEWSLETTER</a></li>
+          <li><a href="/publications" class="">PUBLICATIONS</a></li>
+          <li><a href="/awards" class="">AWARDS</a></li>
+          </ul>
+      </li>
+      <li>
         <a href="https://code.quarkus.io" class="button-cta secondary white">Start Coding</a>
-      </span>
-    </div>
+      </li>
+    </ul>
   </div>
       </nav>
     </div>
@@ -76,9 +98,67 @@
 </div>
 
   <div class="content">
-    <div class="guide">
+    
+
+
+
+<div class="full-width-version-bg grey align-self">
+  <div class="grid-wrapper">
+    <div class="grid__item width-6-12">
+      <p class="returnlink"><i class="fas fa-angle-left"></i><a href="/guides"> Back to Guides</a></p>
+    </div>
+    <div class="grid__item width-6-12 align-self-center text-right hide-mobile">
+      <label id="guide-version-label">Select Guide Version</label>
+      <select id="guide-version-dropdown">
+        
+      
+        
+        
+        
+        
+          
+        <option value="main" >Main - SNAPSHOT</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="latest" selected>2.5 - Latest</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="2.2" >2.2</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="1.11" >1.11</option>
+        
+        
+      
+    
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="grid-wrapper guide">
+  <div class="grid__item width-12-12 width-12-12-mobile">
+    <h1 class="text-caps">Platform </h1>
+  </div>
   <div class="width-12-12">
-    <h1 class="text-caps">Quarkus - Platform</h1>
     <div class="hide-mobile toc"><ul class="sectlevel1">
 <li><a href="#quarkus-platform">Quarkus Platform</a>
 <ul class="sectlevel2">
@@ -102,7 +182,7 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>The fundamental promise of a Quarkus platform is any combination of the Quarkus extensions the platform consists of can be used in the same application without causing any conflict for each other.
-Each organization creating their Quarkus platform may establish their own criterions for the extensions to be accepted into the platform and the means to guarantee the compatibility between the accepted extensions.</p>
+Each organization creating their Quarkus platform may establish their own criteria for the extensions to be accepted into the platform and the means to guarantee the compatibility between the accepted extensions.</p>
 </div>
 <div class="sect2">
 <h3 id="quarkus-platform-artifacts"><a class="anchor" href="#quarkus-platform-artifacts"></a>Quarkus Platform Artifacts</h3>
@@ -170,18 +250,18 @@ This artifact is also used as a Quarkus platform identifier. When Quarkus tools 
 <p>As a string it will look like <code>&lt;platform-bom-groupId&gt;:&lt;platform-bom-artifactId&gt;-quarkus-platform-descriptor:&lt;platform-version&gt;:json:&lt;platform-version&gt;</code></p>
 </div>
 <div class="paragraph">
-<p>E.g. the coordinates of the descriptor for Quarkus BOM <code>io.quarkus:quarkus-bom::pom:1.2.3</code> will be <code>io.quarkus:quarkus-bom-quarkus-platform-descriptor:1.2.3:json:1.2.3</code>.
+<p>E.g. the coordinates of the descriptor for the Quarkus BOM <code>io.quarkus.platform:quarkus-bom::pom:1.2.3</code> will be <code>io.quarkus.platform:quarkus-bom-quarkus-platform-descriptor:1.2.3:json:1.2.3</code>.
 And for a custom Quarkus platform defined with BOM <code>org.acme:acme-bom::pom:555</code> it will be <code>org.acme:acme-bom-quarkus-platform-descriptor:555:json:555</code>.</p>
 </div>
 <div class="paragraph">
-<p>The classifier matching the version of the platform may look confusing at first. But this is what turns the descriptor into a true "fingerprint" of the platform. In both Maven and Gradle, the effective set of the dependency version constraints (or the managed dependencies) is obtained by merging all the imported BOMs and version constraints specified individually in the current project and also its parent(s). The artifact <code>classifier</code> is a part of the dependency ID, which could be expressed as <code>groupId:artifactId:classifier:type</code>. Which means that if a project is based on a couple of Quarkus platforms (by importing their BOMs), e.g. <code>io.quarkus:quarkus-universe-bom::pom:1.2.3</code> and <code>org.acme:acme-bom::pom:555</code>, and these two platforms are based on different <code>io.quarkus:quarkus-bom::pom</code> versions (which is technically a Quarkus platform in its turn as well), the Quarkus tools will be able to detect this fact and make the user aware of it, since it <strong>might</strong> not be a safe combination. If the descriptor artifact didn&#8217;t include the classifer containing the version of the platform then the tools wouldn&#8217;t be able to detect a potentially incompatible mix of different versions of the same platform in the same project.</p>
+<p>The classifier matching the version of the platform may look confusing at first. But this is what turns the descriptor into a true "fingerprint" of the platform. In both Maven and Gradle, the effective set of the dependency version constraints (or the managed dependencies) is obtained by merging all the imported BOMs and version constraints specified individually in the current project and also its parent(s). The artifact <code>classifier</code> is a part of the dependency ID, which could be expressed as <code>groupId:artifactId:classifier:type</code>. Which means that if a project imports a couple of BOMs, e.g. <code>org.apple:apple-bom::pom:1.0</code> and <code>org.orange:orange-bom::pom:1.0</code>, and each of these two BOMs imports a different version <code>io.quarkus.platform:quarkus-bom::pom</code>, the Quarkus tools will be able to detect this fact and make the user aware of it, since it <strong>might</strong> not be a safe combination. If the descriptor artifact didn&#8217;t include the classifer containing the version of the platform then the tools wouldn&#8217;t be able to detect a potentially incompatible mix of different versions of the same platform in the same project.</p>
 </div>
 <div class="paragraph">
 <p>The platform descriptor will normally be generated using a Maven plugin, e.g.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;plugin&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
   &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
   &lt;artifactId&gt;quarkus-platform-descriptor-json-plugin&lt;/artifactId&gt;
   &lt;version&gt;${quarkus.version}&lt;/version&gt; <i class="conum" data-value="1"></i><b>(1)</b>
@@ -242,7 +322,7 @@ And for a custom Quarkus platform defined with BOM <code>org.acme:acme-bom::pom:
 <p>A Quarkus platform may provide its own default values for some of the configuration options.</p>
 </div>
 <div class="paragraph">
-<p>Quarkus is using <a href="https://github.com/eclipse/microprofile-config">Eclipse MicroProfile Config</a> for wiring application configuration. A Quarkus platform may be used as another source of configuration in the hierarchy of the configuration sources dominated by the application&#8217;s <code>application.properties</code>.</p>
+<p>Quarkus is using <a href="https://github.com/smallrye/smallrye-config">SmallRye Config</a> for wiring application configuration. A Quarkus platform may be used as another source of configuration in the hierarchy of the configuration sources dominated by the application&#8217;s <code>application.properties</code>.</p>
 </div>
 <div class="paragraph">
 <p>To provide platform-specific defaults, the platform needs to include a dependency version constraint in its BOM for a properties artifact whose coordinates follow the following naming convention:</p>
@@ -286,7 +366,7 @@ At this point, platform properties are only allowed to provide the default value
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package io.quarkus.deployment.pkg;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package io.quarkus.deployment.pkg;
 
 @ConfigRoot(phase = ConfigPhase.BUILD_TIME)
 public class NativeConfig {
@@ -305,7 +385,7 @@ A platform properties file for the example above would contain (the actual value
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">platform.quarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-native-image:20.2.0-java11</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">platform.quarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-native-image:21.3.0-java11</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -313,7 +393,7 @@ A platform properties file for the example above would contain (the actual value
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;plugin&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
   &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
   &lt;artifactId&gt;quarkus-platform-descriptor-json-plugin&lt;/artifactId&gt;
   &lt;version&gt;${quarkus.version}&lt;/version&gt;
@@ -326,6 +406,64 @@ A platform properties file for the example above would contain (the actual value
     &lt;/execution&gt;
   &lt;/executions&gt;
 &lt;/plugin&gt;</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="merging-quarkus-platform-properties"><a class="anchor" href="#merging-quarkus-platform-properties"></a>Merging Quarkus Platform Properties</h4>
+<div class="paragraph">
+<p>In case an application is importing more than one Quarkus platform and those platforms include their own platform properties artifacts, the content of those platform properties artifacts will be merged to form a single set of properties that will be used for the application build.
+The order in which the properties artifacts are merged will correspond to the order in which they appear in the list of dependency version constraints of the application (in the Maven terms that will correspond to the effective list of application&#8217;s managed dependencies, i.e. the flattened <code>managedDependencies</code> POM section).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The content of the properties artifacts found earlier will dominate over those found later among the application&#8217;s dependency constraints!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>That means if a platform needs to override a certain property value defined in the platform it is based on, it will need to include its platform properties artifact into the <code>managedDependencies</code> section of its BOM before importing the base platform.</p>
+</div>
+<div class="paragraph">
+<p>For example, let&#8217;s assume <code>org.acme:acme-quarkus-bom</code> platform extends the <code>io.quarkus:quarkus-bom</code> platform by importing its BOM. In case, the <code>org.acme:acme-quarkus-bom</code> platform were to override certain properties defined in the <code>io.quarkus:quarkus-bom-quarkus-platform-properties</code> included in the <code>io.quarkus:quarkus-bom</code>, the <code>org.acme:acme-quarkus-bom</code> would have to be composed as</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">  &lt;!-- skipped content --&gt;
+
+  &lt;artifactId&gt;acme-quarkus-bom&lt;/artifactId&gt;
+  &lt;name&gt;Acme - Quarkus - BOM&lt;/name&gt;
+  &lt;packaging&gt;pom&lt;/packaging&gt;
+
+  &lt;dependencyManagement&gt;
+    &lt;dependencies&gt;
+      &lt;!-- Acme Quarkus platform properties --&gt;
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.acme&lt;/groupId&gt;
+        &lt;artifactId&gt;acme-quarkus-bom-quarkus-platform-properties&lt;/artifactId&gt;
+        &lt;type&gt;properties&lt;/type&gt;
+        &lt;version&gt;${project.version}&lt;/version&gt;
+      &lt;/dependency&gt;
+
+      &lt;!-- The base Quarkus BOM --&gt;
+      &lt;dependency&gt;
+        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+        &lt;artifactId&gt;quarkus-bom&lt;/artifactId&gt;
+        &lt;version&gt;${quarkus.version}&lt;/version&gt;
+        &lt;type&gt;pom&lt;/type&gt;
+        &lt;scope&gt;import&lt;/scope&gt;
+      &lt;/dependency&gt;
+
+  &lt;!-- skipped content --&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That way, the <code>org.acme:acme-quarkus-bom</code> platform properties will appear before those provided by the <code>io.quarkus:quarkus-bom</code> properties and so will be dominating at build time.</p>
 </div>
 </div>
 </div>
@@ -344,33 +482,28 @@ A platform properties file for the example above would contain (the actual value
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>Github Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
         <span>Navigation</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
             <li><a href="/">Home</a></li>
           
-            <li><a href="/guides">Guides</a></li>
+            <li><a href="/about">About</a></li>
           
-            <li><a href="/community/#contributing">Contribute</a></li>
+            <li><a href="/blog">Blog</a></li>
           
-            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/Insights">Podcast</a></li>
           
-            <li><a href="/get-started">Get Started</a></li>
+            <li><a href="/events">Events</a></li>
           
-        </ul>
-      </div>
-    
-      <div class="width-1-12 project-links">
-        <span>Contribute</span>
-        <ul class="footer-links width-1-12">
+            <li><a href="/newsletter">Newsletter</a></li>
           
-            <li><a href="https://twitter.com/quarkusio">Follow us</a></li>
+            <li><a href="/publications">Publications</a></li>
           
-            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+            <li><a href="/Awards">Awards</a></li>
           
             <li><a href="/security">Security&nbsp;policy</a></li>
           
@@ -378,25 +511,52 @@ A platform properties file for the example above would contain (the actual value
       </div>
     
       <div class="width-1-12 project-links">
+        <span>Follow Us</span>
+        <ul class="footer-links">
+          
+            <li><a href="https://twitter.com/quarkusio">Twitter</a></li>
+          
+            <li><a href="https://www.facebook.com/quarkusio">Facebook</a></li>
+          
+            <li><a href="https://www.linkedin.com/company/quarkusio/">Linkedin</a></li>
+          
+            <li><a href="https://www.youtube.com/channel/UCaW8QG_QoIk_FnjLgr5eOqg">Youtube</a></li>
+          
+            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+          
+        </ul>
+      </div>
+    
+      <div class="width-2-12 project-links">
         <span>Get Help</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
-            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Forums</a></li>
+            <li><a href="/support">Support</a></li>
           
-            <li><a href="https://quarkusio.zulipchat.com">Chatroom</a></li>
+            <li><a href="/guides">Guides</a></li>
+          
+            <li><a href="/faq">FAQ</a></li>
+          
+            <li><a href="/get-started">Get Started</a></li>
+          
+            <li><a href="https://stackoverflow.com/questions/tagged/quarkus">Stack Overflow</a></li>
+          
+            <li><a href="https://github.com/quarkusio/quarkus/discussions">Discussions</a></li>
+          
+            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Development mailing list</a></li>
           
         </ul>
       </div>
     
 
     
-      <div class="width-3-12 more-links">
+      <div class="width-4-12 more-links">
         <span>Quarkus is made of community projects</span>
         <ul class="footer-links">
           
             <li><a href="https://vertx.io/" target="_blank">Eclipse Vert.x</a></li>
           
-            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+            <li><a href="https://smallrye.io" target="_blank">SmallRye</a></li>
           
             <li><a href="https://hibernate.org" target="_blank">Hibernate</a></li>
           
@@ -406,6 +566,8 @@ A platform properties file for the example above would contain (the actual value
           
             <li><a href="https://camel.apache.org" target="_blank">Apache Camel</a></li>
           
+            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+          
             <li><a href="https://code.quarkus.io/" target="_blank">And many more...</a></li>
           
         </ul>
@@ -413,6 +575,7 @@ A platform properties file for the example above would contain (the actual value
     
   </div>
 </div>
+
   <div class="content redhat-footer">
   <div class="grid-wrapper">
     <span class="licence">
@@ -434,7 +597,10 @@ A platform properties file for the example above would contain (the actual value
   <script src="/assets/javascript/satellite.js" type="text/javascript"></script>
   <script src="/guides/javascript/config.js" type="text/javascript"></script>
   <script src="/assets/javascript/search-filter.js" type="text/javascript"></script>
+  <script src="/assets/javascript/guides-version-dropdown.js" type="text/javascript"></script>
   <script src="/assets/javascript/back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/javascript/clipboard.min.js" type="text/javascript"></script>
+  <script src="/assets/javascript/copy.js" type="text/javascript"></script>
 </body>
 
 </html>

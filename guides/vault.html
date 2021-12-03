@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 
+
+
+
+
 <head>
   <title>Quarkus - Using HashiCorp Vault</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src https://dpm.demdex.net; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self'; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io https://app.mailjet.com; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
-  <META HTTP-EQUIV='Content-Security-Policy' CONTENT="default-src 'none'; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self' ; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;">
-  <META HTTP-EQUIV='X-Frame-Options' CONTENT="DENY">
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
   <META HTTP-EQUIV='X-Content-Type-Options' CONTENT="nosniff">
   <meta charset="utf-8">
@@ -16,13 +21,14 @@
   <meta name="twitter:site" content="@QuarkusIO"> 
   <meta name="twitter:creator" content="@QuarkusIO">
   <meta property="og:url" content="https://quarkus.io/guides/vault" />
-  <meta property="og:title" content="Quarkus - Using HashiCorp Vault" />
+  <meta property="og:title" content="Using HashiCorp Vault" />
   <meta property="og:description" content="Quarkus: Supersonic Subatomic Java" />
-  <meta property="og:image" content="/assets/images/quarkus_card.png" />
+  <meta property="og:image" content="https://quarkus.io/assets/images/quarkus_card.png" />
+  
   <link rel="canonical" href="https://quarkus.io/guides/vault">
   <link rel="shortcut icon" type="image/png" href="/favicon.ico" >
   <link rel="stylesheet" href="/guides/stylesheet/config.css" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/main.css?2021-07-29" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <link rel="alternate" type="application/rss+xml"  href="/feed.xml" title="Quarkus">
   <script src="/assets/javascript/goan.js" type="text/javascript"></script>
@@ -42,33 +48,49 @@
       <nav id="main-nav" class="main-nav">
   <div class="container">
     <div class="logo-wrapper">
-      
         <a href="/"><img src="/assets/images/quarkus_logo_horizontal_rgb_600px_reverse.png" class="project-logo" title="Quarkus"></a>
-      
     </div>
     <label class="nav-toggle" for="checkbox">
       <i class="fa fa-bars"></i>
     </label>
-    <div id="menu" class="menu">
-      <span>
-        <a href="/get-started/" class="">Get Started</a>
-      </span>
-      <span>
-        <a href="/guides/" class="active">Guides</a>
-      </span>
-      <span>
-        <a href="/community/" class="">Community</a>
-      </span>
-      <span>
-        <a href="/support/" class="">Support</a>
-      </span>
-      <span>
-        <a href="/blog/" class="">Blog</a>
-      </span>
-      <span>
+    <ul id="menu" class="menu">
+      <li class="dropdown">
+        <span href="/about/">About <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Learn <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/get-started" class="">GET STARTED</a></li>
+          <li><a href="/guides" class="active">GUIDES</a></li>
+          <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
+          <li><a href="/books" class="">BOOKS</a></li>
+          </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Community <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/support/" class="">SUPPORT</a></li>
+          <li><a href="/blog" class="">BLOG</a></li>
+          <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/insights" class="">PODCAST</a></li>
+          <li><a href="/events" class="">EVENTS</a></li>
+          <li><a href="/newsletter" class="">NEWSLETTER</a></li>
+          <li><a href="/publications" class="">PUBLICATIONS</a></li>
+          <li><a href="/awards" class="">AWARDS</a></li>
+          </ul>
+      </li>
+      <li>
         <a href="https://code.quarkus.io" class="button-cta secondary white">Start Coding</a>
-      </span>
-    </div>
+      </li>
+    </ul>
   </div>
       </nav>
     </div>
@@ -76,9 +98,67 @@
 </div>
 
   <div class="content">
-    <div class="guide">
+    
+
+
+
+<div class="full-width-version-bg grey align-self">
+  <div class="grid-wrapper">
+    <div class="grid__item width-6-12">
+      <p class="returnlink"><i class="fas fa-angle-left"></i><a href="/guides"> Back to Guides</a></p>
+    </div>
+    <div class="grid__item width-6-12 align-self-center text-right hide-mobile">
+      <label id="guide-version-label">Select Guide Version</label>
+      <select id="guide-version-dropdown">
+        
+      
+        
+        
+        
+        
+          
+        <option value="main" >Main - SNAPSHOT</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="latest" selected>2.5 - Latest</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="2.2" >2.2</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="1.11" >1.11</option>
+        
+        
+      
+    
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="grid-wrapper guide">
+  <div class="grid__item width-12-12 width-12-12-mobile">
+    <h1 class="text-caps">Using HashiCorp Vault </h1>
+  </div>
   <div class="width-12-12">
-    <h1 class="text-caps">Quarkus - Using HashiCorp Vault</h1>
     <div class="hide-mobile toc"><ul class="sectlevel1">
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#starting-vault">Starting Vault</a></li>
@@ -88,6 +168,12 @@
 <li><a href="#vault-health-check">Vault Health Check</a></li>
 <li><a href="#tls">TLS</a></li>
 <li><a href="#vault-provisioning">Vault Provisioning</a></li>
+<li><a href="#dev-services">Dev Services (Configuration Free Vault)</a>
+<ul class="sectlevel2">
+<li><a href="#shared-server">Shared server</a></li>
+<li><a href="#automatic-secret-engine-provisioning">Automatic Secret Engine Provisioning</a></li>
+</ul>
+</li>
 <li><a href="#conclusion">Conclusion</a></li>
 <li><a href="#configuration-reference">Configuration Reference</a></li>
 <li><a href="#references">References</a></li>
@@ -118,6 +204,10 @@ are supported:</p>
 <li>
 <p>support for the <a href="https://www.vaultproject.io/docs/secrets/transit">Transit Secret Engine</a> as documented
 in the <a href="vault-transit">Vault Transit Secret Engine Guide</a></p>
+</li>
+<li>
+<p>support for the <a href="https://www.vaultproject.io/docs/secrets/pki">PKI Secret Engine</a> as documented
+in the <a href="vault-pki">Vault PKI Secret Engine Guide</a></p>
 </li>
 <li>
 <p>support for several authentication methods as documented in the <a href="vault-auth">Vault Authentication guide</a></p>
@@ -167,10 +257,10 @@ Feedback is welcome on our <a href="https://groups.google.com/d/forum/quarkus-de
 <p>an IDE</p>
 </li>
 <li>
-<p>JDK 1.8+ installed with <code>JAVA_HOME</code> configured appropriately</p>
+<p>JDK 11+ installed with <code>JAVA_HOME</code> configured appropriately</p>
 </li>
 <li>
-<p>Apache Maven 3.6.2+</p>
+<p>Apache Maven 3.8.1+</p>
 </li>
 <li>
 <p>Docker installed</p>
@@ -182,12 +272,26 @@ Feedback is welcome on our <a href="https://groups.google.com/d/forum/quarkus-de
 <div class="sect1">
 <h2 id="starting-vault"><a class="anchor" href="#starting-vault"></a>Starting Vault</h2>
 <div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Using <a href="#dev-services">Dev Services</a>, Quarkus will take care of starting Vault in dev and test mode.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Let&#8217;s start Vault in development mode:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker run --rm --cap-add=IPC_LOCK -e VAULT_ADDR=http://localhost:8200 -p 8200:8200 -d --name=dev-vault vault:1.6.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run --rm --cap-add=IPC_LOCK -e VAULT_ADDR=http://localhost:8200 -p 8200:8200 -d --name=dev-vault vault:1.6.0</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -195,7 +299,7 @@ Feedback is welcome on our <a href="https://groups.google.com/d/forum/quarkus-de
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker logs dev-vault</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker logs dev-vault</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -203,7 +307,7 @@ Feedback is welcome on our <a href="https://groups.google.com/d/forum/quarkus-de
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">==&gt; Vault server configuration:
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">==&gt; Vault server configuration:
 
              Api Address: http://0.0.0.0:8200
                      Cgo: disabled
@@ -285,7 +389,7 @@ to access a secret stored in the <em>kv secret engine</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker exec -it dev-vault sh</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker exec -it dev-vault sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -293,7 +397,7 @@ to access a secret stored in the <em>kv secret engine</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">export VAULT_TOKEN=s.5VUS8pte13RqekCB2fmMT3u2</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export VAULT_TOKEN=s.5VUS8pte13RqekCB2fmMT3u2</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -301,7 +405,7 @@ to access a secret stored in the <em>kv secret engine</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">Key             Value
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Key             Value
 ---             -----
 Seal Type       shamir
 Initialized     true
@@ -319,7 +423,7 @@ HA Enabled      false</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">vault kv put secret/myapps/vault-quickstart/config a-private-key=123456</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">vault kv put secret/myapps/vault-quickstart/config a-private-key=123456</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -330,7 +434,7 @@ HA Enabled      false</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cat &lt;&lt;EOF | vault policy write vault-quickstart-policy -
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &lt;&lt;EOF | vault policy write vault-quickstart-policy -
 path "secret/data/myapps/vault-quickstart/*" {
   capabilities = ["read"]
 }
@@ -361,7 +465,7 @@ It would be <code>secret/myapps/vault-quickstart/*</code> with a <em>kv secret e
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">vault auth enable userpass
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">vault auth enable userpass
 vault write auth/userpass/users/bob password=sinclair policies=vault-quickstart-policy</code></pre>
 </div>
 </div>
@@ -384,7 +488,7 @@ vault write auth/userpass/users/bob password=sinclair policies=vault-quickstart-
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">vault login -method=userpass username=bob password=sinclair</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">vault login -method=userpass username=bob password=sinclair</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -392,7 +496,7 @@ vault write auth/userpass/users/bob password=sinclair policies=vault-quickstart-
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">Success! You are now authenticated. The token information displayed below
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Success! You are now authenticated. The token information displayed below
 is already stored in the token helper. You do NOT need to run "vault login"
 again. Future Vault requests will automatically use this token.
 
@@ -413,7 +517,7 @@ token_meta_username    bob</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">export VAULT_TOKEN=s.s93BVzJPzBiIGuYJHBTkG8Uw
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export VAULT_TOKEN=s.s93BVzJPzBiIGuYJHBTkG8Uw
 vault kv get secret/myapps/vault-quickstart/config</code></pre>
 </div>
 </div>
@@ -422,7 +526,7 @@ vault kv get secret/myapps/vault-quickstart/config</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">======== Data ========
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">======== Data ========
 Key              Value
 ---              -----
 a-private-key    123456</code></pre>
@@ -435,7 +539,7 @@ a-private-key    123456</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mvn io.quarkus:quarkus-maven-plugin:1.11.1.Final:create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:2.5.1.Final:create \
     -DprojectGroupId=org.acme \
     -DprojectArtifactId=vault-quickstart \
     -DclassName="org.acme.quickstart.GreetingResource" \
@@ -450,7 +554,7 @@ to your project by running the following command in your project base directory:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">./mvnw quarkus:add-extension -Dextensions="vault"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -Dextensions="vault"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -458,7 +562,7 @@ to your project by running the following command in your project base directory:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
     &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
     &lt;artifactId&gt;quarkus-vault&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
@@ -469,7 +573,7 @@ to your project by running the following command in your project base directory:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs"># vault url
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># vault url
 quarkus.vault.url=http://localhost:8200
 
 # vault authentication
@@ -480,15 +584,29 @@ quarkus.vault.authentication.userpass.password=sinclair
 quarkus.vault.secret-config-kv-path=myapps/vault-quickstart/config</code></pre>
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>This should mount whatever keys are stored in <code>secret/myapps/vault-quickstart</code> as MicroProfile Config properties.</p>
+<p>Using <a href="#dev-services">Dev Services</a>, Quarkus will take care of configuring the Vault connection in dev and test mode.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This should mount whatever keys are stored in <code>secret/myapps/vault-quickstart</code> as Config properties.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s verify that by adding a new endpoint in GreetingResource:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Path("/hello")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Path("/hello")
 public class GreetingResource {
 
     @ConfigProperty(name = "a-private-key")
@@ -510,8 +628,8 @@ public class GreetingResource {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">./mvnw clean install
-java -jar target/vault-quickstart-1.0-SNAPSHOT-runner.jar</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw clean install
+java -jar target/quarkus-app/quarkus-run.jar</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -519,7 +637,7 @@ java -jar target/vault-quickstart-1.0-SNAPSHOT-runner.jar</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl http://localhost:8080/hello/private-key</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl http://localhost:8080/hello/private-key</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -527,8 +645,24 @@ java -jar target/vault-quickstart-1.0-SNAPSHOT-runner.jar</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">123456</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">123456</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <em>Vault Config Source</em> is configured with ordinal <code>270</code>, which is higher than the file system
+or jar ordinals, but lower than environment variables.
+This value can be changed using property <code>quarkus.vault.config-ordinal</code>.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -545,7 +679,7 @@ In that case it is possible to inject a Quarkus <code>VaultKVSecretEngine</code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Inject
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Inject
 VaultKVSecretEngine kvSecretEngine;
 
 ...
@@ -563,7 +697,7 @@ public String getSecrets(@PathParam("vault-path") String vaultPath) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">vault kv put secret/myapps/vault-quickstart/private mysecret=abc</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">vault kv put secret/myapps/vault-quickstart/private mysecret=abc</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -571,7 +705,7 @@ public String getSecrets(@PathParam("vault-path") String vaultPath) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl http://localhost:8080/hello/secrets/private</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl http://localhost:8080/hello/secrets/private</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -579,7 +713,7 @@ public String getSecrets(@PathParam("vault-path") String vaultPath) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs">{mysecret=abc}</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">{mysecret=abc}</code></pre>
 </div>
 </div>
 </div>
@@ -598,7 +732,7 @@ public String getSecrets(@PathParam("vault-path") String vaultPath) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import io.quarkus.vault.VaultTOTPSecretEngine;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import io.quarkus.vault.VaultTOTPSecretEngine;
 import io.quarkus.vault.secrets.totp.CreateKeyParameters;
 import io.quarkus.vault.secrets.totp.KeyConfiguration;
 import io.quarkus.vault.secrets.totp.KeyDefinition;
@@ -759,7 +893,7 @@ for instance as part of a CD pipeline. Specific CDI beans and operations support
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Inject
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Inject
 VaultSystemBackendEngine vaultSystemBackendEngine;
 
 @Inject
@@ -806,6 +940,87 @@ path "auth/kubernetes/role/*" {
 </div>
 </div>
 <div class="sect1">
+<h2 id="dev-services"><a class="anchor" href="#dev-services"></a>Dev Services (Configuration Free Vault)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Quarkus supports a feature called Dev Services that allows you to create various containers without any config.
+What that means in practice is that if you have Docker running and have not configured <code>quarkus.vault.url</code>,
+Quarkus will automatically start a Vault container when running tests or in dev mode, and automatically
+configure the connection.</p>
+</div>
+<div class="paragraph">
+<p>When running the production version of the application, the Vault connection needs to be configured as normal,
+so if you want to include a production Vault config in your <code>application.properties</code> and continue to use Dev Services
+we recommend that you use the <code>%prod.</code> profile to define your Vault connection settings.</p>
+</div>
+<div class="sect2">
+<h3 id="shared-server"><a class="anchor" href="#shared-server"></a>Shared server</h3>
+<div class="paragraph">
+<p>Most of the time you need to share the server between applications.
+Dev Services for Vault implements a <em>service discovery</em> mechanism for your multiple Quarkus applications running in <em>dev</em> mode to share a single server.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Dev Services for Vault starts the container with the <code>quarkus-dev-service-vault</code> label which is used to identify the container.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If you need multiple (shared) servers, you can configure the <code>quarkus.vault.devservices.service-name</code> attribute and indicate the server name.
+It looks for a container with the same value, or starts a new one if none can be found.
+The default service name is <code>vault</code>.</p>
+</div>
+<div class="paragraph">
+<p>Sharing is enabled by default in dev mode, but disabled in test mode.
+You can disable the sharing with <code>quarkus.vault.devservices.shared=false</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="automatic-secret-engine-provisioning"><a class="anchor" href="#automatic-secret-engine-provisioning"></a>Automatic Secret Engine Provisioning</h3>
+<div class="paragraph">
+<p>To help with provisioning the automatically managed Vault instance, you can enable certain secret engines.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>As mentioned above Vault containers started in dev mode automatically mount the  <em>kv secret engine v2</em>
+at <code>secret/</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Enable the <strong>Transit Secret Engine</strong> at <code>transit/</code> using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.vault.devservices.transit-enabled=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Enable the <strong>PKI Secret Engine</strong> at <code>pki/</code> using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.vault.devservices.pki-enabled=true</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="conclusion"><a class="anchor" href="#conclusion"></a>Conclusion</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -839,18 +1054,149 @@ credentials), which goes a long way towards creating secured applications.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-vault_quarkus.vault.devservices.enabled"></a><code><a href="#quarkus-vault_quarkus.vault.devservices.enabled">quarkus.vault.devservices.enabled</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>If DevServices has been explicitly enabled or disabled. DevServices is generally enabled by default, unless there is an existing configuration present.
+ When DevServices is enabled Quarkus will attempt to automatically configure and start a vault instance when running in Dev or Test mode and when Docker is running.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-vault_quarkus.vault.devservices.image-name"></a><code><a href="#quarkus-vault_quarkus.vault.devservices.image-name">quarkus.vault.devservices.image-name</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The container image name to use, for container based DevServices providers.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-vault_quarkus.vault.devservices.shared"></a><code><a href="#quarkus-vault_quarkus.vault.devservices.shared">quarkus.vault.devservices.shared</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Indicates if the Vault instance managed by Quarkus Dev Services is shared. When shared, Quarkus looks for running containers using label-based service discovery. If a matching container is found, it is used, and so a second one is not started. Otherwise, Dev Services for Vault starts a new container.
+ The discovery uses the <code>quarkus-dev-service-vault</code> label. The value is configured using the <code>service-name</code> property.
+ Container sharing is only used in dev mode.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-vault_quarkus.vault.devservices.service-name"></a><code><a href="#quarkus-vault_quarkus.vault.devservices.service-name">quarkus.vault.devservices.service-name</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The value of the <code>quarkus-dev-service-vault</code> label attached to the started container. This property is used when <code>shared</code> is set to <code>true</code>. In this case, before starting a container, Dev Services for Vault looks for a container with the <code>quarkus-dev-service-vault</code> label set to the configured value. If found, it will use this container instead of starting a new one. Otherwise it starts a new container with the <code>quarkus-dev-service-vault</code> label set to the specified value.
+ This property is used when you need multiple shared Vault instances.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>vault</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-vault_quarkus.vault.devservices.port"></a><code><a href="#quarkus-vault_quarkus.vault.devservices.port">quarkus.vault.devservices.port</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Optional fixed port the dev service will listen to.
+ If not defined, the port will be chosen randomly.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-vault_quarkus.vault.devservices.transit-enabled"></a><code><a href="#quarkus-vault_quarkus.vault.devservices.transit-enabled">quarkus.vault.devservices.transit-enabled</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Should the Transit secret engine be enabled</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-vault_quarkus.vault.devservices.pki-enabled"></a><code><a href="#quarkus-vault_quarkus.vault.devservices.pki-enabled">quarkus.vault.devservices.pki-enabled</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Should the PKI secret engine be enabled</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-vault_quarkus.vault.devservices.init-commands"></a><code><a href="#quarkus-vault_quarkus.vault.devservices.init-commands">quarkus.vault.devservices.init-commands</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Custom container initialization commands</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-vault_quarkus.vault.config-ordinal"></a><code><a href="#quarkus-vault_quarkus.vault.config-ordinal">quarkus.vault.config-ordinal</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Microprofile Config ordinal.
+ This is provided as an alternative to the <code>config_ordinal</code> property defined by the specification, to make it easier and more natural for applications to override the default ordinal.
+ The default value is higher than the file system or jar ordinals, but lower than env vars.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>270</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="quarkus-vault_quarkus.vault.url"></a><code><a href="#quarkus-vault_quarkus.vault.url">quarkus.vault.url</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Vault server url.</p>
-</div>
-<div class="paragraph">
-<p>Example: <a href="https://localhost:8200" class="bare">https://localhost:8200</a></p>
-</div>
-<div class="paragraph">
-<p>See also the documentation for the <code>kv-secret-engine-mount-path</code> property for some insights on how
+<p>Vault server url.
+&lt;p&gt;
+Example: <a href="https://localhost:8200" class="bare">https://localhost:8200</a>
+&lt;p&gt;
+See also the documentation for the <code>kv-secret-engine-mount-path</code> property for some insights on how
 the full Vault url gets built.</p>
 </div>
 </div>
@@ -865,10 +1211,9 @@ the full Vault url gets built.</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Renew grace period duration.</p>
-</div>
-<div class="paragraph">
-<p>This value if used to extend a lease before it expires its ttl, or recreate a new lease before the current
+<p>Renew grace period duration.
+&lt;p&gt;
+This value if used to extend a lease before it expires its ttl, or recreate a new lease before the current
 lease reaches its max_ttl.
 By default Vault leaseDuration is equal to 7 days (ie: 168h or 604800s).
 If a connection pool maxLifetime is set, it is reasonable to set the renewGracePeriod to be greater
@@ -893,10 +1238,9 @@ leases all the time.</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Vault config source cache period.</p>
-</div>
-<div class="paragraph">
-<p>Properties fetched from vault as MP config will be kept in a cache, and will not be fetched from vault
+<p>Vault config source cache period.
+&lt;p&gt;
+Properties fetched from vault as MP config will be kept in a cache, and will not be fetched from vault
 again until the expiration of that period.
 This property is ignored if <code>secret-config-kv-path</code> is not set.</p>
 </div>
@@ -914,34 +1258,22 @@ This property is ignored if <code>secret-config-kv-path</code> is not set.</p>
 <div class="content">
 <div class="paragraph">
 <p>List of comma separated vault paths in kv store,
-where all properties will be available as MP config properties <strong>as-is</strong>, with no prefix.</p>
-</div>
-<div class="paragraph">
-<p>For instance, if vault contains property <code>foo</code>, it will be made available to the
-quarkus application as <code>@ConfigProperty(name = "foo") String foo;</code></p>
-</div>
-<div class="paragraph">
-<p>If 2 paths contain the same property, the last path will win.</p>
-</div>
-<div class="paragraph">
-<p>For instance if</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>secret/base-config</code> contains <code>foo=bar</code> and</p>
-</li>
-<li>
-<p><code>secret/myapp/config</code> contains <code>foo=myappbar</code>, then</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><code>@ConfigProperty(name = "foo") String foo</code> will have value <code>myappbar</code>
-with application properties <code>quarkus.vault.secret-config-kv-path=base-config,myapp/config</code></p>
-</div>
-<div class="paragraph">
-<p>See also the documentation for the <code>kv-secret-engine-mount-path</code> property for some insights on how
+where all properties will be available as MP config properties <strong>as-is</strong>, with no prefix.
+&lt;p&gt;
+For instance, if vault contains property <code>foo</code>, it will be made available to the
+quarkus application as <code>@ConfigProperty(name = "foo") String foo;</code>
+&lt;p&gt;
+If 2 paths contain the same property, the last path will win.
+&lt;p&gt;
+For instance if
+&lt;p&gt;
+* <code>secret/base-config</code> contains <code>foo=bar</code> and
+* <code>secret/myapp/config</code> contains <code>foo=myappbar</code>, then
+&lt;p&gt;
+<code>@ConfigProperty(name = "foo") String foo</code> will have value <code>myappbar</code>
+with application properties <code>quarkus.vault.secret-config-kv-path=base-config,myapp/config</code>
+&lt;p&gt;
+See also the documentation for the <code>kv-secret-engine-mount-path</code> property for some insights on how
 the full Vault url gets built.</p>
 </div>
 </div>
@@ -951,26 +1283,31 @@ the full Vault url gets built.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-vault_quarkus.vault.mp-config-initial-attempts"></a><code><a href="#quarkus-vault_quarkus.vault.mp-config-initial-attempts">quarkus.vault.mp-config-initial-attempts</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Maximum number of attempts when fetching MP Config properties on the initial connection.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="quarkus-vault_quarkus.vault.log-confidentiality-level"></a><code><a href="#quarkus-vault_quarkus.vault.log-confidentiality-level">quarkus.vault.log-confidentiality-level</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
 <p>Used to hide confidential infos, for logging in particular.
-Possible values are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>low: display all secrets.</p>
-</li>
-<li>
-<p>medium: display only usernames and lease ids (ie: passwords and tokens are masked).</p>
-</li>
-<li>
-<p>high: hide lease ids and dynamic credentials username.</p>
-</li>
-</ul>
+Possible values are:
+&lt;p&gt;
+* low: display all secrets.
+* medium: display only usernames and lease ids (ie: passwords and tokens are masked).
+* high: hide lease ids and dynamic credentials username.</p>
 </div>
 </div>
 </div></div></td>
@@ -984,10 +1321,9 @@ Possible values are:</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Kv secret engine version.</p>
-</div>
-<div class="paragraph">
-<p>see <a href="https://www.vaultproject.io/docs/secrets/kv/index.html" class="bare">https://www.vaultproject.io/docs/secrets/kv/index.html</a></p>
+<p>Kv secret engine version.
+&lt;p&gt;
+see <a href="https://www.vaultproject.io/docs/secrets/kv/index.html" class="bare">https://www.vaultproject.io/docs/secrets/kv/index.html</a></p>
 </div>
 </div>
 </div></div></td>
@@ -1001,32 +1337,26 @@ Possible values are:</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>KV secret engine path.</p>
-</div>
-<div class="paragraph">
-<p>This value is used when building the url path in the KV secret engine programmatic access
-(i.e. <code>VaultKVSecretEngine</code>) and the vault config source (i.e. fetching configuration properties from Vault).</p>
-</div>
-<div class="paragraph">
-<p>For a v2 KV secret engine (default - see <code>kv-secret-engine-version property</code>)
-the full url is built from the expression <code>&lt;url&gt;/v1/&lt;/kv-secret-engine-mount-path&gt;/data/&#8230;&#8203;</code>.</p>
-</div>
-<div class="paragraph">
-<p>With property <code>quarkus.vault.url=https://localhost:8200</code>, the following call
+<p>KV secret engine path.
+&lt;p&gt;
+This value is used when building the url path in the KV secret engine programmatic access
+(i.e. <code>VaultKVSecretEngine</code>) and the vault config source (i.e. fetching configuration properties from Vault).
+&lt;p&gt;
+For a v2 KV secret engine (default - see <code>kv-secret-engine-version property</code>)
+the full url is built from the expression <code>&lt;url&gt;/v1/&lt;/kv-secret-engine-mount-path&gt;/data/&#8230;&#8203;</code>.
+&lt;p&gt;
+With property <code>quarkus.vault.url=https://localhost:8200</code>, the following call
 <code>vaultKVSecretEngine.readSecret("foo/bar")</code> would lead eventually to a <code>GET</code> on Vault with the following
-url: <code><a href="https://localhost:8200/v1/secret/data/foo/bar" class="bare">https://localhost:8200/v1/secret/data/foo/bar</a></code>.</p>
-</div>
-<div class="paragraph">
-<p>With a KV secret engine v1, the url changes to: <code>&lt;url&gt;/v1/&lt;/kv-secret-engine-mount-path&gt;/&#8230;&#8203;</code>.</p>
-</div>
-<div class="paragraph">
-<p>The same logic is applied to the Vault config source. With <code>quarkus.vault.secret-config-kv-path=config/myapp</code>
+url: <code><a href="https://localhost:8200/v1/secret/data/foo/bar" class="bare">https://localhost:8200/v1/secret/data/foo/bar</a></code>.
+&lt;p&gt;
+With a KV secret engine v1, the url changes to: <code>&lt;url&gt;/v1/&lt;/kv-secret-engine-mount-path&gt;/&#8230;&#8203;</code>.
+&lt;p&gt;
+The same logic is applied to the Vault config source. With <code>quarkus.vault.secret-config-kv-path=config/myapp</code>
 The secret properties would be fetched from Vault using a <code>GET</code> on
 <code><a href="https://localhost:8200/v1/secret/data/config/myapp" class="bare">https://localhost:8200/v1/secret/data/config/myapp</a></code> for a KV secret engine v2 (or
-<code><a href="https://localhost:8200/v1/secret/config/myapp" class="bare">https://localhost:8200/v1/secret/config/myapp</a></code> for a KV secret engine v1).</p>
-</div>
-<div class="paragraph">
-<p>see <a href="https://www.vaultproject.io/docs/secrets/kv/index.html" class="bare">https://www.vaultproject.io/docs/secrets/kv/index.html</a></p>
+<code><a href="https://localhost:8200/v1/secret/config/myapp" class="bare">https://localhost:8200/v1/secret/config/myapp</a></code> for a KV secret engine v1).
+&lt;p&gt;
+see <a href="https://www.vaultproject.io/docs/secrets/kv/index.html" class="bare">https://www.vaultproject.io/docs/secrets/kv/index.html</a></p>
 </div>
 </div>
 </div></div></td>
@@ -1061,7 +1391,22 @@ The secret properties would be fetched from Vault using a <code>GET</code> on
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
   <a href="#duration-note-anchor" title="More information about the Duration format"><span class="icon"><i class="fa fa-question-circle"></i></span></a></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>1S</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>5S</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-vault_quarkus.vault.non-proxy-hosts"></a><code><a href="#quarkus-vault_quarkus.vault.non-proxy-hosts">quarkus.vault.non-proxy-hosts</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>List of remote hosts that are not proxied when the client is configured to use a proxy. This list serves the same purpose as the JVM <code>nonProxyHosts</code> configuration.
+ Entries can use the <em>*</em> wildcard character for pattern matching, e.g <em>*.example.com</em> matches <em>www.example.com</em>.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -1071,20 +1416,17 @@ The secret properties would be fetched from Vault using a <code>GET</code> on
 <div class="content">
 <div class="paragraph">
 <p>List of comma separated vault paths in kv store,
-where all properties will be available as <strong>prefixed</strong> MP config properties.</p>
-</div>
-<div class="paragraph">
-<p>For instance if the application properties contains
+where all properties will be available as <strong>prefixed</strong> MP config properties.
+&lt;p&gt;
+For instance if the application properties contains
 <code>quarkus.vault.secret-config-kv-path.myprefix=config</code>, and
 vault path <code>secret/config</code> contains <code>foo=bar</code>, then <code>myprefix.foo</code>
-will be available in the MP config.</p>
-</div>
-<div class="paragraph">
-<p>If the same property is available in 2 different paths for the same prefix, the last one
-will win.</p>
-</div>
-<div class="paragraph">
-<p>See also the documentation for the <code>quarkus.vault.kv-secret-engine-mount-path</code> property for some insights on how
+will be available in the MP config.
+&lt;p&gt;
+If the same property is available in 2 different paths for the same prefix, the last one
+will win.
+&lt;p&gt;
+See also the documentation for the <code>quarkus.vault.kv-secret-engine-mount-path</code> property for some insights on how
 the full Vault url gets built.</p>
 </div>
 </div>
@@ -1195,6 +1537,29 @@ the full Vault url gets built.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-vault_quarkus.vault.enterprise-vault-enterprise"></a><a href="#quarkus-vault_quarkus.vault.enterprise-vault-enterprise">Vault Enterprise</a></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-vault_quarkus.vault.enterprise.namespace"></a><code><a href="#quarkus-vault_quarkus.vault.enterprise.namespace">quarkus.vault.enterprise.namespace</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Vault Enterprise namespace
+&lt;p&gt;
+If set, this will add a <code>X-Vault-Namespace</code> header to all requests sent to the Vault server.
+&lt;p&gt;
+See <a href="https://www.vaultproject.io/docs/enterprise/namespaces" class="bare">https://www.vaultproject.io/docs/enterprise/namespaces</a></p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-vault_quarkus.vault.authentication-authentication"></a><a href="#quarkus-vault_quarkus.vault.authentication-authentication">Authentication</a></p></th>
@@ -1567,33 +1932,28 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>Github Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
         <span>Navigation</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
             <li><a href="/">Home</a></li>
           
-            <li><a href="/guides">Guides</a></li>
+            <li><a href="/about">About</a></li>
           
-            <li><a href="/community/#contributing">Contribute</a></li>
+            <li><a href="/blog">Blog</a></li>
           
-            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/Insights">Podcast</a></li>
           
-            <li><a href="/get-started">Get Started</a></li>
+            <li><a href="/events">Events</a></li>
           
-        </ul>
-      </div>
-    
-      <div class="width-1-12 project-links">
-        <span>Contribute</span>
-        <ul class="footer-links width-1-12">
+            <li><a href="/newsletter">Newsletter</a></li>
           
-            <li><a href="https://twitter.com/quarkusio">Follow us</a></li>
+            <li><a href="/publications">Publications</a></li>
           
-            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+            <li><a href="/Awards">Awards</a></li>
           
             <li><a href="/security">Security&nbsp;policy</a></li>
           
@@ -1601,25 +1961,52 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
       </div>
     
       <div class="width-1-12 project-links">
+        <span>Follow Us</span>
+        <ul class="footer-links">
+          
+            <li><a href="https://twitter.com/quarkusio">Twitter</a></li>
+          
+            <li><a href="https://www.facebook.com/quarkusio">Facebook</a></li>
+          
+            <li><a href="https://www.linkedin.com/company/quarkusio/">Linkedin</a></li>
+          
+            <li><a href="https://www.youtube.com/channel/UCaW8QG_QoIk_FnjLgr5eOqg">Youtube</a></li>
+          
+            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+          
+        </ul>
+      </div>
+    
+      <div class="width-2-12 project-links">
         <span>Get Help</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
-            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Forums</a></li>
+            <li><a href="/support">Support</a></li>
           
-            <li><a href="https://quarkusio.zulipchat.com">Chatroom</a></li>
+            <li><a href="/guides">Guides</a></li>
+          
+            <li><a href="/faq">FAQ</a></li>
+          
+            <li><a href="/get-started">Get Started</a></li>
+          
+            <li><a href="https://stackoverflow.com/questions/tagged/quarkus">Stack Overflow</a></li>
+          
+            <li><a href="https://github.com/quarkusio/quarkus/discussions">Discussions</a></li>
+          
+            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Development mailing list</a></li>
           
         </ul>
       </div>
     
 
     
-      <div class="width-3-12 more-links">
+      <div class="width-4-12 more-links">
         <span>Quarkus is made of community projects</span>
         <ul class="footer-links">
           
             <li><a href="https://vertx.io/" target="_blank">Eclipse Vert.x</a></li>
           
-            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+            <li><a href="https://smallrye.io" target="_blank">SmallRye</a></li>
           
             <li><a href="https://hibernate.org" target="_blank">Hibernate</a></li>
           
@@ -1629,6 +2016,8 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
           
             <li><a href="https://camel.apache.org" target="_blank">Apache Camel</a></li>
           
+            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+          
             <li><a href="https://code.quarkus.io/" target="_blank">And many more...</a></li>
           
         </ul>
@@ -1636,6 +2025,7 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
     
   </div>
 </div>
+
   <div class="content redhat-footer">
   <div class="grid-wrapper">
     <span class="licence">
@@ -1657,7 +2047,10 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
   <script src="/assets/javascript/satellite.js" type="text/javascript"></script>
   <script src="/guides/javascript/config.js" type="text/javascript"></script>
   <script src="/assets/javascript/search-filter.js" type="text/javascript"></script>
+  <script src="/assets/javascript/guides-version-dropdown.js" type="text/javascript"></script>
   <script src="/assets/javascript/back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/javascript/clipboard.min.js" type="text/javascript"></script>
+  <script src="/assets/javascript/copy.js" type="text/javascript"></script>
 </body>
 
 </html>

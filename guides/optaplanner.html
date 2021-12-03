@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 
+
+
+
+
 <head>
-  <title>OptaPlanner - Using AI to optimize a schedule with OptaPlanner</title>
+  <title>Quarkus - OptaPlanner - Using AI to optimize a schedule with OptaPlanner</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src https://dpm.demdex.net; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self'; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io https://app.mailjet.com; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
-  <META HTTP-EQUIV='Content-Security-Policy' CONTENT="default-src 'none'; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self' ; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;">
-  <META HTTP-EQUIV='X-Frame-Options' CONTENT="DENY">
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
   <META HTTP-EQUIV='X-Content-Type-Options' CONTENT="nosniff">
   <meta charset="utf-8">
@@ -18,11 +23,12 @@
   <meta property="og:url" content="https://quarkus.io/guides/optaplanner" />
   <meta property="og:title" content="OptaPlanner - Using AI to optimize a schedule with OptaPlanner" />
   <meta property="og:description" content="Quarkus: Supersonic Subatomic Java" />
-  <meta property="og:image" content="/assets/images/quarkus_card.png" />
+  <meta property="og:image" content="https://quarkus.io/assets/images/quarkus_card.png" />
+  
   <link rel="canonical" href="https://quarkus.io/guides/optaplanner">
   <link rel="shortcut icon" type="image/png" href="/favicon.ico" >
   <link rel="stylesheet" href="/guides/stylesheet/config.css" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/main.css?2021-07-29" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <link rel="alternate" type="application/rss+xml"  href="/feed.xml" title="Quarkus">
   <script src="/assets/javascript/goan.js" type="text/javascript"></script>
@@ -42,33 +48,49 @@
       <nav id="main-nav" class="main-nav">
   <div class="container">
     <div class="logo-wrapper">
-      
         <a href="/"><img src="/assets/images/quarkus_logo_horizontal_rgb_600px_reverse.png" class="project-logo" title="Quarkus"></a>
-      
     </div>
     <label class="nav-toggle" for="checkbox">
       <i class="fa fa-bars"></i>
     </label>
-    <div id="menu" class="menu">
-      <span>
-        <a href="/get-started/" class="">Get Started</a>
-      </span>
-      <span>
-        <a href="/guides/" class="active">Guides</a>
-      </span>
-      <span>
-        <a href="/community/" class="">Community</a>
-      </span>
-      <span>
-        <a href="/support/" class="">Support</a>
-      </span>
-      <span>
-        <a href="/blog/" class="">Blog</a>
-      </span>
-      <span>
+    <ul id="menu" class="menu">
+      <li class="dropdown">
+        <span href="/about/">About <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Learn <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/get-started" class="">GET STARTED</a></li>
+          <li><a href="/guides" class="active">GUIDES</a></li>
+          <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
+          <li><a href="/books" class="">BOOKS</a></li>
+          </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Community <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/support/" class="">SUPPORT</a></li>
+          <li><a href="/blog" class="">BLOG</a></li>
+          <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/insights" class="">PODCAST</a></li>
+          <li><a href="/events" class="">EVENTS</a></li>
+          <li><a href="/newsletter" class="">NEWSLETTER</a></li>
+          <li><a href="/publications" class="">PUBLICATIONS</a></li>
+          <li><a href="/awards" class="">AWARDS</a></li>
+          </ul>
+      </li>
+      <li>
         <a href="https://code.quarkus.io" class="button-cta secondary white">Start Coding</a>
-      </span>
-    </div>
+      </li>
+    </ul>
   </div>
       </nav>
     </div>
@@ -76,9 +98,67 @@
 </div>
 
   <div class="content">
-    <div class="guide">
+    
+
+
+
+<div class="full-width-version-bg grey align-self">
+  <div class="grid-wrapper">
+    <div class="grid__item width-6-12">
+      <p class="returnlink"><i class="fas fa-angle-left"></i><a href="/guides"> Back to Guides</a></p>
+    </div>
+    <div class="grid__item width-6-12 align-self-center text-right hide-mobile">
+      <label id="guide-version-label">Select Guide Version</label>
+      <select id="guide-version-dropdown">
+        
+      
+        
+        
+        
+        
+          
+        <option value="main" >Main - SNAPSHOT</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="latest" selected>2.5 - Latest</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="2.2" >2.2</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="1.11" >1.11</option>
+        
+        
+      
+    
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="grid-wrapper guide">
+  <div class="grid__item width-12-12 width-12-12-mobile">
+    <h1 class="text-caps">OptaPlanner - Using AI to optimize a schedule with OptaPlanner </h1>
+  </div>
   <div class="width-12-12">
-    <h1 class="text-caps">OptaPlanner - Using AI to optimize a schedule with OptaPlanner</h1>
     <div class="hide-mobile toc"><ul class="sectlevel1">
 <li><a href="#what-you-will-build">What you will build</a></li>
 <li><a href="#solution">Solution</a></li>
@@ -100,7 +180,7 @@
 </li>
 <li><a href="#create-the-solver-service">Create the solver service</a></li>
 <li><a href="#set-the-termination-time">Set the termination time</a></li>
-<li><a href="#make-the-application-executable">Make the application executable</a>
+<li><a href="#run-the-application">Run the application</a>
 <ul class="sectlevel2">
 <li><a href="#try-the-application">Try the application</a></li>
 <li><a href="#test-the-application">Test the application</a></li>
@@ -132,7 +212,7 @@ with <a href="https://www.optaplanner.org/">OptaPlanner</a>'s constraint solving
 </div>
 <div class="paragraph">
 <p>Your service will assign <code>Lesson</code> instances to <code>Timeslot</code> and <code>Room</code> instances automatically
-by using AI to adhere to hard and soft scheduling <em>constraints</em>, such as:</p>
+by using AI to adhere to hard and soft scheduling <em>constraints</em>, such as the following examples:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -146,7 +226,7 @@ by using AI to adhere to hard and soft scheduling <em>constraints</em>, such as:
 <p>A student can attend at most one lesson at the same time.</p>
 </li>
 <li>
-<p>A teacher prefers to teach in a single room.</p>
+<p>A teacher prefers to teach all lessons in the same room.</p>
 </li>
 <li>
 <p>A teacher prefers to teach sequential lessons and dislikes gaps between lessons.</p>
@@ -158,7 +238,7 @@ by using AI to adhere to hard and soft scheduling <em>constraints</em>, such as:
 </div>
 <div class="paragraph">
 <p>Mathematically speaking, school timetabling is an <em>NP-hard</em> problem.
-That means it is difficult to scale.
+This means it is difficult to scale.
 Simply brute force iterating through all possible combinations takes millions of years
 for a non-trivial dataset, even on a supercomputer.
 Luckily, AI constraint solvers such as OptaPlanner have advanced algorithms
@@ -174,10 +254,10 @@ that deliver a near-optimal solution in a reasonable amount of time.</p>
 However, you can go right to the completed example.</p>
 </div>
 <div class="paragraph">
-<p>Clone the Git repository: <code>git clone <a href="https://github.com/quarkusio/quarkus-quickstarts.git" class="bare">https://github.com/quarkusio/quarkus-quickstarts.git</a></code>, or download an <a href="https://github.com/quarkusio/quarkus-quickstarts/archive/master.zip">archive</a>.</p>
+<p>Clone the Git repository: <code>git clone <a href="https://github.com/quarkusio/quarkus-quickstarts.git" class="bare">https://github.com/quarkusio/quarkus-quickstarts.git</a></code>, or download an <a href="https://github.com/quarkusio/quarkus-quickstarts/archive/main.zip">archive</a>.</p>
 </div>
 <div class="paragraph">
-<p>The solution is located in <a href="https://github.com/quarkusio/quarkus-quickstarts/tree/master/optaplanner-quickstart">the <code>optaplanner-quickstart</code> directory</a>.</p>
+<p>The solution is located in <a href="https://github.com/quarkusio/quarkus-quickstarts/tree/main/optaplanner-quickstart">the <code>optaplanner-quickstart</code> directory</a>.</p>
 </div>
 </div>
 </div>
@@ -196,10 +276,10 @@ However, you can go right to the completed example.</p>
 <p>an IDE</p>
 </li>
 <li>
-<p>JDK 1.8+ installed with <code>JAVA_HOME</code> configured appropriately</p>
+<p>JDK 11+ installed with <code>JAVA_HOME</code> configured appropriately</p>
 </li>
 <li>
-<p>Apache Maven 3.6.2+ or Gradle 4+</p>
+<p>Apache Maven 3.8.1+ or Gradle 4+</p>
 </li>
 </ul>
 </div>
@@ -233,7 +313,7 @@ with the following extensions, for Maven or Gradle:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mvn io.quarkus:quarkus-maven-plugin:1.11.1.Final:create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:2.5.1.Final:create \
     -DprojectGroupId=org.acme \
     -DprojectArtifactId=optaplanner-quickstart \
     -Dextensions="resteasy,resteasy-jackson,optaplanner-quarkus,optaplanner-quarkus-jackson" \
@@ -246,12 +326,19 @@ cd optaplanner-quickstart</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">  &lt;dependencyManagement&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">  &lt;dependencyManagement&gt;
     &lt;dependencies&gt;
       &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-universe-bom&lt;/artifactId&gt;
-        &lt;version&gt;1.11.1.Final&lt;/version&gt;
+        &lt;groupId&gt;io.quarkus.platform&lt;/groupId&gt;
+        &lt;artifactId&gt;quarkus-bom&lt;/artifactId&gt;
+        &lt;version&gt;2.5.1.Final&lt;/version&gt;
+        &lt;type&gt;pom&lt;/type&gt;
+        &lt;scope&gt;import&lt;/scope&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+        &lt;groupId&gt;io.quarkus.platform&lt;/groupId&gt;
+        &lt;artifactId&gt;quarkus-optaplanner-bom&lt;/artifactId&gt;
+        &lt;version&gt;2.5.1.Final&lt;/version&gt;
         &lt;type&gt;pom&lt;/type&gt;
         &lt;scope&gt;import&lt;/scope&gt;
       &lt;/dependency&gt;
@@ -314,7 +401,7 @@ So there is no need for <a href="https://docs.optaplanner.org/latestFinal/optapl
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package org.acme.optaplanner.domain;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.optaplanner.domain;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -376,7 +463,7 @@ and they can accommodate all lessons.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package org.acme.optaplanner.domain;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.optaplanner.domain;
 
 public class Room {
 
@@ -440,7 +527,7 @@ Their containing class, <code>Lesson</code>, requires an <code>@PlanningEntity</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package org.acme.optaplanner.domain;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.optaplanner.domain;
 
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.lookup.PlanningId;
@@ -550,10 +637,10 @@ to avoid common pitfalls.</p>
 <h2 id="define-the-constraints-and-calculate-the-score"><a class="anchor" href="#define-the-constraints-and-calculate-the-score"></a>Define the constraints and calculate the score</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <em>score</em> represents the quality of a given solution.
+<p>A <em>score</em> represents the quality of a specific solution.
 The higher the better.
 OptaPlanner looks for the best solution, which is the solution with the highest score found in the available time.
-It could be the <em>optimal</em> solution.</p>
+It might be the <em>optimal</em> solution.</p>
 </div>
 <div class="paragraph">
 <p>Because this use case has hard and soft constraints,
@@ -579,7 +666,7 @@ Soft constraints are weighted too, against other soft constraints.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class TimeTableEasyScoreCalculator implements EasyScoreCalculator&lt;TimeTable&gt; {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class TimeTableEasyScoreCalculator implements EasyScoreCalculator&lt;TimeTable, HardSoftScore&gt; {
 
     @Override
     public HardSoftScore calculateScore(TimeTable timeTable) {
@@ -605,7 +692,7 @@ Soft constraints are weighted too, against other soft constraints.
             }
         }
         int softScore = 0;
-        // Soft constraints are only implemented in optaplanner-quickstart
+        // Soft constraints are only implemented in the optaplanner-quickstarts code
         return HardSoftScore.of(hardScore, softScore);
     }
 
@@ -620,11 +707,11 @@ all lessons are re-evaluated to calculate the new score.</p>
 <div class="paragraph">
 <p>Instead, create a <code>src/main/java/org/acme/optaplanner/solver/TimeTableConstraintProvider.java</code> class
 to perform incremental score calculation.
-It uses OptaPlanner&#8217;s ConstraintStream API which is inspired by Java 8 Streams and SQL:</p>
+It uses OptaPlanner&#8217;s ConstraintStream API which is inspired by Java Streams and SQL:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package org.acme.optaplanner.solver;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.optaplanner.solver;
 
 import org.acme.optaplanner.domain.Lesson;
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
@@ -642,7 +729,7 @@ public class TimeTableConstraintProvider implements ConstraintProvider {
                 roomConflict(constraintFactory),
                 teacherConflict(constraintFactory),
                 studentGroupConflict(constraintFactory),
-                // Soft constraints are only implemented in optaplanner-quickstart
+                // Soft constraints are only implemented in the optaplanner-quickstarts code
         };
     }
 
@@ -650,32 +737,37 @@ public class TimeTableConstraintProvider implements ConstraintProvider {
         // A room can accommodate at most one lesson at the same time.
 
         // Select a lesson ...
-        return constraintFactory.from(Lesson.class)
+        return constraintFactory
+                .from(Lesson.class)
                 // ... and pair it with another lesson ...
                 .join(Lesson.class,
                         // ... in the same timeslot ...
                         Joiners.equal(Lesson::getTimeslot),
                         // ... in the same room ...
-                        Joiners.equal(Lesson::getRoom))
-                // then penalize each pair with a hard weight.
+                        Joiners.equal(Lesson::getRoom),
+                        // ... and the pair is unique (different id, no reverse pairs) ...
+                        Joiners.lessThan(Lesson::getId))
+                // ... then penalize each pair with a hard weight.
                 .penalize("Room conflict", HardSoftScore.ONE_HARD);
     }
 
     private Constraint teacherConflict(ConstraintFactory constraintFactory) {
         // A teacher can teach at most one lesson at the same time.
-        return constraintFactory
-                .fromUniquePair(Lesson.class,
+        return constraintFactory.from(Lesson.class)
+                .join(Lesson.class,
                         Joiners.equal(Lesson::getTimeslot),
-                        Joiners.equal(Lesson::getTeacher))
+                        Joiners.equal(Lesson::getTeacher),
+                        Joiners.lessThan(Lesson::getId))
                 .penalize("Teacher conflict", HardSoftScore.ONE_HARD);
     }
 
     private Constraint studentGroupConflict(ConstraintFactory constraintFactory) {
         // A student can attend at most one lesson at the same time.
-        return constraintFactory
-                .fromUniquePair(Lesson.class,
+        return constraintFactory.from(Lesson.class)
+                .join(Lesson.class,
                         Joiners.equal(Lesson::getTimeslot),
-                        Joiners.equal(Lesson::getStudentGroup))
+                        Joiners.equal(Lesson::getStudentGroup),
+                        Joiners.lessThan(Lesson::getId))
                 .penalize("Student group conflict", HardSoftScore.ONE_HARD);
     }
 
@@ -716,7 +808,7 @@ for example, a solution with the score <code>0hard/-7soft</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package org.acme.optaplanner.domain;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.optaplanner.domain;
 
 import java.util.List;
 
@@ -730,11 +822,11 @@ import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 @PlanningSolution
 public class TimeTable {
 
-    @ProblemFactCollectionProperty
     @ValueRangeProvider(id = "timeslotRange")
-    private List&lt;Timeslot&gt; timeslotList;
     @ProblemFactCollectionProperty
+    private List&lt;Timeslot&gt; timeslotList;
     @ValueRangeProvider(id = "roomRange")
+    @ProblemFactCollectionProperty
     private List&lt;Room&gt; roomList;
     @PlanningEntityCollectionProperty
     private List&lt;Lesson&gt; lessonList;
@@ -842,10 +934,10 @@ These fields are problem properties.</p>
 <div class="sect2">
 <h3 id="the-value-range-providers"><a class="anchor" href="#the-value-range-providers"></a>The value range providers</h3>
 <div class="paragraph">
-<p>That <code>timeslotList</code> field is a value range provider.
+<p>The <code>timeslotList</code> field is a value range provider.
 It holds the <code>Timeslot</code> instances which OptaPlanner can pick from to assign to the <code>timeslot</code> field of <code>Lesson</code> instances.
-The <code>timeslotList</code> field has an <code>@ValueRangeProvider</code> annotation to connect those two,
-by matching the <code>id</code> with the <code>valueRangeProviderRefs</code> of the <code>@PlanningVariable</code> in the <code>Lesson</code>.</p>
+The <code>timeslotList</code> field has an <code>@ValueRangeProvider</code> annotation to connect the <code>@PlanningVariable</code> with the <code>@ValueRangeProvider</code>,
+by matching the value of the <code>id</code> property with the value of the <code>valueRangeProviderRefs</code> property of the <code>@PlanningVariable</code> annotation in the <code>Lesson</code> class.</p>
 </div>
 <div class="paragraph">
 <p>Following the same logic, the <code>roomList</code> field also has an <code>@ValueRangeProvider</code> annotation.</p>
@@ -876,7 +968,7 @@ and your <code>TimeTableConstraintProvider</code> can select <em>from</em> those
 <div class="paragraph">
 <p>Now you are ready to put everything together and create a REST service.
 But solving planning problems on REST threads causes HTTP timeout issues.
-Therefore, the Quarkus extension injects a <code>SolverManager</code>,
+Therefore, the Quarkus extension injects a <code>SolverManager</code> instance,
 which runs solvers in a separate thread pool
 and can solve multiple datasets in parallel.</p>
 </div>
@@ -885,7 +977,7 @@ and can solve multiple datasets in parallel.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package org.acme.optaplanner.rest;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.optaplanner.rest;
 
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
@@ -942,7 +1034,7 @@ That is short enough to avoid the HTTP timeout.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs"># The solver runs only for 5 seconds to avoid a HTTP timeout in this simple implementation.
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># The solver runs only for 5 seconds to avoid a HTTP timeout in this simple implementation.
 # It's recommended to run for at least 5 minutes ("5m") otherwise.
 quarkus.optaplanner.solver.termination.spent-limit=5s</code></pre>
 </div>
@@ -950,14 +1042,14 @@ quarkus.optaplanner.solver.termination.spent-limit=5s</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="make-the-application-executable"><a class="anchor" href="#make-the-application-executable"></a>Make the application executable</h2>
+<h2 id="run-the-application"><a class="anchor" href="#run-the-application"></a>Run the application</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>First start the application:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="shell" class="language-shell hljs">$ ./mvnw compile quarkus:dev</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ ./mvnw compile quarkus:dev</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -969,7 +1061,7 @@ The following example uses the Linux command <code>curl</code> to send a POST re
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="shell" class="language-shell hljs">$ curl -i -X POST http://localhost:8080/timeTable/solve -H "Content-Type:application/json" -d '{"timeslotList":[{"dayOfWeek":"MONDAY","startTime":"08:30:00","endTime":"09:30:00"},{"dayOfWeek":"MONDAY","startTime":"09:30:00","endTime":"10:30:00"}],"roomList":[{"name":"Room A"},{"name":"Room B"}],"lessonList":[{"id":1,"subject":"Math","teacher":"A. Turing","studentGroup":"9th grade"},{"id":2,"subject":"Chemistry","teacher":"M. Curie","studentGroup":"9th grade"},{"id":3,"subject":"French","teacher":"M. Curie","studentGroup":"10th grade"},{"id":4,"subject":"History","teacher":"I. Jones","studentGroup":"10th grade"}]}'</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ curl -i -X POST http://localhost:8080/timeTable/solve -H "Content-Type:application/json" -d '{"timeslotList":[{"dayOfWeek":"MONDAY","startTime":"08:30:00","endTime":"09:30:00"},{"dayOfWeek":"MONDAY","startTime":"09:30:00","endTime":"10:30:00"}],"roomList":[{"name":"Room A"},{"name":"Room B"}],"lessonList":[{"id":1,"subject":"Math","teacher":"A. Turing","studentGroup":"9th grade"},{"id":2,"subject":"Chemistry","teacher":"M. Curie","studentGroup":"9th grade"},{"id":3,"subject":"French","teacher":"M. Curie","studentGroup":"10th grade"},{"id":4,"subject":"History","teacher":"I. Jones","studentGroup":"10th grade"}]}'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1005,15 +1097,104 @@ For example, M. Curie&#8217;s two lessons are in different time slots.</p>
 <div class="sect2">
 <h3 id="test-the-application"><a class="anchor" href="#test-the-application"></a>Test the application</h3>
 <div class="paragraph">
-<p>A good application includes test coverage.
-In a JUnit test, generate a test dataset and send it to the <code>TimeTableResource</code> to solve.</p>
+<p>A good application includes test coverage.</p>
+</div>
+<div class="sect3">
+<h4 id="test-the-constraints"><a class="anchor" href="#test-the-constraints"></a>Test the constraints</h4>
+<div class="paragraph">
+<p>To test each constraint in isolation, use a <code>ConstraintVerifier</code> in unit tests.
+It tests each constraint&#8217;s corner cases in isolation from the other tests,
+which lowers maintenance when adding a new constraint with proper test coverage.</p>
+</div>
+<div class="paragraph">
+<p>Add a <code>optaplanner-test</code> dependency in your <code>pom.xml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">    &lt;dependency&gt;
+      &lt;groupId&gt;org.optaplanner&lt;/groupId&gt;
+      &lt;artifactId&gt;optaplanner-test&lt;/artifactId&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the <code>src/test/java/org/acme/optaplanner/solver/TimeTableConstraintProviderTest.java</code> class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.optaplanner.solver;
+
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+
+import javax.inject.Inject;
+
+import io.quarkus.test.junit.QuarkusTest;
+import org.acme.optaplanner.domain.Lesson;
+import org.acme.optaplanner.domain.Room;
+import org.acme.optaplanner.domain.TimeTable;
+import org.acme.optaplanner.domain.Timeslot;
+import org.junit.jupiter.api.Test;
+import org.optaplanner.test.api.score.stream.ConstraintVerifier;
+
+@QuarkusTest
+class TimeTableConstraintProviderTest {
+
+    private static final Room ROOM = new Room("Room1");
+    private static final Timeslot TIMESLOT1 = new Timeslot(DayOfWeek.MONDAY, LocalTime.of(9,0), LocalTime.NOON);
+    private static final Timeslot TIMESLOT2 = new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(9,0), LocalTime.NOON);
+
+    @Inject
+    ConstraintVerifier&lt;TimeTableConstraintProvider, TimeTable&gt; constraintVerifier;
+
+    @Test
+    void roomConflict() {
+        Lesson firstLesson = new Lesson(1, "Subject1", "Teacher1", "Group1");
+        Lesson conflictingLesson = new Lesson(2, "Subject2", "Teacher2", "Group2");
+        Lesson nonConflictingLesson = new Lesson(3, "Subject3", "Teacher3", "Group3");
+
+        firstLesson.setRoom(ROOM);
+        firstLesson.setTimeslot(TIMESLOT1);
+
+        conflictingLesson.setRoom(ROOM);
+        conflictingLesson.setTimeslot(TIMESLOT1);
+
+        nonConflictingLesson.setRoom(ROOM);
+        nonConflictingLesson.setTimeslot(TIMESLOT2);
+
+        constraintVerifier.verifyThat(TimeTableConstraintProvider::roomConflict)
+                .given(firstLesson, conflictingLesson, nonConflictingLesson)
+                .penalizesBy(1);
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This test verifies that the constraint <code>TimeTableConstraintProvider::roomConflict</code>,
+when given three lessons in the same room, where two lessons have the same timeslot,
+it penalizes with a  match weight of <code>1</code>.
+So with a constraint weight of <code>10hard</code> it would reduce the score by <code>-10hard</code>.</p>
+</div>
+<div class="paragraph">
+<p>Notice how <code>ConstraintVerifier</code> ignores the constraint weight during testing - even
+if those constraint weights are hard coded in the <code>ConstraintProvider</code> - because
+constraints weights change regularly before going into production.
+This way, constraint weight tweaking does not break the unit tests.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="test-the-solver"><a class="anchor" href="#test-the-solver"></a>Test the solver</h4>
+<div class="paragraph">
+<p>In a JUnit test, generate a test dataset and send it to the <code>TimeTableResource</code> to solve.</p>
 </div>
 <div class="paragraph">
 <p>Create the <code>src/test/java/org/acme/optaplanner/rest/TimeTableResourceTest.java</code> class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package org.acme.optaplanner.rest;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.optaplanner.rest;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -1094,11 +1275,9 @@ It also verifies that it found a feasible solution (no hard constraints broken).
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs"># The solver runs only for 5 seconds to avoid a HTTP timeout in this simple implementation.
-# It's recommended to run for at least 5 minutes ("5m") otherwise.
-quarkus.optaplanner.solver.termination.spent-limit=5s
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.optaplanner.solver.termination.spent-limit=5s
 
-# Effectively disable this termination in favor of the best-score-limit
+# Effectively disable spent-time termination in favor of the best-score-limit
 %test.quarkus.optaplanner.solver.termination.spent-limit=1h
 %test.quarkus.optaplanner.solver.termination.best-score-limit=0hard/*soft</code></pre>
 </div>
@@ -1110,6 +1289,7 @@ to terminate as soon as a feasible solution (<code>0hard/*soft</code>) is found.
 This avoids hard coding a solver time, because the unit test might run on arbitrary hardware.
 This approach ensures that the test runs long enough to find a feasible solution, even on slow machines.
 But it does not run a millisecond longer than it strictly must, even on fast machines.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1130,8 +1310,7 @@ change the logging in the <code>application.properties</code> file or with a <co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.log.category."org.optaplanner".min-level=debug
-quarkus.log.category."org.optaplanner".level=debug</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.log.category."org.optaplanner".level=debug</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1169,26 +1348,23 @@ You have just developed a Quarkus application with <a href="https://www.optaplan
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Store <code>Timeslot</code>, <code>Room</code>, and <code>Lesson</code> in the database with <a href="https://quarkus.io/guides/hibernate-orm-panache">Hibernate and Panache</a>.</p>
+<p>Store <code>Timeslot</code>, <code>Room</code>, and <code>Lesson</code> in the database with <a href="hibernate-orm-panache">Hibernate and Panache</a>.</p>
 </li>
 <li>
-<p><a href="https://quarkus.io/guides/rest-json">Expose them through REST</a>.</p>
+<p><a href="rest-json">Expose them through REST</a>.</p>
 </li>
 <li>
-<p>Adjust the <code>TimeTableResource</code> to read and write a <code>TimeTable</code> in a single transaction
+<p>Adjust the <code>TimeTableResource</code> to read and write a <code>TimeTable</code> instance in a single transaction
 and use those accordingly:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package org.acme.optaplanner.rest;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.optaplanner.rest;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import io.quarkus.panache.common.Sort;
 import org.acme.optaplanner.domain.Lesson;
@@ -1201,8 +1377,6 @@ import org.optaplanner.core.api.solver.SolverManager;
 import org.optaplanner.core.api.solver.SolverStatus;
 
 @Path("/timeTable")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 public class TimeTableResource {
 
     public static final Long SINGLETON_TIME_TABLE_ID = 1L;
@@ -1269,27 +1443,27 @@ public class TimeTableResource {
 </div>
 </div>
 <div class="paragraph">
-<p>For simplicity&#8217;s sake, this code handles only one <code>TimeTable</code>,
+<p>For simplicity&#8217;s sake, this code handles only one <code>TimeTable</code> instance,
 but it is straightforward to enable multi-tenancy and handle multiple <code>TimeTable</code> instances of different high schools in parallel.</p>
 </div>
 <div class="paragraph">
-<p>The <code>getTimeTable()</code> method returns the latest time table from the database.
+<p>The <code>getTimeTable()</code> method returns the latest timetable from the database.
 It uses the <code>ScoreManager</code> (which is automatically injected)
-to calculate the score of that time table, so the UI can show the score.</p>
+to calculate the score of that timetable, so the UI can show the score.</p>
 </div>
 <div class="paragraph">
-<p>The <code>solve()</code> method starts a job to solve the current time table and store the time slot and room assignments in the database.
+<p>The <code>solve()</code> method starts a job to solve the current timetable and store the time slot and room assignments in the database.
 It uses the <code>SolverManager.solveAndListen()</code> method to listen to intermediate best solutions
 and update the database accordingly.
 This enables the UI to show progress while the backend is still solving.</p>
 </div>
 </li>
 <li>
-<p>Adjust the <code>TimeTableResourceTest</code> accordingly, now that the <code>solve()</code> method returns immediately.
+<p>Adjust the <code>TimeTableResourceTest</code> instance accordingly, now that the <code>solve()</code> method returns immediately.
 Poll for the latest solution until the solver finishes solving:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package org.acme.optaplanner.rest;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.optaplanner.rest;
 
 import javax.inject.Inject;
 
@@ -1339,7 +1513,7 @@ public class TimeTableResourceTest {
 </ol>
 </div>
 <div class="paragraph">
-<p>Take a look at <a href="#solution">the solution</a> to see how this all turns out.</p>
+<p>Take a look at <a href="https://github.com/quarkusio/quarkus-quickstarts/tree/main/optaplanner-quickstart">the quickstart source code</a> to see how this all turns out.</p>
 </div>
 </div>
 </div>
@@ -1356,33 +1530,28 @@ public class TimeTableResourceTest {
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>Github Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
         <span>Navigation</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
             <li><a href="/">Home</a></li>
           
-            <li><a href="/guides">Guides</a></li>
+            <li><a href="/about">About</a></li>
           
-            <li><a href="/community/#contributing">Contribute</a></li>
+            <li><a href="/blog">Blog</a></li>
           
-            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/Insights">Podcast</a></li>
           
-            <li><a href="/get-started">Get Started</a></li>
+            <li><a href="/events">Events</a></li>
           
-        </ul>
-      </div>
-    
-      <div class="width-1-12 project-links">
-        <span>Contribute</span>
-        <ul class="footer-links width-1-12">
+            <li><a href="/newsletter">Newsletter</a></li>
           
-            <li><a href="https://twitter.com/quarkusio">Follow us</a></li>
+            <li><a href="/publications">Publications</a></li>
           
-            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+            <li><a href="/Awards">Awards</a></li>
           
             <li><a href="/security">Security&nbsp;policy</a></li>
           
@@ -1390,25 +1559,52 @@ public class TimeTableResourceTest {
       </div>
     
       <div class="width-1-12 project-links">
+        <span>Follow Us</span>
+        <ul class="footer-links">
+          
+            <li><a href="https://twitter.com/quarkusio">Twitter</a></li>
+          
+            <li><a href="https://www.facebook.com/quarkusio">Facebook</a></li>
+          
+            <li><a href="https://www.linkedin.com/company/quarkusio/">Linkedin</a></li>
+          
+            <li><a href="https://www.youtube.com/channel/UCaW8QG_QoIk_FnjLgr5eOqg">Youtube</a></li>
+          
+            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+          
+        </ul>
+      </div>
+    
+      <div class="width-2-12 project-links">
         <span>Get Help</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
-            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Forums</a></li>
+            <li><a href="/support">Support</a></li>
           
-            <li><a href="https://quarkusio.zulipchat.com">Chatroom</a></li>
+            <li><a href="/guides">Guides</a></li>
+          
+            <li><a href="/faq">FAQ</a></li>
+          
+            <li><a href="/get-started">Get Started</a></li>
+          
+            <li><a href="https://stackoverflow.com/questions/tagged/quarkus">Stack Overflow</a></li>
+          
+            <li><a href="https://github.com/quarkusio/quarkus/discussions">Discussions</a></li>
+          
+            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Development mailing list</a></li>
           
         </ul>
       </div>
     
 
     
-      <div class="width-3-12 more-links">
+      <div class="width-4-12 more-links">
         <span>Quarkus is made of community projects</span>
         <ul class="footer-links">
           
             <li><a href="https://vertx.io/" target="_blank">Eclipse Vert.x</a></li>
           
-            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+            <li><a href="https://smallrye.io" target="_blank">SmallRye</a></li>
           
             <li><a href="https://hibernate.org" target="_blank">Hibernate</a></li>
           
@@ -1418,6 +1614,8 @@ public class TimeTableResourceTest {
           
             <li><a href="https://camel.apache.org" target="_blank">Apache Camel</a></li>
           
+            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+          
             <li><a href="https://code.quarkus.io/" target="_blank">And many more...</a></li>
           
         </ul>
@@ -1425,6 +1623,7 @@ public class TimeTableResourceTest {
     
   </div>
 </div>
+
   <div class="content redhat-footer">
   <div class="grid-wrapper">
     <span class="licence">
@@ -1446,7 +1645,10 @@ public class TimeTableResourceTest {
   <script src="/assets/javascript/satellite.js" type="text/javascript"></script>
   <script src="/guides/javascript/config.js" type="text/javascript"></script>
   <script src="/assets/javascript/search-filter.js" type="text/javascript"></script>
+  <script src="/assets/javascript/guides-version-dropdown.js" type="text/javascript"></script>
   <script src="/assets/javascript/back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/javascript/clipboard.min.js" type="text/javascript"></script>
+  <script src="/assets/javascript/copy.js" type="text/javascript"></script>
 </body>
 
 </html>

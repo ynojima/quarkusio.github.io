@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 
+
+
+
+
 <head>
   <title>Quarkus - Reactive SQL Clients</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src https://dpm.demdex.net; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com https://static.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com https://app.mailjet.com http://www.youtube.com http://www.googleadservices.com https://googleads.g.doubleclick.net https://dpm.demdex.net https://giscus.app; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self'; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io https://app.mailjet.com; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;" />
   <script id="adobe_dtm" src="https://www.redhat.com/dtm.js" type="text/javascript"></script>
   <script src="/assets/javascript/highlight.pack.js" type="text/javascript"></script>
-  <META HTTP-EQUIV='Content-Security-Policy' CONTENT="default-src 'none'; script-src 'self' 'unsafe-eval' 'sha256-ANpuoVzuSex6VhqpYgsG25OHWVA1I+F6aGU04LoI+5s=' 'sha256-ipy9P/3rZZW06mTLAR0EnXvxSNcnfSDPLDuh3kzbB1w=' js.bizographics.com https://www.redhat.com assets.adobedtm.com jsonip.com https://ajax.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com https://use.fontawesome.com; style-src 'self' https://fonts.googleapis.com https://use.fontawesome.com; img-src 'self' *; media-src 'self' ; frame-src https://www.googletagmanager.com https://www.youtube.com https://embed.restream.io; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com;">
-  <META HTTP-EQUIV='X-Frame-Options' CONTENT="DENY">
   <META HTTP-EQUIV='X-XSS-Protection' CONTENT="1; mode=block">
   <META HTTP-EQUIV='X-Content-Type-Options' CONTENT="nosniff">
   <meta charset="utf-8">
@@ -16,13 +21,14 @@
   <meta name="twitter:site" content="@QuarkusIO"> 
   <meta name="twitter:creator" content="@QuarkusIO">
   <meta property="og:url" content="https://quarkus.io/guides/reactive-sql-clients" />
-  <meta property="og:title" content="Quarkus - Reactive SQL Clients" />
+  <meta property="og:title" content="Reactive SQL Clients" />
   <meta property="og:description" content="Quarkus: Supersonic Subatomic Java" />
-  <meta property="og:image" content="/assets/images/quarkus_card.png" />
+  <meta property="og:image" content="https://quarkus.io/assets/images/quarkus_card.png" />
+  
   <link rel="canonical" href="https://quarkus.io/guides/reactive-sql-clients">
   <link rel="shortcut icon" type="image/png" href="/favicon.ico" >
   <link rel="stylesheet" href="/guides/stylesheet/config.css" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/main.css?2021-07-29" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <link rel="alternate" type="application/rss+xml"  href="/feed.xml" title="Quarkus">
   <script src="/assets/javascript/goan.js" type="text/javascript"></script>
@@ -42,33 +48,49 @@
       <nav id="main-nav" class="main-nav">
   <div class="container">
     <div class="logo-wrapper">
-      
         <a href="/"><img src="/assets/images/quarkus_logo_horizontal_rgb_600px_reverse.png" class="project-logo" title="Quarkus"></a>
-      
     </div>
     <label class="nav-toggle" for="checkbox">
       <i class="fa fa-bars"></i>
     </label>
-    <div id="menu" class="menu">
-      <span>
-        <a href="/get-started/" class="">Get Started</a>
-      </span>
-      <span>
-        <a href="/guides/" class="active">Guides</a>
-      </span>
-      <span>
-        <a href="/community/" class="">Community</a>
-      </span>
-      <span>
-        <a href="/support/" class="">Support</a>
-      </span>
-      <span>
-        <a href="/blog/" class="">Blog</a>
-      </span>
-      <span>
+    <ul id="menu" class="menu">
+      <li class="dropdown">
+        <span href="/about/">About <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/about" class="">WHAT IS QUARKUS?</a></li>
+          <li><a href="/container-first" class="">CONTAINER FIRST</a></li>
+          <li><a href="/continuum" class="">REACTIVE</a></li>
+          <li><a href="/developer-joy" class="">DEVELOPER JOY</a></li>
+          <li><a href="/kubernetes-native" class="">KUBERNETES NATIVE</a></li>
+          <li><a href="/standards" class="">STANDARDS</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Learn <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/get-started" class="">GET STARTED</a></li>
+          <li><a href="/guides" class="active">GUIDES</a></li>
+          <li><a href="/qtips" class="">"Q" TIP VIDEOS</a></li>          
+          <li><a href="/books" class="">BOOKS</a></li>
+          </ul>
+      </li>
+      <li class="dropdown">
+        <span href="/learn/">Community <i class="fas fa-chevron-down"></i></span>
+        <ul class="submenu">
+          <li><a href="/support/" class="">SUPPORT</a></li>
+          <li><a href="/blog" class="">BLOG</a></li>
+          <li><a href="/discussion" class="">DISCUSSION</a></li>
+          <li><a href="/insights" class="">PODCAST</a></li>
+          <li><a href="/events" class="">EVENTS</a></li>
+          <li><a href="/newsletter" class="">NEWSLETTER</a></li>
+          <li><a href="/publications" class="">PUBLICATIONS</a></li>
+          <li><a href="/awards" class="">AWARDS</a></li>
+          </ul>
+      </li>
+      <li>
         <a href="https://code.quarkus.io" class="button-cta secondary white">Start Coding</a>
-      </span>
-    </div>
+      </li>
+    </ul>
   </div>
       </nav>
     </div>
@@ -76,9 +98,67 @@
 </div>
 
   <div class="content">
-    <div class="guide">
+    
+
+
+
+<div class="full-width-version-bg grey align-self">
+  <div class="grid-wrapper">
+    <div class="grid__item width-6-12">
+      <p class="returnlink"><i class="fas fa-angle-left"></i><a href="/guides"> Back to Guides</a></p>
+    </div>
+    <div class="grid__item width-6-12 align-self-center text-right hide-mobile">
+      <label id="guide-version-label">Select Guide Version</label>
+      <select id="guide-version-dropdown">
+        
+      
+        
+        
+        
+        
+          
+        <option value="main" >Main - SNAPSHOT</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="latest" selected>2.5 - Latest</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="2.2" >2.2</option>
+        
+        
+      
+        
+        
+        
+        
+          
+        <option value="1.11" >1.11</option>
+        
+        
+      
+    
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="grid-wrapper guide">
+  <div class="grid__item width-12-12 width-12-12-mobile">
+    <h1 class="text-caps">Reactive SQL Clients </h1>
+  </div>
   <div class="width-12-12">
-    <h1 class="text-caps">Quarkus - Reactive SQL Clients</h1>
     <div class="hide-mobile toc"><ul class="sectlevel1">
 <li><a href="#installing">Installing</a>
 <ul class="sectlevel2">
@@ -98,6 +178,7 @@
 </li>
 <li><a href="#database-clients-details">Database Clients details</a></li>
 <li><a href="#transactions">Transactions</a></li>
+<li><a href="#working-with-batch-query-results">Working with batch query results</a></li>
 <li><a href="#multiple-datasources">Multiple Datasources</a></li>
 <li><a href="#unix-domain-socket-connections">UNIX Domain Socket connections</a>
 <ul class="sectlevel2">
@@ -105,12 +186,14 @@
 <li><a href="#mariadbmysql">MariaDB/MySQL</a></li>
 </ul>
 </li>
+<li><a href="#pooled-connection-idle-timeout">Pooled Connection <code>idle-timeout</code></a></li>
 <li><a href="#configuration-reference">Configuration Reference</a>
 <ul class="sectlevel2">
 <li><a href="#common-datasource">Common Datasource</a></li>
 <li><a href="#reactive-datasource">Reactive Datasource</a></li>
 <li><a href="#db2">DB2</a></li>
 <li><a href="#mariadbmysql-2">MariaDB/MySQL</a></li>
+<li><a href="#microsoft-sql-server">Microsoft SQL Server</a></li>
 <li><a href="#postgresql-2">PostgreSQL</a></li>
 </ul>
 </li>
@@ -132,6 +215,9 @@ Currently, the following database servers are supported:</p>
 </li>
 <li>
 <p>MariaDB/MySQL</p>
+</li>
+<li>
+<p>Microsoft SQL Server</p>
 </li>
 </ul>
 </div>
@@ -167,7 +253,7 @@ If you are not familiar with the Quarkus Vert.x extension, consider reading the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class Fruit {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class Fruit {
 
     public Long id;
 
@@ -199,7 +285,7 @@ If you are not familiar with the Quarkus Vert.x extension, consider reading the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 --name quarkus_test -e POSTGRES_USER=quarkus_test -e POSTGRES_PASSWORD=quarkus_test -e POSTGRES_DB=quarkus_test -p 5432:5432 postgres:10.5</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 --name quarkus_test -e POSTGRES_USER=quarkus_test -e POSTGRES_PASSWORD=quarkus_test -e POSTGRES_DB=quarkus_test -p 5432:5432 postgres:10.5</code></pre>
 </div>
 </div>
 </td>
@@ -219,7 +305,7 @@ If you are creating a new project, set the <code>extensions</code> parameter as 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mvn io.quarkus:quarkus-maven-plugin:1.11.1.Final:create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn io.quarkus.platform:quarkus-maven-plugin:2.5.1.Final:create \
     -DprojectGroupId=org.acme \
     -DprojectArtifactId=reactive-pg-client-quickstart \
     -DclassName="org.acme.vertx.FruitResource" \
@@ -233,7 +319,7 @@ cd reactive-pg-client-quickstart</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">./mvnw quarkus:add-extension -Dextensions="reactive-pg-client"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -Dextensions="reactive-pg-client"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -241,7 +327,7 @@ cd reactive-pg-client-quickstart</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
     &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
     &lt;artifactId&gt;quarkus-reactive-pg-client&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
@@ -255,7 +341,7 @@ cd reactive-pg-client-quickstart</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">./mvnw quarkus:add-extension -Dextensions="resteasy-mutiny"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -Dextensions="resteasy-mutiny"</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -267,7 +353,7 @@ cd reactive-pg-client-quickstart</code></pre>
 <td class="content">
 <div class="paragraph">
 <p>In this guide, we will use the Mutiny API of the Reactive PostgreSQL Client.
-If you&#8217;re not familiar with Mutiny reactive types, read the <a href="getting-started-reactive#mutiny">Getting Started with Reactive guide</a> first.</p>
+If you are not familiar with Mutiny, check <a href="mutiny-primer">Mutiny - an intuitive reactive programming library</a>.</p>
 </div>
 </td>
 </tr>
@@ -282,7 +368,7 @@ Consequently, you also need to add the <code>quarkus-resteasy-jackson</code> ext
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">./mvnw quarkus:add-extension -Dextensions="resteasy-jackson"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw quarkus:add-extension -Dextensions="resteasy-jackson"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -290,7 +376,7 @@ Consequently, you also need to add the <code>quarkus-resteasy-jackson</code> ext
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
     &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
     &lt;artifactId&gt;quarkus-resteasy-jackson&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
@@ -311,7 +397,7 @@ Consequently, you also need to add the <code>quarkus-resteasy-jackson</code> ext
 <div class="listingblock">
 <div class="title">src/main/resources/application.properties</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.datasource.db-kind=postgresql
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.datasource.db-kind=postgresql
 quarkus.datasource.username=quarkus_test
 quarkus.datasource.password=quarkus_test
 quarkus.datasource.reactive.url=postgresql://localhost:5432/quarkus_test</code></pre>
@@ -323,7 +409,7 @@ quarkus.datasource.reactive.url=postgresql://localhost:5432/quarkus_test</code><
 <div class="listingblock">
 <div class="title">src/main/java/org/acme/vertx/FruitResource.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Path("fruits")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Path("fruits")
 public class FruitResource {
 
     @Inject
@@ -347,7 +433,7 @@ But for development we can simply drop and create the tables on startup, and the
 <div class="listingblock">
 <div class="title">src/main/java/org/acme/vertx/FruitResource.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Inject
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Inject
 @ConfigProperty(name = "myapp.schema.create", defaultValue = "true") <i class="conum" data-value="1"></i><b>(1)</b>
 boolean schemaCreate;
 
@@ -382,29 +468,13 @@ It returns a <code>Uni</code> and thus can be composed to execute queries sequen
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">client.query("DROP TABLE IF EXISTS fruits").execute()
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">client.query("DROP TABLE IF EXISTS fruits").execute()
     .flatMap(r -&gt; client.query("CREATE TABLE fruits (id SERIAL PRIMARY KEY, name TEXT NOT NULL)").execute())
     .flatMap(r -&gt; client.query("INSERT INTO fruits (name) VALUES ('Orange')").execute())
     .flatMap(r -&gt; client.query("INSERT INTO fruits (name) VALUES ('Pear')").execute())
     .flatMap(r -&gt; client.query("INSERT INTO fruits (name) VALUES ('Apple')").execute())
     .await().indefinitely();</code></pre>
 </div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="title">Breaking Change in Quarkus 1.5</div>
-<div class="paragraph">
-<p>Vert.x 3.9, integrated in Quarkus 1.5, introduces a breaking change regarding the <code>query</code> methods.
-To retrieve the result you need to call <code>.execute()</code>.</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -438,7 +508,7 @@ To retrieve all the data, we will use the <code>query</code> method again:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Uni&lt;RowSet&lt;Row&gt;&gt; rowSet = client.query("SELECT id, name FROM fruits ORDER BY name ASC").execute();</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Uni&lt;RowSet&lt;Row&gt;&gt; rowSet = client.query("SELECT id, name FROM fruits ORDER BY name ASC").execute();</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -447,7 +517,7 @@ A <code>RowSet</code> is an <code>java.lang.Iterable&lt;Row&gt;</code> and thus 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Multi&lt;Fruit&gt; fruits = rowSet
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Multi&lt;Fruit&gt; fruits = rowSet
   .onItem().transformToMulti(set -&gt; Multi.createFrom().iterable(set))
   .onItem().transform(Fruit::from);</code></pre>
 </div>
@@ -459,7 +529,7 @@ It is extracted as a convenience for the implementation of the other data manage
 <div class="listingblock">
 <div class="title">src/main/java/org/acme/vertx/Fruit.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">private static Fruit from(Row row) {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private static Fruit from(Row row) {
     return new Fruit(row.getLong("id"), row.getString("name"));
 }</code></pre>
 </div>
@@ -470,7 +540,7 @@ It is extracted as a convenience for the implementation of the other data manage
 <div class="listingblock">
 <div class="title">src/main/java/org/acme/vertx/Fruit.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public static Multi&lt;Fruit&gt; findAll(PgPool client) {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static Multi&lt;Fruit&gt; findAll(PgPool client) {
     return client.query("SELECT id, name FROM fruits ORDER BY name ASC").execute()
             .onItem().transformToMulti(set -&gt; Multi.createFrom().iterable(set))
             .onItem().transform(Fruit::from);
@@ -483,7 +553,7 @@ It is extracted as a convenience for the implementation of the other data manage
 <div class="listingblock">
 <div class="title">src/main/java/org/acme/vertx/FruitResource.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@GET
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@GET
 public Multi&lt;Fruit&gt; get() {
     return Fruit.findAll(client);
 }</code></pre>
@@ -494,7 +564,7 @@ public Multi&lt;Fruit&gt; get() {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">./mvnw compile quarkus:dev</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw compile quarkus:dev</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -502,7 +572,7 @@ public Multi&lt;Fruit&gt; get() {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="json" class="language-json hljs">[{"id":3,"name":"Apple"},{"id":1,"name":"Orange"},{"id":2,"name":"Pear"}]</code></pre>
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[{"id":3,"name":"Apple"},{"id":1,"name":"Orange"},{"id":2,"name":"Pear"}]</code></pre>
 </div>
 </div>
 </div>
@@ -513,7 +583,7 @@ public Multi&lt;Fruit&gt; get() {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">client.preparedQuery("SELECT id, name FROM fruits WHERE id = $1").execute(Tuple.of(id))</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">client.preparedQuery("SELECT id, name FROM fruits WHERE id = $1").execute(Tuple.of(id))</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -523,7 +593,8 @@ public Multi&lt;Fruit&gt; get() {
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The SQL string can refer to parameters by position, using $1, $2, &#8230;&#8203;etc.
+For PostgreSQL, the SQL string can refer to parameters by position, using <code>$1</code>, <code>$2</code>, &#8230;&#8203;etc.
+Please refer to the <a href="#database-clients-details">Database Clients details</a> section for other databases.
 </td>
 </tr>
 </table>
@@ -535,7 +606,7 @@ Equipped with this tooling, we are able to safely use an <code>id</code> provide
 <div class="listingblock">
 <div class="title">src/main/java/org/acme/vertx/Fruit.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public static Uni&lt;Fruit&gt; findById(PgPool client, Long id) {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static Uni&lt;Fruit&gt; findById(PgPool client, Long id) {
     return client.preparedQuery("SELECT id, name FROM fruits WHERE id = $1").execute(Tuple.of(id)) <i class="conum" data-value="1"></i><b>(1)</b>
             .onItem().transform(RowSet::iterator) <i class="conum" data-value="2"></i><b>(2)</b>
             .onItem().transform(iterator -&gt; iterator.hasNext() ? from(iterator.next()) : null); <i class="conum" data-value="3"></i><b>(3)</b>
@@ -564,7 +635,7 @@ Equipped with this tooling, we are able to safely use an <code>id</code> provide
 <div class="listingblock">
 <div class="title">src/main/java/org/acme/vertx/FruitResource.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@GET
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@GET
 @Path("{id}")
 public Uni&lt;Response&gt; getSingle(@PathParam Long id) {
     return Fruit.findById(client, id)
@@ -591,7 +662,7 @@ public Uni&lt;Response&gt; getSingle(@PathParam Long id) {
 <div class="listingblock">
 <div class="title">src/main/java/org/acme/vertx/Fruit.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public Uni&lt;Long&gt; save(PgPool client) {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public Uni&lt;Long&gt; save(PgPool client) {
     return client.preparedQuery("INSERT INTO fruits (name) VALUES ($1) RETURNING id").execute(Tuple.of(name))
             .onItem().transform(pgRowSet -&gt; pgRowSet.iterator().next().getLong("id"));
 }</code></pre>
@@ -603,7 +674,7 @@ public Uni&lt;Response&gt; getSingle(@PathParam Long id) {
 <div class="listingblock">
 <div class="title">src/main/java/org/acme/vertx/FruitResource.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@POST
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@POST
 public Uni&lt;Response&gt; create(Fruit fruit) {
     return fruit.save(client)
             .onItem().transform(id -&gt; URI.create("/fruits/" + id))
@@ -633,7 +704,7 @@ public Uni&lt;Response&gt; create(Fruit fruit) {
 <div class="listingblock">
 <div class="title">src/main/java/org/acme/vertx/Fruit.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public static Uni&lt;Boolean&gt; delete(PgPool client, Long id) {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static Uni&lt;Boolean&gt; delete(PgPool client, Long id) {
     return client.preparedQuery("DELETE FROM fruits WHERE id = $1").execute(Tuple.of(id))
             .onItem().transform(pgRowSet -&gt; pgRowSet.rowCount() == 1); <i class="conum" data-value="1"></i><b>(1)</b>
 }</code></pre>
@@ -653,7 +724,7 @@ public Uni&lt;Response&gt; create(Fruit fruit) {
 <div class="listingblock">
 <div class="title">src/main/java/org/acme/vertx/FruitResource.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@DELETE
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@DELETE
 @Path("{id}")
 public Uni&lt;Response&gt; delete(@PathParam Long id) {
     return Fruit.delete(client, id)
@@ -668,7 +739,7 @@ We will use <a href="https://jquery.com/">jQuery</a> to simplify interactions wi
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">&lt;!doctype html&gt;
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!doctype html&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;meta charset="utf-8"/&gt;
@@ -711,7 +782,7 @@ We will use <a href="https://jquery.com/">jQuery</a> to simplify interactions wi
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function refresh() {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function refresh() {
     $.get('/fruits', function (fruits) {
         var list = '';
         (fruits || []).forEach(function (fruit) { <i class="conum" data-value="1"></i><b>(1)</b>
@@ -773,15 +844,17 @@ Navigate to <a href="http://localhost:8080/fruits.html" class="bare">http://loca
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 15%;">
-<col style="width: 35%;">
-<col style="width: 50%;">
+<col style="width: 10%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+<col style="width: 10%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Database</th>
 <th class="tableblock halign-left valign-top">Extension name</th>
 <th class="tableblock halign-left valign-top">Pool class name</th>
+<th class="tableblock halign-left valign-top">Placeholders</th>
 </tr>
 </thead>
 <tbody>
@@ -789,16 +862,25 @@ Navigate to <a href="http://localhost:8080/fruits.html" class="bare">http://loca
 <td class="tableblock halign-left valign-top"><p class="tableblock">DB2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>quarkus-reactive-db2-client</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>io.vertx.mutiny.db2client.DB2Pool</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>?</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MariaDB/MySQL</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>quarkus-reactive-mysql-client</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>io.vertx.mutiny.mysqlclient.MySQLPool</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>?</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Microsoft SQL Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quarkus-reactive-mssql-client</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>io.vertx.mutiny.mssqlclient.MSSQLPool</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@p1</code>, <code>@p2</code>, etc.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PostgreSQL</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>quarkus-reactive-pg-client</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>io.vertx.mutiny.pgclient.PgPool</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$1</code>, <code>$2</code>, etc.</p></td>
 </tr>
 </tbody>
 </table>
@@ -809,38 +891,38 @@ Navigate to <a href="http://localhost:8080/fruits.html" class="bare">http://loca
 <div class="sectionbody">
 <div class="paragraph">
 <p>The reactive SQL clients support transactions.
-A transaction is started with <code>client.begin()</code> and terminated with either <code>tx.commit()</code> or <code>tx.rollback()</code>.
+A transaction is started with <code>io.vertx.mutiny.sqlclient.SqlConnection#begin</code> and terminated with either <code>io.vertx.mutiny.sqlclient.Transaction#commit</code> or <code>io.vertx.mutiny.sqlclient.Transaction#rollback</code>.
 All these operations are asynchronous:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>client.begin()</code> returns a <code>Uni&lt;Transaction&gt;</code></p>
+<p><code>connection.begin()</code> returns a <code>Uni&lt;Transaction&gt;</code></p>
 </li>
 <li>
-<p><code>client.commit()</code> and <code>client.rollback()</code> return <code>Uni&lt;Void&gt;</code></p>
+<p><code>transaction.commit()</code> and <code>transaction.rollback()</code> return <code>Uni&lt;Void&gt;</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>Managing transactions in the reactive programming world can be cumbersome.
-Instead of writing repetitive and complex (thus error-prone!) code, you can use the <code>io.vertx.mutiny.sqlclient.SqlClientHelper</code>.</p>
+Instead of writing repetitive and complex (thus error-prone!) code, you can use the <code>io.vertx.mutiny.sqlclient.Pool#withTransaction</code> helper method.</p>
 </div>
 <div class="paragraph">
 <p>The following snippet shows how to run 2 insertions in the same transaction:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public static Uni&lt;Void&gt; insertTwoFruits(PgPool client, Fruit fruit1, Fruit fruit2) {
-    return SqlClientHelper.inTransactionUni(client, tx -&gt; {
-        Uni&lt;RowSet&lt;Row&gt;&gt; insertOne = tx.preparedQuery("INSERT INTO fruits (name) VALUES ($1) RETURNING id")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static Uni&lt;Void&gt; insertTwoFruits(PgPool client, Fruit fruit1, Fruit fruit2) {
+    return client.withTransaction(conn -&gt; {
+        Uni&lt;RowSet&lt;Row&gt;&gt; insertOne = conn.preparedQuery("INSERT INTO fruits (name) VALUES ($1) RETURNING id")
                 .execute(Tuple.of(fruit1.name));
-        Uni&lt;RowSet&lt;Row&gt;&gt; insertTwo = tx.preparedQuery("INSERT INTO fruits (name) VALUES ($1) RETURNING id")
+        Uni&lt;RowSet&lt;Row&gt;&gt; insertTwo = conn.preparedQuery("INSERT INTO fruits (name) VALUES ($1) RETURNING id")
                 .execute(Tuple.of(fruit2.name));
 
-        return insertOne.and(insertTwo)
+        return Uni.combine().all().unis(insertOne, insertTwo)
                 // Ignore the results (the two ids)
-                .onItem().ignore().andContinueWithNull();
+                .discardItems();
     });
 }</code></pre>
 </div>
@@ -853,15 +935,89 @@ Instead of writing repetitive and complex (thus error-prone!) code, you can use 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">return SqlClientHelper.inTransactionUni(client, tx -&gt; tx
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">return client.withTransaction(conn -&gt; conn
 
         .preparedQuery("INSERT INTO person (firstname,lastname) VALUES ($1,$2) RETURNING id")
-                .execute(Tuple.of(person.getFirstName(), person.getLastName()))
+        .execute(Tuple.of(person.getFirstName(), person.getLastName()))
 
-        .onItem().transformToUni(id -&gt; tx.preparedQuery("INSERT INTO addr (person_id,addrline1) VALUES ($1,$2)")
+        .onItem().transformToUni(id -&gt; conn.preparedQuery("INSERT INTO addr (person_id,addrline1) VALUES ($1,$2)")
                 .execute(Tuple.of(id.iterator().next().getLong("id"), person.getLastName())))
 
         .onItem().ignore().andContinueWithNull());</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="working-with-batch-query-results"><a class="anchor" href="#working-with-batch-query-results"></a>Working with batch query results</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When executing batch queries, reactive SQL clients return a <code>RowSet</code> that corresponds to the results of the first element in the batch.
+To get the results of the following batch elements, you must invoke the <code>RowSet#next</code> method until it returns <code>null</code>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say you want to update some rows and compute the total number of affected rows.
+You must inspect each <code>RowSet</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">PreparedQuery&lt;RowSet&lt;Row&gt;&gt; preparedQuery = client.preparedQuery("UPDATE fruits SET name = $1 WHERE id = $2");
+
+Uni&lt;RowSet&lt;Row&gt;&gt; rowSet = preparedQuery.executeBatch(Arrays.asList(
+        Tuple.of("Orange", 1),
+        Tuple.of("Pear", 2),
+        Tuple.of("Apple", 3)));
+
+Uni&lt;Integer&gt; totalAffected = rowSet.onItem().transform(res -&gt; {
+    int total = 0;
+    do {
+        total += res.rowCount(); <i class="conum" data-value="1"></i><b>(1)</b>
+    } while ((res = res.next()) != null); <i class="conum" data-value="2"></i><b>(2)</b>
+    return total;
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Compute the sum of <code>RowSet#rowCount</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Invoke <code>RowSet#next</code> until it returns <code>null</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As another example, if you want to load all the rows you just inserted, you must concatenate the contents of each <code>RowSet</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">PreparedQuery&lt;RowSet&lt;Row&gt;&gt; preparedQuery = client.preparedQuery("INSERT INTO fruits (name) VALUES ($1) RETURNING *");
+
+Uni&lt;RowSet&lt;Row&gt;&gt; rowSet = preparedQuery.executeBatch(Arrays.asList(
+        Tuple.of("Orange"),
+        Tuple.of("Pear"),
+        Tuple.of("Apple")));
+
+// Generate a Multi of RowSet items
+Multi&lt;RowSet&lt;Row&gt;&gt; rowSets = rowSet.onItem().transformToMulti(res -&gt; {
+    return Multi.createFrom().generator(() -&gt; res, (rs, emitter) -&gt; {
+        RowSet&lt;Row&gt; next = null;
+        if (rs != null) {
+            emitter.emit(rs);
+            next = rs.next();
+        }
+        if (next == null) {
+            emitter.complete();
+        }
+        return next;
+    });
+});
+
+// Transform each RowSet into Multi of Row items and Concatenate
+Multi&lt;Row&gt; rows = rowSets.onItem().transformToMultiAndConcatenate(Multi.createFrom()::iterable);</code></pre>
 </div>
 </div>
 </div>
@@ -877,7 +1033,7 @@ Instead of writing repetitive and complex (thus error-prone!) code, you can use 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.datasource.db-kind=postgresql <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.datasource.db-kind=postgresql <i class="conum" data-value="1"></i><b>(1)</b>
 quarkus.datasource.username=user-default
 quarkus.datasource.password=password-default
 quarkus.datasource.reactive.url=postgresql://localhost:5432/default
@@ -914,7 +1070,7 @@ quarkus.datasource."additional2".reactive.url=mysql://localhost:3306/additional2
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Inject <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Inject <i class="conum" data-value="1"></i><b>(1)</b>
 PgPool defaultClient;
 
 @Inject
@@ -947,7 +1103,7 @@ MySQLPool additional2Client;</code></pre>
 <p>The PostgreSQL and MariaDB/MySQL clients can be configured to connect to the server through a UNIX domain socket.</p>
 </div>
 <div class="paragraph">
-<p>First make sure that <a href="https://quarkus.io/guides/vertx#native-transport">native transport support</a> is enabled.</p>
+<p>First make sure that <a href="vertx-reference.adoc#native-transport">native transport support</a> is enabled.</p>
 </div>
 <div class="paragraph">
 <p>Then configure the database connection url.
@@ -979,7 +1135,7 @@ This step depends on the database type.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.datasource.reactive.url=postgresql://:5432/quarkus_test?host=/var/run/postgresql</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.datasource.reactive.url=postgresql://:5432/quarkus_test?host=/var/run/postgresql</code></pre>
 </div>
 </div>
 </div>
@@ -996,8 +1152,37 @@ This step depends on the database type.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.datasource.reactive.url=mysql:///quarkus_test?host=/var/run/mysqld/mysqld.sock</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.datasource.reactive.url=mysql:///quarkus_test?host=/var/run/mysqld/mysqld.sock</code></pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pooled-connection-idle-timeout"><a class="anchor" href="#pooled-connection-idle-timeout"></a>Pooled Connection <code>idle-timeout</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Reactive datasources can be configured with an <code>idle-timeout</code> (in milliseconds).
+It is the maximum time a connection remains unused in the pool before it is closed.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>idle-timeout</code> is disabled by default.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example, you could expire idle connections after 60 minutes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">quarkus.datasource.reactive.idle-timeout=PT60M</code></pre>
 </div>
 </div>
 </div>
@@ -1035,6 +1220,64 @@ This step depends on the database type.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-datasource_quarkus.datasource.devservices.enabled"></a><code><a href="#quarkus-datasource_quarkus.datasource.devservices.enabled">quarkus.datasource.devservices.enabled</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>If DevServices has been explicitly enabled or disabled. DevServices is generally enabled by default, unless there is an existing configuration present. When DevServices is enabled Quarkus will attempt to automatically configure and start a database when running in Dev or Test mode.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-datasource_quarkus.datasource.devservices.image-name"></a><code><a href="#quarkus-datasource_quarkus.datasource.devservices.image-name">quarkus.datasource.devservices.image-name</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The container image name to use, for container based DevServices providers. If the provider is not container based (e.g. a H2 Database) then this has no effect.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-datasource_quarkus.datasource.devservices.port"></a><code><a href="#quarkus-datasource_quarkus.datasource.devservices.port">quarkus.datasource.devservices.port</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Optional fixed port the dev service will listen to.
+ If not defined, the port will be chosen randomly.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-datasource_quarkus.datasource.health-exclude"></a><code><a href="#quarkus-datasource_quarkus.datasource.health-exclude">quarkus.datasource.health-exclude</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Whether this particular data source should be excluded from the health check if the general health check for data sources is enabled.
+ By default, the health check includes all configured data sources (if it is enabled).</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -1126,6 +1369,20 @@ This step depends on the database type.</p>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-datasource_quarkus.datasource.devservices.properties-properties"></a><code><a href="#quarkus-datasource_quarkus.datasource.devservices.properties-properties">quarkus.datasource.devservices.properties</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Generic properties that are added to the database connection URL.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Map&lt;String,String&gt;</code></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-datasource_quarkus.datasource.named-data-sources-additional-named-datasources"></a><a href="#quarkus-datasource_quarkus.datasource.named-data-sources-additional-named-datasources">Additional named datasources</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
@@ -1143,6 +1400,78 @@ This step depends on the database type.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-datasource_quarkus.datasource.-datasource-name-.devservices.enabled"></a><code><a href="#quarkus-datasource_quarkus.datasource.-datasource-name-.devservices.enabled">quarkus.datasource."datasource-name".devservices.enabled</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>If DevServices has been explicitly enabled or disabled. DevServices is generally enabled by default, unless there is an existing configuration present. When DevServices is enabled Quarkus will attempt to automatically configure and start a database when running in Dev or Test mode.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-datasource_quarkus.datasource.-datasource-name-.devservices.image-name"></a><code><a href="#quarkus-datasource_quarkus.datasource.-datasource-name-.devservices.image-name">quarkus.datasource."datasource-name".devservices.image-name</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The container image name to use, for container based DevServices providers. If the provider is not container based (e.g. a H2 Database) then this has no effect.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-datasource_quarkus.datasource.-datasource-name-.devservices.properties-properties"></a><code><a href="#quarkus-datasource_quarkus.datasource.-datasource-name-.devservices.properties-properties">quarkus.datasource."datasource-name".devservices.properties</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Generic properties that are added to the database connection URL.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Map&lt;String,String&gt;</code></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-datasource_quarkus.datasource.-datasource-name-.devservices.port"></a><code><a href="#quarkus-datasource_quarkus.datasource.-datasource-name-.devservices.port">quarkus.datasource."datasource-name".devservices.port</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Optional fixed port the dev service will listen to.
+ If not defined, the port will be chosen randomly.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-datasource_quarkus.datasource.-datasource-name-.health-exclude"></a><code><a href="#quarkus-datasource_quarkus.datasource.-datasource-name-.health-exclude">quarkus.datasource."datasource-name".health-exclude</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Whether this particular data source should be excluded from the health check if the general health check for data sources is enabled.
+ By default, the health check includes all configured data sources (if it is enabled).</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -1271,7 +1600,7 @@ This step depends on the database type.</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>The datasource pool maximum size. Note that a separate pool instance is started for each thread using it: the size limits each individual pool instance.</p>
+<p>The datasource pool maximum size.</p>
 </div>
 </div>
 </div></div></td>
@@ -1561,12 +1890,26 @@ This step depends on the database type.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-reactive-datasource_quarkus.datasource.reactive.hostname-verification-algorithm"></a><code><a href="#quarkus-reactive-datasource_quarkus.datasource.reactive.hostname-verification-algorithm">quarkus.datasource.reactive.hostname-verification-algorithm</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The hostname verification algorithm to use in case the server&#8217;s identity should be checked. Should be HTTPS, LDAPS or an empty string.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="quarkus-reactive-datasource_quarkus.datasource.reactive.idle-timeout"></a><code><a href="#quarkus-reactive-datasource_quarkus.datasource.reactive.idle-timeout">quarkus.datasource.reactive.idle-timeout</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>The maximum time without data written to or read from a connection before it is removed from the pool.</p>
+<p>The maximum time a connection remains unused in the pool before it is closed.</p>
 </div>
 </div>
 </div></div></td>
@@ -1628,7 +1971,7 @@ This step depends on the database type.</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>The datasource pool maximum size. Note that a separate pool instance is started for each thread using it: the size limits each individual pool instance.</p>
+<p>The datasource pool maximum size.</p>
 </div>
 </div>
 </div></div></td>
@@ -1918,12 +2261,26 @@ This step depends on the database type.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-reactive-datasource_quarkus.datasource.-datasource-name-.reactive.hostname-verification-algorithm"></a><code><a href="#quarkus-reactive-datasource_quarkus.datasource.-datasource-name-.reactive.hostname-verification-algorithm">quarkus.datasource."datasource-name".reactive.hostname-verification-algorithm</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The hostname verification algorithm to use in case the server&#8217;s identity should be checked. Should be HTTPS, LDAPS or an empty string.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="quarkus-reactive-datasource_quarkus.datasource.-datasource-name-.reactive.idle-timeout"></a><code><a href="#quarkus-reactive-datasource_quarkus.datasource.-datasource-name-.reactive.idle-timeout">quarkus.datasource."datasource-name".reactive.idle-timeout</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>The maximum time without data written to or read from a connection before it is removed from the pool.</p>
+<p>The maximum time a connection remains unused in the pool before it is closed.</p>
 </div>
 </div>
 </div></div></td>
@@ -2120,6 +2477,87 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
 </table>
 </div>
 <div class="sect2">
+<h3 id="microsoft-sql-server"><a class="anchor" href="#microsoft-sql-server"></a>Microsoft SQL Server</h3>
+<div class="paragraph configuration-legend">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> Configuration property fixed at build time - All other configuration properties are overridable at runtime</p>
+</div>
+<table class="tableblock frame-all grid-all stretch configuration-reference searchable">
+<colgroup>
+<col style="width: 80%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-reactive-mssql-client_configuration"></a><a href="#quarkus-reactive-mssql-client_configuration">Configuration property</a></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-reactive-mssql-client_quarkus.datasource.reactive.mssql.packet-size"></a><code><a href="#quarkus-reactive-mssql-client_quarkus.datasource.reactive.mssql.packet-size">quarkus.datasource.reactive.mssql.packet-size</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The desired size (in bytes) for TDS packets.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-reactive-mssql-client_quarkus.datasource.reactive.mssql.ssl"></a><code><a href="#quarkus-reactive-mssql-client_quarkus.datasource.reactive.mssql.ssl">quarkus.datasource.reactive.mssql.ssl</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Whether SSL/TLS is enabled.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-reactive-mssql-client_quarkus.datasource.named-data-sources-additional-named-datasources"></a><a href="#quarkus-reactive-mssql-client_quarkus.datasource.named-data-sources-additional-named-datasources">Additional named datasources</a></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-reactive-mssql-client_quarkus.datasource.-datasource-name-.reactive.mssql.packet-size"></a><code><a href="#quarkus-reactive-mssql-client_quarkus.datasource.-datasource-name-.reactive.mssql.packet-size">quarkus.datasource."datasource-name".reactive.mssql.packet-size</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The desired size (in bytes) for TDS packets.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-reactive-mssql-client_quarkus.datasource.-datasource-name-.reactive.mssql.ssl"></a><code><a href="#quarkus-reactive-mssql-client_quarkus.datasource.-datasource-name-.reactive.mssql.ssl">quarkus.datasource."datasource-name".reactive.mssql.ssl</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Whether SSL/TLS is enabled.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
 <h3 id="postgresql-2"><a class="anchor" href="#postgresql-2"></a>PostgreSQL</h3>
 <div class="paragraph configuration-legend">
 <p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> Configuration property fixed at build time - All other configuration properties are overridable at runtime</p>
@@ -2217,33 +2655,28 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
     </div>
   </div>
   <div class="grid-wrapper">
-    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>Github Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
+    <p class="grid__item width-3-12">Quarkus is open. All dependencies of this project are available under the <a href='https://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache Software License 2.0</a> or compatible license.<br /><br />This website was built with <a href='https://jekyllrb.com/' target='_blank'>Jekyll</a>, is hosted on <a href='https://pages.github.com/' target='_blank'>GitHub Pages</a> and is completely open source. If you want to make it better, <a href='https://github.com/quarkusio/quarkusio.github.io' target='_blank'>fork the website</a> and show us what you’ve got.</p>
 
     
       <div class="width-1-12 project-links">
         <span>Navigation</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
             <li><a href="/">Home</a></li>
           
-            <li><a href="/guides">Guides</a></li>
+            <li><a href="/about">About</a></li>
           
-            <li><a href="/community/#contributing">Contribute</a></li>
+            <li><a href="/blog">Blog</a></li>
           
-            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/Insights">Podcast</a></li>
           
-            <li><a href="/get-started">Get Started</a></li>
+            <li><a href="/events">Events</a></li>
           
-        </ul>
-      </div>
-    
-      <div class="width-1-12 project-links">
-        <span>Contribute</span>
-        <ul class="footer-links width-1-12">
+            <li><a href="/newsletter">Newsletter</a></li>
           
-            <li><a href="https://twitter.com/quarkusio">Follow us</a></li>
+            <li><a href="/publications">Publications</a></li>
           
-            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+            <li><a href="/Awards">Awards</a></li>
           
             <li><a href="/security">Security&nbsp;policy</a></li>
           
@@ -2251,25 +2684,52 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
       </div>
     
       <div class="width-1-12 project-links">
+        <span>Follow Us</span>
+        <ul class="footer-links">
+          
+            <li><a href="https://twitter.com/quarkusio">Twitter</a></li>
+          
+            <li><a href="https://www.facebook.com/quarkusio">Facebook</a></li>
+          
+            <li><a href="https://www.linkedin.com/company/quarkusio/">Linkedin</a></li>
+          
+            <li><a href="https://www.youtube.com/channel/UCaW8QG_QoIk_FnjLgr5eOqg">Youtube</a></li>
+          
+            <li><a href="https://github.com/quarkusio">GitHub</a></li>
+          
+        </ul>
+      </div>
+    
+      <div class="width-2-12 project-links">
         <span>Get Help</span>
-        <ul class="footer-links width-1-12">
+        <ul class="footer-links">
           
-            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Forums</a></li>
+            <li><a href="/support">Support</a></li>
           
-            <li><a href="https://quarkusio.zulipchat.com">Chatroom</a></li>
+            <li><a href="/guides">Guides</a></li>
+          
+            <li><a href="/faq">FAQ</a></li>
+          
+            <li><a href="/get-started">Get Started</a></li>
+          
+            <li><a href="https://stackoverflow.com/questions/tagged/quarkus">Stack Overflow</a></li>
+          
+            <li><a href="https://github.com/quarkusio/quarkus/discussions">Discussions</a></li>
+          
+            <li><a href="https://groups.google.com/forum/#!forum/quarkus-dev">Development mailing list</a></li>
           
         </ul>
       </div>
     
 
     
-      <div class="width-3-12 more-links">
+      <div class="width-4-12 more-links">
         <span>Quarkus is made of community projects</span>
         <ul class="footer-links">
           
             <li><a href="https://vertx.io/" target="_blank">Eclipse Vert.x</a></li>
           
-            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+            <li><a href="https://smallrye.io" target="_blank">SmallRye</a></li>
           
             <li><a href="https://hibernate.org" target="_blank">Hibernate</a></li>
           
@@ -2279,6 +2739,8 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
           
             <li><a href="https://camel.apache.org" target="_blank">Apache Camel</a></li>
           
+            <li><a href="https://microprofile.io" target="_blank">Eclipse MicroProfile</a></li>
+          
             <li><a href="https://code.quarkus.io/" target="_blank">And many more...</a></li>
           
         </ul>
@@ -2286,6 +2748,7 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
     
   </div>
 </div>
+
   <div class="content redhat-footer">
   <div class="grid-wrapper">
     <span class="licence">
@@ -2307,7 +2770,10 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
   <script src="/assets/javascript/satellite.js" type="text/javascript"></script>
   <script src="/guides/javascript/config.js" type="text/javascript"></script>
   <script src="/assets/javascript/search-filter.js" type="text/javascript"></script>
+  <script src="/assets/javascript/guides-version-dropdown.js" type="text/javascript"></script>
   <script src="/assets/javascript/back-to-top.js" type="text/javascript"></script>
+    <script src="/assets/javascript/clipboard.min.js" type="text/javascript"></script>
+  <script src="/assets/javascript/copy.js" type="text/javascript"></script>
 </body>
 
 </html>
