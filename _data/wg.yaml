@@ -155,7 +155,7 @@ working-groups:
       status: on track
       lts: false
       completed: false
-      last-activity: 2026-03-15
+      last-activity: 2026-03-16
       last-update-date: 2026-02-23
       last-update: |
         The Java 25 support group wrapped up a host of critical items. We addressed various native library loading needs for extensions like Kafka, MongoDB, and Netty, introducing a `BuildItem` to manage this. Infinispan and LRA TCK Java 25 specific issues are now resolved, and we updated our recommended Java version to 25. Now we're tackling an OpenJDK 25 Dockerfile image reference fix and gRPC warnings.
