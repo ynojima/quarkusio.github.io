@@ -5,19 +5,14 @@ socialdescription: "View the Podcast on these platforms"
 futureheadline: "Scheduled Podcasts"
 
 # Next upcoming session (update weekly)
-nextsessiontitle: "Episode #239: Reactive Loom"
-nextsessiondate: "2026-03-16T14:00Z"
-nextsessionguest: "Francesco Nigro"
+nextsessiontitle: "Episode #240: Quarkus & Gizmo 2"
+nextsessiondate: "2026-03-23T14:00Z"
+nextsessionguest: "David Lloyd"
 
 
 # upcoming session list (update weekly)
 
 futurevideos:
-
-- title: "Episode #239: Reactive Loom"
-  link: 
-  date: "March 16, 2026"
-  authors: "Francesco Nigro"
 
 - title: "Episode #240: Quarkus & Gizmo 2"
   link: 
@@ -40,6 +35,11 @@ futurevideos:
 pastheadline: "Archived Podcast Videos"
 
 pastvideos:
+
+- title: "Episode #239: Reactive Loom"
+  link: https://youtube.com/live/oWE_kYB4Wns
+  date: "March 16, 2026"
+  authors: "Francesco Nigro"
 
 - title: "Episode #238: Quarkus and Leyden, the bumpy road ahead"
   link: https://youtube.com/live/utwE70i9Ehg
