@@ -1458,6 +1458,10 @@ Indicates that a specific container image should be used to generate the AppCDS 
 
 _No Javadoc found_
 
+`java.util.Optional<List<String>> additionalJvmArgs` 
+
+_No Javadoc found_
+
 
 
 
@@ -3305,7 +3309,6 @@ a| https://github.com/quarkusio/quarkus/blob/main/extensions/arc/deployment/src/
 [.description]
 --
 A type of build item that contains only declaring classes, methods and fields that have been annotated with unsuccessful build time conditions. It aims to be used to manage the exclusion of the annotations thanks to the build time conditions also known as `IfBuildProfile` , `UnlessBuildProfile` , `IfBuildProperty` and `UnlessBuildProperty`
-@see io.quarkus.arc.deployment.PreAdditionalBeanBuildTimeConditionBuildItem
 @see io.quarkus.arc.profile.IfBuildProfile
 @see io.quarkus.arc.profile.UnlessBuildProfile
 @see io.quarkus.arc.properties.IfBuildProperty
