@@ -182,5 +182,14 @@ upcomingevents:
   description: The Cloud Native Computing Foundation’s flagship conference brings together adopters and technologists from leading open source and cloud native communities in Mumbai, India, from 18-19 June, 2026. Be a part of the conversation as CNCF Graduated, Incubating, and Sandbox Projects unite for two days of collaboration, learning, and innovation to drive the future of cloud native computing.
   thumbnail: kubeconindia_logo.png
 
+- title: "Software Architecture Summit"
+  type: In Person
+  link: https://github.com/quarkusio/quarkus/discussions/52505
+  date: 2026-06-19
+  displaydate: "June 19, 2026"
+  location: Bucharest, Romania
+  description: From June 15-19 2026, the Business Summits at Nord Events Center by Globalworth will bring together global experts and industry pioneers to tackle the biggest challenges and opportunities in tech. Across five specialized events—the Innovation Summit, Future AI Summit, HR Masters Summit, Software Architecture Summit, and AI Coding Summit— attendees will gain insights into Generative AI, AI-Human Collaboration, AI Agents, MultiCloud architectures, workforce transformation, and emerging innovations such as bionic arms that merge human capabilities with advanced technology.
+  thumbnail: softwarearchitecturesummit_logo.png
+
   
   
