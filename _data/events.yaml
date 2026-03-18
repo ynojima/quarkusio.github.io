@@ -137,6 +137,15 @@ upcomingevents:
   description: The UK's premier conference for Java developers. Practical insights and strategies to tackle today’s toughest challenges whilst preparing for what’s emerging next.
   thumbnail: devoxxuk_logo.png
 
+- title: "Uphill Conf"
+  type: In Person
+  link: https://github.com/quarkusio/quarkus/discussions/53137
+  date: 2026-05-08
+  displaydate: "May 7-8, 2026"
+  location: Bern, Switzerland
+  description: Uphill Conf is back with a new topic; We will explore the profound and lasting impact of Artificial Intelligence and Machine Learning on software engineering. Join 300+ developers on May 8, 2026, for a day of practical AI insights from national and international experts. Secure your spot—tickets are limited. Coffee, lunch, and networking included.
+  thumbnail: uphillconf_logo.png
+
 - title: "Red Hat Summit"
   type: In Person
   link: https://github.com/quarkusio/quarkus/discussions/52999
