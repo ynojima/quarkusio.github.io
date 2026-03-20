@@ -2934,6 +2934,10 @@ _No Javadoc found_
 
 _No Javadoc found_
 
+`boolean xaEnabled` 
+
+_No Javadoc found_
+
 `boolean isDefault` 
 
 _No Javadoc found_
