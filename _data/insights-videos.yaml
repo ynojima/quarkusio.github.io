@@ -5,19 +5,14 @@ socialdescription: "View the Podcast on these platforms"
 futureheadline: "Scheduled Podcasts"
 
 # Next upcoming session (update weekly)
-nextsessiontitle: "Episode #240: Quarkus & Gizmo 2"
-nextsessiondate: "2026-03-23T14:00Z"
-nextsessionguest: "David Lloyd"
+nextsessiontitle: "Episode #241: What's new with Java 25"
+nextsessiondate: "2026-03-30T14:00Z"
+nextsessionguest: "Guillaume Smet & Sanne Grinovero"
 
 
 # upcoming session list (update weekly)
 
 futurevideos:
-
-- title: "Episode #240: Quarkus & Gizmo 2"
-  link: 
-  date: "March 23, 2026"
-  authors: "David Lloyd"
 
 - title: "Episode #241: What's new with Java 25"
   link: 
@@ -35,6 +30,11 @@ futurevideos:
 pastheadline: "Archived Podcast Videos"
 
 pastvideos:
+
+- title: "Episode #240: Quarkus & Gizmo 2"
+  link: https://www.youtube.com/watch?v=edIWXParDFw
+  date: "March 23, 2026"
+  authors: "David Lloyd"
 
 - title: "Episode #239: Reactive Loom"
   link: https://youtube.com/live/oWE_kYB4Wns
