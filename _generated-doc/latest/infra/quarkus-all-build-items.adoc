@@ -10,10 +10,14 @@ h|Attributes
 a| https://github.com/quarkusio/quarkus/blob/main/core/deployment/src/main/java/io/quarkus/deployment/builditem/AdditionalApplicationArchiveBuildItem.java[`io.quarkus.deployment.builditem.AdditionalApplicationArchiveBuildItem`, window="_blank"]
 [.description]
 --
-An additional application archive. This build item can only be consumed, it should not be produced by build steps.
+Represents an additional application archive that must be considered part of the application during the augmentation phase. 
+This build item is produced internally by the Quarkus bootstrap process when extra archives need to be indexed and treated as application code. 
+
+It is intended to be consumed by build steps that analyze or process application archives. Extensions must not produce this build item directly. 
+
 -- a|`io.quarkus.paths.PathCollection path` 
 
-_No Javadoc found_
+The resolved paths that compose the additional application archive.
 
 
 
@@ -327,17 +331,6 @@ _No Javadoc found_
 
 
 
-a| https://github.com/quarkusio/quarkus/blob/main/core/deployment/src/main/java/io/quarkus/deployment/builditem/BytecodeRecorderObjectLoaderBuildItem.java[`io.quarkus.deployment.builditem.BytecodeRecorderObjectLoaderBuildItem`, window="_blank"]
-[.description]
---
-_No Javadoc found_
--- a|`io.quarkus.deployment.recording.ObjectLoader objectLoader` 
-
-_No Javadoc found_
-
-
-
-
 a| https://github.com/quarkusio/quarkus/blob/main/core/deployment/src/main/java/io/quarkus/deployment/builditem/BytecodeTransformerBuildItem.java[`io.quarkus.deployment.builditem.BytecodeTransformerBuildItem`, window="_blank"]
 [.description]
 --
@@ -577,10 +570,11 @@ _No Javadoc found_
 a| https://github.com/quarkusio/quarkus/blob/main/core/deployment/src/main/java/io/quarkus/deployment/builditem/ConsoleFormatterBannerBuildItem.java[`io.quarkus.deployment.builditem.ConsoleFormatterBannerBuildItem`, window="_blank"]
 [.description]
 --
-_No Javadoc found_
+A `SimpleBuildItem` that loads an optional banner provider for the console formatter. 
+Produced during compilation and obtained by the registry configuration to provide a banner at runtime by via `RuntimeValue` .
 -- a|`io.quarkus.runtime.RuntimeValue<Optional<Supplier<String>>> bannerSupplier` 
 
-_No Javadoc found_
+A RuntimeValue that holds an Optional Supplier of String. The Supplier is used to generate the banner text when needed. The Optional allows for the possibility that no banner supplier is provided, in which case the banner will not be printed.
 
 
 
@@ -623,7 +617,7 @@ _No Javadoc found_
 a| https://github.com/quarkusio/quarkus/blob/main/core/deployment/src/main/java/io/quarkus/deployment/pkg/builditem/CurateOutcomeBuildItem.java[`io.quarkus.deployment.pkg.builditem.CurateOutcomeBuildItem`, window="_blank"]
 [.description]
 --
-_No Javadoc found_
+Represents the outcome of the application dependency resolution and model building. This build item exposes the resulting `ApplicationModel` to subsequent build steps.
 -- a|`io.quarkus.bootstrap.model.ApplicationModel appModel` 
 
 _No Javadoc found_
@@ -673,10 +667,13 @@ _No Javadoc found_
 a| https://github.com/quarkusio/quarkus/blob/main/core/deployment/src/main/java/io/quarkus/deployment/cmd/DeployCommandActionResultBuildItem.java[`io.quarkus.deployment.cmd.DeployCommandActionResultBuildItem`, window="_blank"]
 [.description]
 --
-_No Javadoc found_
+A `SimpleBuildItem` that represents the aggregate result of all deployment actions. This is used by build tools to report back the overall outcome of the deployment process. 
+It contains a list of `DeployCommandActionBuildItem` instances, each representing an individual deployment action and its result.
+@see DeployCommandActionBuildItem
+@since 3.8.0
 -- a|`java.util.List<DeployCommandActionBuildItem> commands` 
 
-_No Javadoc found_
+The list of deployment command actions that were executed during the deployment process.
 
 
 
@@ -2665,6 +2662,14 @@ _No Javadoc found_
 
 
 
+a| https://github.com/quarkusio/quarkus/blob/main/core/deployment/src/main/java/io/quarkus/deployment/logging/StaticInitLoggingSetupBuildItem.java[`io.quarkus.deployment.logging.StaticInitLoggingSetupBuildItem`, window="_blank"]
+[.description]
+--
+Indicates that the static init logging setup has been done. 
+See `LoggingSetupBuildItem` when you want the full logging subsystem to be properly initialized with runtime configuration.
+-- a|None
+
+
 a| https://github.com/quarkusio/quarkus/blob/main/core/deployment/src/main/java/io/quarkus/deployment/builditem/StreamingLogHandlerBuildItem.java[`io.quarkus.deployment.builditem.StreamingLogHandlerBuildItem`, window="_blank"]
 [.description]
 --
@@ -4062,6 +4067,10 @@ _No Javadoc found_
 _No Javadoc found_
 
 `java.lang.String repository` 
+
+_No Javadoc found_
+
+`java.lang.String name` 
 
 _No Javadoc found_
 
@@ -6672,51 +6681,6 @@ _No Javadoc found_
 
 
 
-a| https://github.com/quarkusio/quarkus/blob/main/extensions/mongodb-client/deployment/src/main/java/io/quarkus/mongodb/deployment/MongoClientBuildItem.java[`io.quarkus.mongodb.deployment.MongoClientBuildItem`, window="_blank"]
-[.description]
---
-Provide the MongoDB clients as RuntimeValue's.
--- a|`io.quarkus.runtime.RuntimeValue<MongoClient> client` 
-
-_No Javadoc found_
-
-`io.quarkus.runtime.RuntimeValue<ReactiveMongoClient> reactive` 
-
-_No Javadoc found_
-
-`java.lang.String name` 
-
-_No Javadoc found_
-
-
-
-
-a| https://github.com/quarkusio/quarkus/blob/main/extensions/mongodb-client/deployment/src/main/java/io/quarkus/mongodb/deployment/MongoClientNameBuildItem.java[`io.quarkus.mongodb.deployment.MongoClientNameBuildItem`, window="_blank"]
-[.description]
---
-Represents the values of the `MongoClientName` .
--- a|`java.lang.String name` 
-
-_No Javadoc found_
-
-`boolean addQualifier` 
-
-_No Javadoc found_
-
-
-
-
-a| https://github.com/quarkusio/quarkus/blob/main/extensions/mongodb-client/deployment/src/main/java/io/quarkus/mongodb/deployment/MongoConnectionPoolListenerBuildItem.java[`io.quarkus.mongodb.deployment.MongoConnectionPoolListenerBuildItem`, window="_blank"]
-[.description]
---
-Register additional `ConnectionPoolListener` s.
--- a|`java.util.function.Supplier<ConnectionPoolListener> connectionPoolListener` 
-
-_No Javadoc found_
-
-
-
-
 a| https://github.com/quarkusio/quarkus/blob/main/extensions/mongodb-client/deployment/src/main/java/io/quarkus/mongodb/deployment/MongoUnremovableClientsBuildItem.java[`io.quarkus.mongodb.deployment.MongoUnremovableClientsBuildItem`, window="_blank"]
 [.description]
 --
@@ -6729,6 +6693,52 @@ a| https://github.com/quarkusio/quarkus/blob/main/extensions/mongodb-client/depl
 --
 Register additional `PropertyCodecProvider` s for the MongoDB clients.
 -- a|`java.util.List<String> propertyCodecProviderClassNames` 
+
+_No Javadoc found_
+
+
+|===
+== MongoDB Client - SPI
+[.configuration-reference,cols=2*]
+|===
+h|Class Name
+h|Attributes 
+
+
+
+
+a| https://github.com/quarkusio/quarkus/blob/main/extensions/mongodb-client/deployment-spi/src/main/java/io/quarkus/mongodb/deployment/spi/MongoClientBuildItem.java[`io.quarkus.mongodb.deployment.spi.MongoClientBuildItem`, window="_blank"]
+[.description]
+--
+Registers a MongoDB client with a given name as a CDI bean. 
+Consumers looking for retrieving the list of Mongo clients should use `MongoClientsBuildItem` as consumers of `MongoClientBuildItem` may contain duplicates.
+-- a|`java.lang.String name` 
+
+_No Javadoc found_
+
+`boolean unremovable` 
+
+_No Javadoc found_
+
+
+
+
+a| https://github.com/quarkusio/quarkus/blob/main/extensions/mongodb-client/deployment-spi/src/main/java/io/quarkus/mongodb/deployment/spi/MongoClientsBuildItem.java[`io.quarkus.mongodb.deployment.spi.MongoClientsBuildItem`, window="_blank"]
+[.description]
+--
+The unique list of MongoDB client names.
+-- a|`java.util.List<MongoClientBuildItem> mongoClients` 
+
+_No Javadoc found_
+
+
+
+
+a| https://github.com/quarkusio/quarkus/blob/main/extensions/mongodb-client/deployment-spi/src/main/java/io/quarkus/mongodb/deployment/spi/MongoConnectionPoolListenerBuildItem.java[`io.quarkus.mongodb.deployment.spi.MongoConnectionPoolListenerBuildItem`, window="_blank"]
+[.description]
+--
+Registers a new `com.mongodb.event.ConnectionPoolListener` .
+-- a|`java.util.function.Function<String,ConnectionPoolListener> connectionPoolListener` 
 
 _No Javadoc found_
 
