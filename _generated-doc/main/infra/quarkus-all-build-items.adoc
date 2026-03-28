@@ -1631,6 +1631,18 @@ _No Javadoc found_
 
 
 
+a| https://github.com/quarkusio/quarkus/blob/main/core/deployment/src/main/java/io/quarkus/deployment/builditem/LogNamedHandlerFormatBuildItem.java[`io.quarkus.deployment.builditem.LogNamedHandlerFormatBuildItem`, window="_blank"]
+[.description]
+--
+Named handler log format build item. Producing this item provides per-named-handler formatters for all named logging handler types (console, file, syslog, socket). 
+The outer map key is the `NamedHandlerType` identifying the handler type. The inner map key is the handler name.
+-- a|`io.quarkus.runtime.RuntimeValue<Map<NamedHandlerType,Map<String,Optional<Formatter>>>> namedFormattersValue` 
+
+_No Javadoc found_
+
+
+
+
 a| https://github.com/quarkusio/quarkus/blob/main/core/deployment/src/main/java/io/quarkus/deployment/builditem/LogSocketFormatBuildItem.java[`io.quarkus.deployment.builditem.LogSocketFormatBuildItem`, window="_blank"]
 [.description]
 --
