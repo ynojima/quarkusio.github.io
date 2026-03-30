@@ -5,19 +5,14 @@ socialdescription: "View the Podcast on these platforms"
 futureheadline: "Scheduled Podcasts"
 
 # Next upcoming session (update weekly)
-nextsessiontitle: "Episode #241: What's new with Java 25"
-nextsessiondate: "2026-03-30T14:00Z"
-nextsessionguest: "Guillaume Smet & Sanne Grinovero"
+nextsessiontitle: "Episode #242: What is Quarkus Flow?"
+nextsessiondate: "2026-04-06T14:00Z"
+nextsessionguest: "Ricardo Zanini & Matheus Cruz"
 
 
 # upcoming session list (update weekly)
 
 futurevideos:
-
-- title: "Episode #241: What's new with Java 25"
-  link: 
-  date: "March 30, 2026"
-  authors: "Guillaume Smet & Sanne Grinovero"
 
 - title: "Episode #242: What is Quarkus Flow?"
   link: 
@@ -25,11 +20,36 @@ futurevideos:
   authors: "Ricardo Zanini & Matheus Cruz"
 
 
+- title: "Episode #243: What's new with the 3.33 LTS update?"
+  link: 
+  date: "April 13, 2026"
+  authors: "Guillaume Smet"
+
+
+- title: "Episode #244: How We Benchmarked Quarkus"
+  link: 
+  date: "April 20, 2026"
+  authors: "Holly Cummins & Eric Deandrea"
+
+
+- title: "Episode #245: HTTP/3 support coming in Vert.x 5.1 "
+  link: 
+  date: "April 27, 2026"
+  authors: "Julien Viet"
+
+
+
 # past session list (move last upcoming to this list weekly)
 
 pastheadline: "Archived Podcast Videos"
 
 pastvideos:
+
+
+- title: "Episode #241: What's new with Java 25"
+  link: https://youtube.com/live/UC6E20ZfHPo
+  date: "March 30, 2026"
+  authors: "Guillaume Smet & Sanne Grinovero"
 
 - title: "Episode #240: Quarkus & Gizmo 2"
   link: https://www.youtube.com/watch?v=edIWXParDFw
