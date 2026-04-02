@@ -2,60 +2,6 @@ headline: "Select Upcoming Events"
 
 upcomingevents:
 
-- title: "JavaLand"
-  type: In Person
-  link: https://github.com/quarkusio/quarkus/discussions/50998
-  date: 2026-03-12
-  displaydate: "March 10-12, 2026"
-  location: Rust, Germany
-  description: Back to the roots and off to the amusement park! JavaLand 2026 welcomes you from March 10 to 12 to Europa-Park! Discover the program with nearly 130 presentations across 13 different topics now!
-  thumbnail: javaland_logo.png
-
-- title: "IBM TechCon 2026"
-  type: Virtual
-  link: https://github.com/quarkusio/quarkus/discussions/52789
-  date: 2026-03-19
-  displaydate: "March 17-19, 2026"
-  location: Virtual
-  description: Our 8th annual virtual event is for thought leaders and creators. IBM can help you activate the agentic enterprise with intelligent, resilient, and asset-smart systems.
-  thumbnail: ibmtechcon_logo.png
-
-- title: "JavaOne"
-  type: In Person
-  link: https://github.com/quarkusio/quarkus/discussions/52795
-  date: 2026-03-19
-  displaydate: "March 17-19, 2026"
-  location: Redwood City, CA
-  description: JavaOne is here soon, and you don't want to get caught sitting on the sidelines. You might think you know what JavaOne offers, but skip this one and the next wave of innovation might leave you behind.
-  thumbnail: javaone_logo.png
-
-- title: "ArgoCon Europe"
-  type: In Person
-  link: https://github.com/quarkusio/quarkus/discussions/52499
-  date: 2026-03-22
-  displaydate: "March 22, 2026"
-  location: Amsterdam, Netherlands
-  description: ArgoCon is designed to foster collaboration, discussion, and knowledge sharing on the Argo Project, which consists of four projects Argo CD, Argo Workflows, Argo Rollouts and Argo Events.
-  thumbnail: argocon_eu_logo.png
-
-- title: "Kubecon Europe"
-  type: In Person
-  link: https://github.com/quarkusio/quarkus/discussions/52363
-  date: 2026-03-26
-  displaydate: "March 23-26, 2026"
-  location: Amsterdam, Netherlands
-  description: The Cloud Native Computing Foundation’s flagship conference gathers adopters and technologists from leading open source and cloud native communities.
-  thumbnail: kubecon_eu_2026_logo.png
-
-- title: "Voxxed Days Zürich"
-  type: In Person
-  link: https://github.com/quarkusio/quarkus/discussions/51427
-  date: 2026-03-24
-  displaydate: "March 24, 2026"
-  location: Zürich, Switzerland
-  description: Voxxed Days Zürich brings together software developers to discuss the most important topics in our industry, featuring expert speakers and opportunities to network with fellow professionals.
-  thumbnail: voxxeddays_zurich_logo.png
-
 - title: "Voxxed Days Amsterdam"
   type: In Person
   link: https://github.com/quarkusio/quarkus/discussions/51429
@@ -73,6 +19,15 @@ upcomingevents:
   location: Virtual
   description: Now in its sixth year, Microsoft JDConf is a global virtual Java developer conference that brings the community together to build and scale modern, intelligent, cloud-native applications for an agentic world.
   thumbnail: microsoftjdnconf_logo.png
+
+- title: "Quarkus User Group Munich - QUGM"
+  type: In Person
+  link: https://www.meetup.com/quarkus-user-group-munich-qugm/events/313848514/?eventOrigin=group_upcoming_events
+  date: 2026-04-16
+  displaydate: "April 16, 2026"
+  location: Munich, Germany
+  description: Join us for one of the most talked-about topics in our industry; AI and Large Language Models (LLMs) — but with a clear focus on what actually works in real-world applications.
+  thumbnail: QUGM_logo.png
 
 - title: "Java Day Istanbul"
   type: In Person
