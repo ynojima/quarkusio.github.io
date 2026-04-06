@@ -5,20 +5,14 @@ socialdescription: "View the Podcast on these platforms"
 futureheadline: "Scheduled Podcasts"
 
 # Next upcoming session (update weekly)
-nextsessiontitle: "Episode #242: What is Quarkus Flow?"
-nextsessiondate: "2026-04-06T14:00Z"
-nextsessionguest: "Ricardo Zanini & Matheus Cruz"
+nextsessiontitle: "Episode #243: What's new with the 3.33 LTS update?"
+nextsessiondate: "2026-04-13T14:00Z"
+nextsessionguest: "Guillaume Smet"
 
 
 # upcoming session list (update weekly)
 
 futurevideos:
-
-- title: "Episode #242: What is Quarkus Flow?"
-  link: 
-  date: "April 06, 2026"
-  authors: "Ricardo Zanini & Matheus Cruz"
-
 
 - title: "Episode #243: What's new with the 3.33 LTS update?"
   link: 
@@ -45,6 +39,10 @@ pastheadline: "Archived Podcast Videos"
 
 pastvideos:
 
+- title: "Episode #242: What is Quarkus Flow?"
+  link: https://youtube.com/live/0zwY4lSv3yU
+  date: "April 06, 2026"
+  authors: "Ricardo Zanini & Matheus Cruz"
 
 - title: "Episode #241: What's new with Java 25"
   link: https://youtube.com/live/UC6E20ZfHPo
