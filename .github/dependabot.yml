@@ -8,6 +8,9 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+    open-pull-requests-limit: 10
+    cooldown:
+      default-days: 14
     labels:
       - area/infra
