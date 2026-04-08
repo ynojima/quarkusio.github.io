@@ -750,7 +750,7 @@ working-groups:
       last-activity: 2026-03-31
       last-update-date: 2026-03-30
       last-update: |
-        We've been focusing on improving Dev Services reliability. We fixed a dependency issue where `quarkus-devservices-deployment` wasn't correctly depending on `quarkus-devservices`. We also resolved an issue with Kafka Dev Service loading across different Docker networks.
+        We investigated some cases where quarkus-devservices-deployment not depending on quarkus-devservices was unexpectedly triggering validation warnings, and identified root causes and workarounds. We also resolved an issue with Kafka Dev Service loading across different Docker networks.
         
         (This status update was automatically generated using AI.)
       point-of-contact: "@holly-cummins (@<strong>Holly Cummins</strong>  on Zulip), @ozangunalp (@<strong>Ozan Günalp</strong> on Zulip )"
