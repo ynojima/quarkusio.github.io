@@ -1737,7 +1737,7 @@ Environment variable: `+++QUARKUS_HIBERNATE_ORM_CACHE__CACHE__EXPIRATION_MAX_IDL
 endif::add-copy-button-to-env-var[]
 --
 |link:https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html[Duration] link:#duration-note-anchor-quarkus-hibernate-orm_quarkus-hibernate-orm[icon:question-circle[title=More information about the Duration format]]
-|
+|`+++100s+++`
 
 a|icon:lock[title=Fixed at build time] [[quarkus-hibernate-orm_quarkus-hibernate-orm-cache-cache-memory-object-count]] [.property-path]##link:#quarkus-hibernate-orm_quarkus-hibernate-orm-cache-cache-memory-object-count[`+++quarkus.hibernate-orm.cache."cache".memory.object-count+++`]##
 ifdef::add-copy-button-to-config-props[]
@@ -1763,7 +1763,7 @@ Environment variable: `+++QUARKUS_HIBERNATE_ORM_CACHE__CACHE__MEMORY_OBJECT_COUN
 endif::add-copy-button-to-env-var[]
 --
 |long
-|
+|`+++10000+++`
 
 
 h|[[quarkus-hibernate-orm_section_quarkus-hibernate-orm-discriminator]] [.section-name.section-level0]##link:#quarkus-hibernate-orm_section_quarkus-hibernate-orm-discriminator[Discriminator related configuration]##
