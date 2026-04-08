@@ -8,9 +8,6 @@ on:
     - cron: '0 * * * *'
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 defaults:
   run:
     shell: bash
@@ -19,10 +16,19 @@ jobs:
   sync:
     if: github.repository == 'quarkusio/quarkusio.github.io'
     runs-on: ubuntu-latest
+    environment: quarkus-push-website
     steps:
+      - name: Generate GitHub App token
+        id: generate-token
+        uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
+        with:
+          app-id: ${{ secrets.QUARKUS_PUSH_WEBSITE_APP_ID }}
+          private-key: ${{ secrets.QUARKUS_PUSH_WEBSITE_PRIVATE_KEY }}
+
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: main
+          token: ${{ steps.generate-token.outputs.token }}
 
       - name: Install JDK ${{ env.JVM_VERSION }}
         uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
