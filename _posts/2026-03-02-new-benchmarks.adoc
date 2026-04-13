@@ -86,22 +86,22 @@ You can see that the effect of the tuning was pretty modest, overall. Notice, as
 
 In trying to decide how to handle the question of tuning, we ended up referring back to the guiding principles for the whole exercise. They were:
 
-==== Parity
+=== Parity
 
 The application code in the Spring and Quarkus versions of the application should be as equivalent as possible to perform the same function. This means the domain models should be identical, and the underlying persistence mechanisms should be identical (in our case, JPA with Hibernate).
 Performance differences should come from architecture differences and library-integration optimisations in the frameworks themselves.
 If a change is made that changes the architecture of an application (i.e. moving blocking to reactive, using virtual threads, etc), then these changes should be applied to all the versions of the applications.
 
-==== Normal-ness
+=== Normal-ness
 
 Realism is more important than squeezing out every last bit of performance.
 
-==== High quality
+=== High quality
 
 Applications should model best practices.
 Although we want the application to represent a typical usage, someone who copies it shouldn't ever be copying 'wrong' or bad code.
 
-==== Testing the framework, not the infrastructure
+=== Testing the framework, not the infrastructure
 
 Measurements should be measuring the performance of the frameworks, rather than supporting infrastructure like the database. In practice this means we want the experimental setup to be CPU-bound.
 
