@@ -5,20 +5,14 @@ socialdescription: "View the Podcast on these platforms"
 futureheadline: "Scheduled Podcasts"
 
 # Next upcoming session (update weekly)
-nextsessiontitle: "Episode #243: What's new with the 3.33 LTS update?"
-nextsessiondate: "2026-04-13T13:00Z"
-nextsessionguest: "Guillaume Smet"
+nextsessiontitle: "Episode #244: How We Benchmarked Quarkus"
+nextsessiondate: "2026-04-20T13:00Z"
+nextsessionguest: "Holly Cummins & Eric Deandrea"
 
 
 # upcoming session list (update weekly)
 
 futurevideos:
-
-- title: "Episode #243: What's new with the 3.33 LTS update?"
-  link: 
-  date: "April 13, 2026"
-  authors: "Guillaume Smet"
-
 
 - title: "Episode #244: How We Benchmarked Quarkus"
   link: 
@@ -26,11 +20,10 @@ futurevideos:
   authors: "Holly Cummins & Eric Deandrea"
 
 
-- title: "Episode #245: HTTP/3 support coming in Vert.x 5.1 "
+- title: "Episode #245: HTTP/3 support coming in Vert.x 5.1"
   link: 
   date: "April 27, 2026"
   authors: "Julien Viet"
-
 
 
 # past session list (move last upcoming to this list weekly)
@@ -38,6 +31,11 @@ futurevideos:
 pastheadline: "Archived Podcast Videos"
 
 pastvideos:
+
+- title: "Episode #243: What's new with the 3.33 LTS update?"
+  link: https://www.youtube.com/live/BCs5-Btx_k4
+  date: "April 13, 2026"
+  authors: "Guillaume Smet"
 
 - title: "Episode #242: What is Quarkus Flow?"
   link: https://youtube.com/live/0zwY4lSv3yU
