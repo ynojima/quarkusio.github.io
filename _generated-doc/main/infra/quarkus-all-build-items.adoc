@@ -10518,6 +10518,22 @@ a| https://github.com/quarkusio/quarkus/blob/main/extensions/vertx-http/deployme
 --
 Marker build item indicating that the application uses a separate interface:port for the management endpoints such as metrics, health and prometheus.
 -- a|None
+
+
+a| https://github.com/quarkusio/quarkus/blob/main/extensions/vertx-http/deployment-spi/src/main/java/io/quarkus/vertx/http/deployment/spi/WebDependencyJarBuildItem.java[`io.quarkus.vertx.http.deployment.spi.WebDependencyJarBuildItem`, window="_blank"]
+[.description]
+--
+Produced by extensions that ship web assets (JS modules, CSS, etc.) following the mvnpm layout convention in their runtime JAR. 
+UI framework extensions (web-dependency-locator, web-bundler, etc.) consume these to discover web dependencies without classpath scanning or group-ID matching.
+-- a|`io.quarkus.maven.dependency.ArtifactKey artifactKey` 
+
+_No Javadoc found_
+
+`java.nio.file.Path jarPath` 
+
+_No Javadoc found_
+
+
 |===
 == Vert.x - SPI
 [.configuration-reference,cols=2*]
