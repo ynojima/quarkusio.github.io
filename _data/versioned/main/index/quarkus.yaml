@@ -2701,6 +2701,17 @@ types:
     - extensions
     type: guide
     url: /guides/writing-native-applications-tips
+  - title: Tree-shaking JAR dependencies
+    filename: jar-tree-shaking.adoc
+    summary: This guide explains how to reduce JAR size by removing unreachable classes from runtime dependencies.
+    categories: core
+    topics:
+    - packaging
+    - jar
+    - tree-shaking
+    - optimization
+    type: guide
+    url: /guides/jar-tree-shaking
   - title: Use Hibernate Search in Standalone mode with Elasticsearch/OpenSearch
     filename: hibernate-search-standalone-elasticsearch.adoc
     summary: "Hibernate Search Standalone allows you to index your entities in an Elasticsearch/OpenSearch cluster and easily offer full text search in all your applications, even without Hibernate ORM."
