@@ -2,24 +2,6 @@ headline: "Select Upcoming Events"
 
 upcomingevents:
 
-- title: "Voxxed Days Amsterdam"
-  type: In Person
-  link: https://github.com/quarkusio/quarkus/discussions/51429
-  date: 2026-04-02
-  displaydate: "April 1-2, 2026"
-  location: Amsterdam, Netherlands
-  description: Accelerate your skills at Voxxed Days Amsterdam, the conference for tomorrow’s developers.
-  thumbnail: voxxeddays_amsterdam_logo.png
-
-- title: "Microsoft JDConf"
-  type: Virtual
-  link: https://github.com/quarkusio/quarkus/discussions/52796
-  date: 2026-04-09
-  displaydate: "April 8-9, 2026"
-  location: Virtual
-  description: Now in its sixth year, Microsoft JDConf is a global virtual Java developer conference that brings the community together to build and scale modern, intelligent, cloud-native applications for an agentic world.
-  thumbnail: microsoftjdnconf_logo.png
-
 - title: "Quarkus User Group Munich - QUGM"
   type: In Person
   link: https://www.meetup.com/quarkus-user-group-munich-qugm/events/313848514/?eventOrigin=group_upcoming_events
@@ -110,6 +92,24 @@ upcomingevents:
   description: Red Hat Summit is the premier enterprise open source event where IT professionals can collaborate, learn, and move forward with hybrid cloud technologies that unlock innovation, everywhere.
   thumbnail: redhatsummit_logo.png
 
+- title: "Cloud Native Days Italy"
+  type: In Person
+  link: https://github.com/quarkusio/quarkus/discussions/53640
+  date: 2026-05-19
+  displaydate: "May 18-19, 2026"
+  location: Bologna, Italy
+  description: Cloud Native Days (CND) Italy is a local, community-organized event that gathers adopters and technologists from open source and cloud native communities.
+  thumbnail: cloudnativedaysitaly_logo.png
+
+- title: "Current | London"
+  type: In Person
+  link: https://github.com/quarkusio/quarkus/discussions/53641
+  date: 2026-05-20
+  displaydate: "May 19-20, 2026"
+  location: London, UK
+  description: Kafka Summit in London was massive, and this year we’re coming back to do something even bigger as Current London. It’s the data streaming event with a full-day of keynotes, breakout sessions, and an amazing expo hall. It’s the can’t-miss event for the best minds in data.
+  thumbnail: currentlondon_logo.png
+
 - title: "JCon OpenBlend & Make IT"
   type: In Person
   link: https://github.com/quarkusio/quarkus/discussions/53013
@@ -146,6 +146,15 @@ upcomingevents:
   description: The Cloud Native Computing Foundation’s flagship conference brings together adopters and technologists from leading open source and cloud native communities in Mumbai, India, from 18-19 June, 2026. Be a part of the conversation as CNCF Graduated, Incubating, and Sandbox Projects unite for two days of collaboration, learning, and innovation to drive the future of cloud native computing.
   thumbnail: kubeconindia_logo.png
 
+- title: "Devoxx Poland"
+  type: In Person
+  link: https://github.com/quarkusio/quarkus/discussions/53639
+  date: 2026-06-19
+  displaydate: "June 17-19, 2026"
+  location: Krakow, Poland
+  description: During 3 days, 2.700 Devoxxians from 20 different countries attend Devoxx Poland including 100+ speakers and another 600K developers enjoy the presentations online. Making Devoxx the biggest Java conference in Poland.
+  thumbnail: devoxxpoland_logo.png
+
 - title: "Software Architecture Summit"
   type: In Person
   link: https://github.com/quarkusio/quarkus/discussions/52505
@@ -154,6 +163,15 @@ upcomingevents:
   location: Bucharest, Romania
   description: From June 15-19 2026, the Business Summits at Nord Events Center by Globalworth will bring together global experts and industry pioneers to tackle the biggest challenges and opportunities in tech. Across five specialized events—the Innovation Summit, Future AI Summit, HR Masters Summit, Software Architecture Summit, and AI Coding Summit— attendees will gain insights into Generative AI, AI-Human Collaboration, AI Agents, MultiCloud architectures, workforce transformation, and emerging innovations such as bionic arms that merge human capabilities with advanced technology.
   thumbnail: softwarearchitecturesummit_logo.png
+
+- title: "Riviera Dev"
+  type: In Person
+  link: https://github.com/quarkusio/quarkus/discussions/53642
+  date: 2026-07-08
+  displaydate: "July 6-8, 2026"
+  location: Valbonne, France
+  description: Riviera DEV is a conference by developers, for developers. It is a fun and relaxed event offered at an affordable price so that every developer can enjoy the experience.
+  thumbnail: rivieradev_logo.png
 
   
   
