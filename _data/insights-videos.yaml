@@ -7,7 +7,7 @@ futureheadline: "Scheduled Podcasts"
 # Next upcoming session (update weekly)
 nextsessiontitle: "Episode #244: How We Benchmarked Quarkus"
 nextsessiondate: "2026-04-20T13:00Z"
-nextsessionguest: "Holly Cummins & Eric Deandrea"
+nextsessionguest: "Holly Cummins, Eric Deandrea, & Francesco Nigro"
 
 
 # upcoming session list (update weekly)
@@ -17,13 +17,22 @@ futurevideos:
 - title: "Episode #244: How We Benchmarked Quarkus"
   link: 
   date: "April 20, 2026"
-  authors: "Holly Cummins & Eric Deandrea"
-
+  authors: "Holly Cummins, Eric Deandrea, & Francesco Nigro"
 
 - title: "Episode #245: HTTP/3 support coming in Vert.x 5.1"
   link: 
   date: "April 27, 2026"
   authors: "Julien Viet"
+
+- title: "Episode #246: Evolving Minecraft Into a Cloud Native Platform"
+  link: 
+  date: "May 4th, 2026"
+  authors: "Jaden Walderich & Austin Mayes"
+
+- title: "Episode #247: Agentic Orchestration with Quarkus, LangChain4j, and Kubernetes"
+  link: 
+  date: "May 11th, 2026"
+  authors: "Jonathan Johnson"
 
 
 # past session list (move last upcoming to this list weekly)
