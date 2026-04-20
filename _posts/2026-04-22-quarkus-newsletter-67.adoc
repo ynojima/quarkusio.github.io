@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Quarkus Newsletter #67 - April'
-date: 2026-04-16
+date: 2026-04-22
 tags: newsletter
 synopsis: Curated online stories, articles, and videos about Quarkus are available in the April 2026 edition of the Quarkus Newsletter.
 
