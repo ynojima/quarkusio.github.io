@@ -5,19 +5,14 @@ socialdescription: "View the Podcast on these platforms"
 futureheadline: "Scheduled Podcasts"
 
 # Next upcoming session (update weekly)
-nextsessiontitle: "Episode #244: How We Benchmarked Quarkus"
-nextsessiondate: "2026-04-20T13:00Z"
-nextsessionguest: "Holly Cummins, Eric Deandrea, & Francesco Nigro"
+nextsessiontitle: "Episode #245: HTTP/3 support coming in Vert.x 5.1"
+nextsessiondate: "2026-04-27T13:00Z"
+nextsessionguest: "Julien Viet"
 
 
 # upcoming session list (update weekly)
 
 futurevideos:
-
-- title: "Episode #244: How We Benchmarked Quarkus"
-  link: 
-  date: "April 20, 2026"
-  authors: "Holly Cummins, Eric Deandrea, & Francesco Nigro"
 
 - title: "Episode #245: HTTP/3 support coming in Vert.x 5.1"
   link: 
@@ -40,6 +35,11 @@ futurevideos:
 pastheadline: "Archived Podcast Videos"
 
 pastvideos:
+
+- title: "Episode #244: How We Benchmarked Quarkus"
+  link: https://youtube.com/live/LTS2ppoHacI
+  date: "April 20, 2026"
+  authors: "Holly Cummins, Eric Deandrea, & Francesco Nigro"
 
 - title: "Episode #243: What's new with the 3.33 LTS update?"
   link: https://www.youtube.com/live/BCs5-Btx_k4
